@@ -58,3 +58,8 @@
 
 #form input[type="submit"]:hover {
     background-color: #34CACA; }
+#form a {
+    position: relative;
+    left: 90%;
+    text-decoration: none;
+    color: #2CBBBB; }

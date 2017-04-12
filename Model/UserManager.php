@@ -35,31 +35,30 @@ class UserManager
     
     public function userCheckRegister($data)
     {
-        if (empty($data['username']) OR empty($data['email']) OR empty($data['password']))
+        if (empty($data['username']) OR empty($data['email']) OR empty($data['password']) OR empty($data['faction']))
             return false;
-        //$data = $this->getUserByUsername($data['username']);
-        //if ($data !== false)
-           // return false;
+        $data = $this->getUserByUsername($data['username']);
+        if ($data !== false)
+            return false;
         // TODO : Check valid email
         return true;
     }
     
     private function userHash($pass)
     {
-        $hash = password_hash($pass, PASSWORD_BCRYPT, ['salt' => 'saltysaltysaltysalty!!']);
+        $hash = password_hash($pass, PASSWORD_BCRYPT);
         return $hash;
     }
 
     public function userRegister($data)
     {
-        $user['role'] = "1";
+        $user['role'] =     '1';
         $user['username'] = $data['username'];
         $user['email'] = $data['email'];
-        $user['password'] = $data['password'];
+        $user['password'] = $this->userHash($data['password']);
         $user['faction']=$data['faction'];
-        $user['firstname']="Jean";
-        $user['lastname']="Dupont";
-        var_dump($user);
+        $user['firstname']='';
+        $user['lastname']='';
         $this->DBManager->insert('users', $user);
     }
     
