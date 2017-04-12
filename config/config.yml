@@ -8,7 +8,7 @@ routes:
 defaut_route: 'home'
 
 db_config:
-    name: 'mvc'
+    name: 'vae_victis'
     host: 'localhost'
-    user: 'mvc'
-    pass: 'mvcpass'
+    user: 'vae_victis'
+    pass: 'vae_victis'
