@@ -1,6 +1,7 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
+    <div id="form">
 <form action="?action=register" method="POST">
     Pseudo : <input type="text" name="username"><br>
     Email : <input type="text" name="email"><br>
@@ -12,4 +13,5 @@
     <input type="radio" name="faction" value="neutre">Neutre
     <input type="submit">
 </form>
+    </div>
 {% endblock %}
