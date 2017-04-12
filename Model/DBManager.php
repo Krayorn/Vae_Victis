@@ -49,6 +49,8 @@ class DBManager
     public function insert($table, $data = [])
     {
         $dbh = $this->getDbh();
+        echo "slt";
+        var_dump($data);
         $query = 'INSERT INTO `' . $table . '` VALUES ("",';
         $first = true;
         foreach ($data AS $k => $value)
