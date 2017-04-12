@@ -59,6 +59,8 @@ class UserManager
         $user['faction']=$data['faction'];
         $user['firstname']='';
         $user['lastname']='';
+        $user['nbr_commentary']='0';
+        $user['nbr_articles']='0';
         $this->DBManager->insert('users', $user);
     }
     
