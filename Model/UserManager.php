@@ -46,7 +46,7 @@ class UserManager
     
     private function userHash($pass)
     {
-        $hash = password_hash($pass, PASSWORD_BCRYPT);
+        $hash = password_hash($pass, PASSWORD_BCRYPT, ['salt' => 'saltysaltysaltysalty!!']);
         return $hash;
     }
 

@@ -39,7 +39,7 @@ class SecurityController extends BaseController
             if ($manager->userCheckRegister($_POST))
             {
                 $manager->userRegister($_POST);
-                //$this->redirect('home');
+                $this->redirect('login');
             }
             else {
                 $error = "Invalid data";
