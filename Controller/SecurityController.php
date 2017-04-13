@@ -15,7 +15,7 @@ class SecurityController extends BaseController
             if ($manager->userCheckLogin($_POST))
             {
                 $manager->userLogin($_POST['username']);
-                $this->redirect('home');
+            //    $this->redirect('home');
             }
             else {
                 $error = "Invalid username or password";
@@ -47,4 +47,25 @@ class SecurityController extends BaseController
         }
         echo $this->renderView('register.html.twig', ['error' => $error]);
     }
+
+
+public function homeAction()
+{
+    $error = '';
+    if ($_SERVER['REQUEST_METHOD'] === 'POST')
+    {
+        $manager = UserManager::getInstance();
+        if ($manager->userCheckArticles($_POST))
+        {
+
+                $manager->insertArticles($_POST);
+                $this->redirect('home');
+
+        }
+        else {
+            $error = "Invalid data";
+        }
+    }
+    echo $this->renderView('home.html.twig', ['error' => $error]);
+}
 }

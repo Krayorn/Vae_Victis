@@ -29,7 +29,7 @@ class UserManager
     public function getUserByUsername($username)
     {
         $data = $this->DBManager->findOneSecure("SELECT * FROM users WHERE username = :username",
-                                ['username' => $username]);
+        ['username' => $username]);
         return $data;
     }
     
@@ -63,6 +63,7 @@ class UserManager
         $user['nbr_articles']='0';
         $this->DBManager->insert('users', $user);
     }
+
     
     public function userCheckLogin($data)
     {
@@ -85,6 +86,29 @@ class UserManager
         if ($data === false)
             return false;
         $_SESSION['user_id'] = $data['id'];
+        return true;
+    }
+
+    public function insertArticles($data)
+    {
+        $user['user_id'] = $_SESSION['user_id'];
+        $user['date'] = '';
+        $user['title'] = $data['title'];
+        $user['description'] = $data['description'];
+        $user['content'] = $data['content'];
+        $user['nbr_commentary'] = 0;
+        $user['update_date'] = '';
+        $user['tags']= '';
+        $this->DBManager->insert('articles', $user);
+    }
+    public function userCheckArticles($data)
+    {
+        if (empty($data['title']) OR empty($data['description']) OR empty($data['content']))
+            return false;
+        $user = $this->getUserByUsername($data['username']);
+        if ($user === false)
+            return false;
+
         return true;
     }
 }

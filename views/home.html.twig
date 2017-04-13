@@ -2,5 +2,27 @@
 
 {% block content %}
 <h1>Hello {{ name }} !</h1>
+    <div id="form">
+        <form action="?action=register" method="POST" id="articlesForm">
+             Title : <input type="text" name="title"><br>
+            Description: <textarea name="description"></textarea><br>
+            Contenu:     <textarea name="content"></textarea><br>
+            <h1>Tags</h1>
+            Choix 1 : <select name="tagFaction" >
+                <option  value="vikings">Vikings</option>
+                <option  value="samurai">Samurai</option>
+                <option  value="chevaliers">Chevaliers</option>
+                <option value="neutre">Neutre</option>
+            </select>
+            Choix 2 : <select name="tagTypes" >
+                <option  value="items">Equipement</option>
+                <option value="start">Stratégie</option>
+                <option  value="fight">Combat</option>
+            </select>
+            <input type="submit" name="articles">
+        </form>
+
+
+    </div>
     <a href="?action=logout">Logout</a>
 {% endblock %}
