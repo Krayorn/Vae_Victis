@@ -2,18 +2,17 @@
 
 {% block content %}
     <div id="form">
-<form action="?action=register" method="POST">
-    Pseudo : <input type="text" name="username"><br>
-    Email : <input type="text" name="email"><br>
-    Password : <input type="password" name="password"><br>
-    Password check : <input type="password" name="verifpassword"><br>
-    Faction : <input type="radio" name="faction" value="vikings">Vikings
-    <input type="radio" name="faction" value="samurai">Samurai
-    <input type="radio" name="faction" value="chevaliers">Chevaliers
-    <input type="radio" name="faction" value="neutre">Neutre<br><br>
-    <input type="submit">
-</form>
+        <form action="?action=register" method="POST">
+            Pseudo : <input type="text" name="username"><br>
+            Email : <input type="text" name="email"><br>
+            Password : <input type="password" name="password"><br>
+            Password check : <input type="password" name="verifpassword"><br>
+            Faction : <input type="radio" name="faction" value="vikings">Vikings
+            <input type="radio" name="faction" value="samurai">Samurai
+            <input type="radio" name="faction" value="chevaliers">Chevaliers
+            <input type="radio" name="faction" value="neutre">Neutre<br><br>
+            <input type="submit">
+        </form>
         <a href="?action=login">Login</a>
-
     </div>
 {% endblock %}
