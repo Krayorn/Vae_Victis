@@ -91,14 +91,15 @@ class UserManager
 
     public function insertArticles($data)
     {
+
         $user['user_id'] = $_SESSION['user_id'];
-        $user['date'] = '';
+        $user['date'] = $data['date'];
         $user['title'] = $data['title'];
         $user['description'] = $data['description'];
         $user['content'] = $data['content'];
-        $user['nbr_commentary'] = 0;
-        $user['update_date'] = '';
-        $user['tags']= '';
+        $user['nbr_commentary'] =  $data['nbr_commentary'];
+        $user['update_date'] = $data['update_date'];
+        $user['tags']= $data['tags'];
         $this->DBManager->insert('articles', $user);
     }
     public function userCheckArticles($data)

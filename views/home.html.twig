@@ -4,17 +4,17 @@
 <h1>Hello {{ name }} !</h1>
     <div id="form">
         <form action="?action=register" method="POST" id="articlesForm">
-             Title : <input type="text" name="title"><br>
-            Description: <textarea name="description"></textarea><br>
-            Contenu:     <textarea name="content"></textarea><br>
+             Title : <input type="text" name="title" id="title"><br>
+            Description: <textarea name="description" id="description"></textarea><br>
+            Contenu:     <textarea name="content" id="content"></textarea><br>
             <h1>Tags</h1>
-            Choix 1 : <select name="tagFaction" >
+            Choix 1 : <select name="tagFaction" id="tagFaction" >
                 <option  value="vikings">Vikings</option>
                 <option  value="samurai">Samurai</option>
                 <option  value="chevaliers">Chevaliers</option>
                 <option value="neutre">Neutre</option>
             </select>
-            Choix 2 : <select name="tagTypes" >
+            Choix 2 : <select name="tagTypes" id="tagTypes">
                 <option  value="items">Equipement</option>
                 <option value="start">Stratégie</option>
                 <option  value="fight">Combat</option>
