@@ -1,31 +1,27 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <div id="form">
-<<<<<<< HEAD
-<form action="?action=register" method="POST" id="registerForm">
-    <label for="username"> Pseudo : </label> <span id="errorUsername" class="errorBlock"></span><br>
-    <input type="text" name="username" id="username"><br>
-    <label for="email"> Email :  </label> </label> <span id="errorEmail" class="errorBlock"></span><br>
-    <input type="text" name="email" id="email"><br>
-    <label for="password"> Mot de passe : </label> </label> <span id="errorPassword" class="errorBlock"></span><br>
-    <input type="password" name="password" id="password"><br>
-    <label for="confirm_password"> Vérification du mot de passe:  </label> </label> <span id="errorConfirm" class="errorBlock"></span><br>
-    <input type="password" name="confirm_password" id="confirm_password"><br>
-    <label for="confirm_password"> Faction : </label> </label> <span id="errorFaction" class="errorBlock"></span><br>
-    <input type="radio" name="faction" value="vikings" checked>Vikings
-    <input type="radio" name="faction" value="samurai">Samurai
-    <input type="radio" name="faction" value="chevaliers">Chevaliers
-    <input type="radio" name="faction" value="neutre">Neutre<br><br>
-    <input type="submit"  name="userRegister" >
-</form>
+    <div class="form-container-2 form-container" id="example-2">
+        <form action="?action=register" method="POST" id="registerForm">
+            <span id="errorUsername" class="errorBlock"></span>
+            <input placeholder="username" type="text" name="username" id="username"><br>
+            <span id="errorEmail" class="errorBlock"></span>
+            <input placeholder="email" type="text" name="email" id="email"><br>
+            <span id="errorPassword" class="errorBlock"></span>
+            <input placeholder="password" type="password" name="password" id="password"><br>
+            <span id="errorConfirm" class="errorBlock"></span>
+            <input placeholder="confirm_password" type="password" name="confirm_password" id="confirm_password"><br>
+            <span id="errorFaction" class="errorBlock"></span>
+            <input placeholder="" type="radio" name="faction" value="vikings" checked>Vikings
+            <input placeholder="" type="radio" name="faction" value="samurai">Samurai
+            <input placeholder="" type="radio" name="faction" value="chevaliers">Chevaliers
+            <input placeholder="" type="radio" name="faction" value="neutre">Neutre<br>
+            <button id="button">Valider</button>
+        </form>
         <a href="?action=login">Login</a>
-
-
-    <div id="result">
-
-    </div>
-    <button class='none' id="yes">Yes</button>
-    <button class='none' id="no">No</button>
+        <div id="result">
+        </div>
+        <button class='none' id="yes">Yes</button>
+        <button class='none' id="no">No</button>
     </div>
 {% endblock %}

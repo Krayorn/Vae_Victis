@@ -8,16 +8,26 @@ module.exports = function(grunt) {
         },
         files: [{
           "expand": true,
-          "cwd": "src/styles/",
+          "cwd": "assets/style/",
           "src": ["*.scss"],
-          "dest": "dist/styles/",
+          "dest": "assets/style/",
           "ext": ".css"
         }]
       }
-    }
+    },
+    watch: {
+      css: {
+        files: '**/*.scss',
+        tasks: ['sass'],
+        options: {
+          livereload: true,
+        },
+      },
+    },
   })
 
-  grunt.loadNpmTasks('grunt-contrib-sass')
+  grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
-  grunt.registerTask('default', ['sass:dist'])
+  grunt.registerTask('default', ['watch:css'])
 }

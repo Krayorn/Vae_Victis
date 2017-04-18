@@ -1,4 +1,8 @@
 $(function () {
+    
+    jQuery('.form-container').foxholder({
+        demo: 2 //or other number of demo (1-15) you want to use
+    });
 
      var registerForm = $('#registerForm');
     function emailValidation(email) {
@@ -23,12 +27,10 @@ $(function () {
     $('#email').keyup(function () {
         if (emailValidation(this.value) === false) {
             $(this).css({
-                borderColor: 'red',
                 color: 'red'
             });
         } else {
             $(this).css({
-                borderColor: 'green',
                 color: 'green'
             });
         }
