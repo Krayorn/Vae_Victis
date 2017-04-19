@@ -15,7 +15,7 @@
   transition: all 0.2s linear 0s;
 }
 
-.form-container form label {
+.form-container form .placeholder {
   position: absolute;
   top: 1px;
   left: 1px;
@@ -23,20 +23,20 @@
   background: transparent;
 }
 
-.form-container form label:before {
+.form-container form .placeholder:before {
   content: "";
   height: 100%;
   display: inline-block;
   vertical-align: middle;
 }
 
-.form-container form label span {
+.form-container form .placeholder span {
   display: inline-block;
   vertical-align: middle;
   padding: 0px 20px;
 }
 
-.form-container form input + label {
+.form-container form input + .placeholder {
   height: calc(100% - 2px);
 }
 
@@ -49,7 +49,7 @@
   padding: 10px 20px;
 }
 
-#example-2.form-container label {
+#example-2.form-container .placeholder {
   opacity: 1;
   -moz-transition: all 0.2s linear 0s;
   -webkit-transition: all 0.2s linear 0s;
@@ -63,8 +63,8 @@
   border-top: 1px solid transparent;
 }
 
-#example-2.form-container input:focus + label,
-#example-2.form-container input.active + label{
+#example-2.form-container input:focus + .placeholder,
+#example-2.form-container input.active + .placeholder{
   font-size: 80%;
   font-style: italic;
   left: -6px;

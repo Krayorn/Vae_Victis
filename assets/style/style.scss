@@ -15,7 +15,7 @@
 }
 
 body{
-    /*background: url('http://www.gamelove.com/sites/www.gamelove.com/files/news/listing/for-honor-periode-de-beta-ferme-date-inscription-image-listing.jpg') no-repeat center top;*/
+    background: url('http://www.gamelove.com/sites/www.gamelove.com/files/news/listing/for-honor-periode-de-beta-ferme-date-inscription-image-listing.jpg') no-repeat center top;
     margin : 0px;
     font-size: 26px;
 }
@@ -42,7 +42,7 @@ li{
     padding: 0;
     overflow: hidden;
     background-color: #333;
-    @include flex_trinity(column,flex-start);
+    @include flex_trinity(column, flex-start);
     text-align: center;
     li{
         padding: 20px;
@@ -73,6 +73,18 @@ li{
     }
 
 }
-    .form-container{
-        margin: 20px;
+
+.form-container{
+    margin: 20px;
+    #faction{
+       @include flex_trinity(row, space-between);
+       align-items: center;
     }
+    img{
+        width:100%;
+    }
+}
+
+.border{
+    border : 1px solid black;
+}
