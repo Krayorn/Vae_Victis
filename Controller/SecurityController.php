@@ -38,8 +38,9 @@ class SecurityController extends BaseController
             $manager = UserManager::getInstance();
             if ($manager->userCheckRegister($_POST))
             {
+
                 $manager->userRegister($_POST);
-                $this->redirect('login');
+                $this->redirect('home');
             }
             else {
                 $error = "Invalid data";
@@ -56,7 +57,7 @@ public function homeAction()
     {
         $manager = UserManager::getInstance();
 
-        if(isset($_POST['articles'])){
+        if($manager->userCheckArticles($_POST)){
             $manager->insertArticles($_POST);
             $this->redirect('home');
         }
