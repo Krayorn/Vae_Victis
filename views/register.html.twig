@@ -2,30 +2,49 @@
 
 {% block content %}
     <div id="form">
-<<<<<<< HEAD
-<form action="?action=register" method="POST" id="registerForm">
-    <label for="username"> Pseudo : </label> <span id="errorUsername" class="errorBlock"></span><br>
-    <input type="text" name="username" id="username"><br>
-    <label for="email"> Email :  </label> </label> <span id="errorEmail" class="errorBlock"></span><br>
-    <input type="text" name="email" id="email"><br>
-    <label for="password"> Mot de passe : </label> </label> <span id="errorPassword" class="errorBlock"></span><br>
-    <input type="password" name="password" id="password"><br>
-    <label for="confirm_password"> Vérification du mot de passe:  </label> </label> <span id="errorConfirm" class="errorBlock"></span><br>
-    <input type="password" name="confirm_password" id="confirm_password"><br>
-    <label for="confirm_password"> Faction : </label> </label> <span id="errorFaction" class="errorBlock"></span><br>
-    <input type="radio" name="faction" value="vikings" checked>Vikings
-    <input type="radio" name="faction" value="samurai">Samurai
-    <input type="radio" name="faction" value="chevaliers">Chevaliers
-    <input type="radio" name="faction" value="neutre">Neutre<br><br>
-    <input type="submit"  name="userRegister" >
-</form>
+
+        <form action="?action=register" method="POST" id="registerForm">
+            <label for="username"> Pseudo : </label> <span id="errorUsername" class="errorBlock"></span><br>
+            <input type="text" name="username" id="username"><br>
+            <label for="email"> Email : </label> </label> <span id="errorEmail" class="errorBlock"></span><br>
+            <input type="text" name="email" id="email"><br>
+            <label for="password"> Mot de passe : </label> </label> <span id="errorPassword"
+                                                                          class="errorBlock"></span><br>
+            <input type="password" name="password" id="password"><br>
+            <label for="confirm_password"> Vérification du mot de passe: </label><span id="errorConfirm"
+                                                                                                 class="errorBlock"></span><br>
+            <input type="password" name="confirm_password" id="confirm_password"><br>
+            <div id="faction">
+
+
+                    <div class="div_faction"><label class="label_faction"  for="vikings"><img  id="img_viking" class="img_faction" src="assets/images/faction_vikings.png"></label>
+                        <input class="input_faction" type="radio" name="faction" value="vikings" checked id="vikings">
+                        <p id="viking_check"></p>
+                            </div>
+                    <div class="div_faction"><label class="label_faction"  for="samurai"><img  id="img_samurai" class="img_faction" src="assets/images/faction_samurai.png"></label>
+                        <input class="input_faction" type="radio" name="faction" value="samurai" id="samurai">
+                        <p id="samurai_check"></p></div>
+                    <div class="div_faction"><label  class="label_faction"  for="knight"><img id="img_knight" class="img_faction" src="assets/images/faction_knight.png"></label>
+                        <input class="input_faction" type="radio" name="faction" value="knight" id="knight">
+                        <p id="knight_check"></p></div>
+                    <div class="div_faction"><label class="label_faction"  for="neutral"><img id="img_neutral" class="img_faction" src="assets/images/faction_neutral.webp"></label>
+                        <input class="input_faction" type="radio" name="faction" value="neutral" id="neutral"><br><br>
+                        <p id="neutral_check"></p></div>
+
+
+            </div>
+            <input type="submit" name="userRegister">
+        </form>
         <a href="?action=login">Login</a>
 
 
-    <div id="result">
+        <div id="result">
 
+        </div>
+        <button class='none' id="yes">Yes</button>
+        <button class='none' id="no">No</button>
     </div>
-    <button class='none' id="yes">Yes</button>
-    <button class='none' id="no">No</button>
-    </div>
+
+
+
 {% endblock %}

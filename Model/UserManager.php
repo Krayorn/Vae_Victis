@@ -64,6 +64,8 @@ class UserManager
         $this->DBManager->insert('users', $user);
     }
 
+
+
     
     public function userCheckLogin($data)
     {
@@ -93,13 +95,13 @@ class UserManager
     {
 
         $user['user_id'] = $_SESSION['user_id'];
-        $user['date'] = $data['date'];
+        $user['date'] = '2003-08-04';
         $user['title'] = $data['title'];
         $user['description'] = $data['description'];
         $user['content'] = $data['content'];
-        $user['nbr_commentary'] =  $data['nbr_commentary'];
-        $user['update_date'] = $data['update_date'];
-        $user['tags']= $data['tags'];
+        $user['nbr_commentary'] =  0;
+        $user['update_date'] ='2003-08-04';
+        $user['tags']= $data['tagFaction'];
         $this->DBManager->insert('articles', $user);
     }
     public function userCheckArticles($data)
@@ -112,4 +114,6 @@ class UserManager
 
         return true;
     }
+
+
 }

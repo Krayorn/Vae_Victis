@@ -63,3 +63,31 @@
     left: 90%;
     text-decoration: none;
     color: #2CBBBB; }
+
+.img_faction{
+    width: 60%;
+}
+
+#faction{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    align-content: stretch;
+}
+
+.none{
+    display: none;
+}
+.input_faction{
+    display: none;
+}
+
+.div_faction{
+ width: 50%;
+}
+
+.border{
+    border: 1px solid black;
+}

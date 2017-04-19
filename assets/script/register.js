@@ -10,7 +10,6 @@ $(function () {
         return usernameRegExp.test(username);
     }
 
-
     var result = $('#result');
     var button = $('.none');
     button.css('display','none');
@@ -19,6 +18,44 @@ $(function () {
     var errorEmail = $('#errorEmail');
     var errorPassword = $('#errorPassword');
     var errorConfirm = $('#errorConfirm');
+
+    var vikingCheck = $('#viking_check');
+    var samuraiCheck = $('#samurai_check');
+    var knightCheck = $('#knight_check');
+    var neutralCheck = $('#neutral_check');
+
+    var imgViking = $('#img_viking');
+    var imgSamurai = $('#img_samurai');
+    var imgKnight = $('#img_knight');
+    var imgNeutral= $('#img_neutral');
+
+    imgKnight.click(function(){
+        imgKnight.addClass('border');
+        imgSamurai.removeClass('border');
+        imgViking.removeClass('border');
+        imgNeutral.removeClass('border');
+    });
+
+    imgViking.click(function(){
+        imgKnight.removeClass('border');
+        imgSamurai.removeClass('border');
+        imgViking.addClass('border');
+        imgNeutral.removeClass('border');
+    });
+
+    imgSamurai.click(function(){
+        imgKnight.removeClass('border');
+        imgSamurai.addClass('border');
+        imgViking.removeClass('border');
+        imgNeutral.removeClass('border');
+    });
+
+    imgNeutral.click(function(){
+        imgKnight.removeClass('border');
+        imgSamurai.removeClass('border');
+        imgViking.removeClass('border');
+        imgNeutral.addClass('border');
+    });
 
     $('#email').keyup(function () {
         if (emailValidation(this.value) === false) {
@@ -52,14 +89,24 @@ $(function () {
         errorFaction.html('');
         errorPassword.html('');
         errorConfirm.html('');
+
+        vikingCheck.html('');
+        samuraiCheck.html('');
+        knightCheck.html('');
+        neutralCheck.html('');
+
         var form = {
             username:   $('#username').val(),
             email: $('#email').val(),
-            faction:  faction.val(),
+            faction: faction.val(),
             password: $('#password').val(),
             confirm: $('#confirm_password').val()
 
         };
+
+        $('#img_knight').click(function(){
+
+        });
 
         if (!usernameValidation(form.username)|| form.username.length < 4 || form.username.length > 10 ) {
             formValid = false;
@@ -85,8 +132,9 @@ $(function () {
             registerForm.slideToggle("slow", function () {
                 button.css('display','block');
                 result.css('display','block');
-                result.html('<br>'+'Vos informations :' + '<br>' + 'Pseudo  :' + form.username + '<br>' + 'Email :' +
-                    form.email + '<br>' + 'Faction :' + form.faction + '<br>' +  'Mot de passe : ' + form.password);
+
+                result.html('<br>'+'Vos informations : <br>' + 'Pseudo  :' + form.username + '<br>' + 'Email :' +
+                    form.email + '<br>' + 'Faction : ' + form.faction+ '<br>' +  'Mot de passe : ' + form.password);
                 $('#yes').click(function () {
 
 
