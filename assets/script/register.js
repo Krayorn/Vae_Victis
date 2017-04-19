@@ -1,10 +1,10 @@
 $(function () {
     
-    jQuery('.form-container').foxholder({
+    $('.form-container').foxholder({
         demo: 2 //or other number of demo (1-15) you want to use
     });
 
-     var registerForm = $('#registerForm');
+    var registerForm = $('#registerForm');
     function emailValidation(email) {
         var emailRegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return emailRegExp.test(email);
@@ -14,10 +14,13 @@ $(function () {
         return usernameRegExp.test(username);
     }
 
+    $('.arrow').click(function(){
+        $('.arrow').toggleClass('none');
+        $('#active').siblings().toggle("slow");
+    })
 
     var result = $('#result');
     var button = $('.none');
-    button.css('display','none');
     var errorUsername = $('#errorUsername');
     var errorFaction = $('#errorFaction');
     var errorEmail = $('#errorEmail');

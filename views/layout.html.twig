@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <title>Vae Victis</title>
-        <!--<link href="assets/style/style.css" rel="stylesheet">-->
+        <link href="assets/style/style.css" rel="stylesheet">
         <link rel="stylesheet" href="assets/style/foxholder-styles.css" />
         <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
         <script src="assets/script/foxholder.js"></script>
@@ -12,15 +12,6 @@
         <script src="assets/script/home.js"></script>
     </head>
     <body>
-        <header>
-            Awesome header
-        </header>
-        <nav>
-            <ul>
-                <li><a href="?action=home">Home</a></li>
-                <li><a href="?action=about">About Us</a></li>
-            </ul>
-        </nav>
         {% if error is defined and error is not empty %}
         <p class="error">Error : {{ error }}</p>
         {% endif %}

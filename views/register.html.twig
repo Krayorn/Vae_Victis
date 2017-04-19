@@ -1,6 +1,12 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
+    <ul class="topnav">
+        <li id="active"><a href="#">Register</a><div class="down arrow"></div><div class="up none arrow"></div></li>
+        <li class="none"><a href="#">Home</a></li>
+        <li class="none"><a href="#">Login</a></li>
+    </ul>
+
     <div class="form-container-2 form-container" id="example-2">
         <form action="?action=register" method="POST" id="registerForm">
             <span id="errorUsername" class="errorBlock"></span>
@@ -12,10 +18,10 @@
             <span id="errorConfirm" class="errorBlock"></span>
             <input placeholder="confirm_password" type="password" name="confirm_password" id="confirm_password"><br>
             <span id="errorFaction" class="errorBlock"></span>
-            <input placeholder="" type="radio" name="faction" value="vikings" checked>Vikings
+            <input placeholder="" type="radio" name="faction" value="vikings">Vikings
             <input placeholder="" type="radio" name="faction" value="samurai">Samurai
             <input placeholder="" type="radio" name="faction" value="chevaliers">Chevaliers
-            <input placeholder="" type="radio" name="faction" value="neutre">Neutre<br>
+            <input placeholder="" type="radio" name="faction" value="neutre" checked    >Neutre<br>
             <button id="button">Valider</button>
         </form>
         <a href="?action=login">Login</a>
