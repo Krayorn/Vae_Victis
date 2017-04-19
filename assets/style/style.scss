@@ -14,10 +14,15 @@
     font-family: 'title';
 }
 
+html{
+    height: 100vh;
+}
+
 body{
     background: url('http://www.gamelove.com/sites/www.gamelove.com/files/news/listing/for-honor-periode-de-beta-ferme-date-inscription-image-listing.jpg') no-repeat center top;
+    background-size: cover;
     margin : 0px;
-    font-size: 26px;
+    font-size: 30px;
 }
 
 a{
@@ -77,6 +82,7 @@ li{
 .form-container{
     background-color: black;
     opacity: 0.8;
+    margin : 0% 10%;
     .form-item-block input{
         color:white;
     }
@@ -88,17 +94,17 @@ li{
         color: white;
     }
     #faction{
-       @include flex_trinity(row, space-between);
+       @include flex_trinity(row, space-around);
        align-items: center;
     }
     .form-item-block{
         margin-left : 30%;  
     }
     img{
-        width:150px;
+        width:100px;
     }
 }
 
 .border{
-    border : 1px solid black;
+    border : 1px solid white;
 }
