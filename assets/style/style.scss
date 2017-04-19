@@ -82,7 +82,8 @@ li{
 .form-container{
     background-color: black;
     opacity: 0.8;
-    margin : 0% 10%;
+    margin : 10% 10% 0% 10%;
+    padding : 10% 0%;
     .form-item-block input{
         color:white;
     }
@@ -101,10 +102,11 @@ li{
         margin-left : 30%;  
     }
     img{
-        width:100px;
+        width:130px;
     }
 }
 
 .border{
     border : 1px solid white;
+    border-radius: 5px;
 }
