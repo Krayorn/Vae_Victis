@@ -75,13 +75,27 @@ li{
 }
 
 .form-container{
-    margin: 20px;
+    background-color: black;
+    opacity: 0.8;
+    .form-item-block input{
+        color:white;
+    }
+    .form-item-block .placeholder{
+        color:white;
+    }
+    .errorBlock{
+        text-align: center;
+        color: white;
+    }
     #faction{
        @include flex_trinity(row, space-between);
        align-items: center;
     }
+    .form-item-block{
+        margin-left : 30%;  
+    }
     img{
-        width:100%;
+        width:150px;
     }
 }
 

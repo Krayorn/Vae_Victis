@@ -65,7 +65,18 @@ li {
 }
 
 .form-container {
-  margin: 20px;
+  background-color: black;
+  opacity: 0.8;
+}
+.form-container .form-item-block input {
+  color: white;
+}
+.form-container .form-item-block .placeholder {
+  color: white;
+}
+.form-container .errorBlock {
+  text-align: center;
+  color: white;
 }
 .form-container #faction {
   display: flex;
@@ -73,8 +84,11 @@ li {
   justify-content: space-between;
   align-items: center;
 }
+.form-container .form-item-block {
+  margin-left: 30%;
+}
 .form-container img {
-  width: 100%;
+  width: 150px;
 }
 
 .border {

@@ -7,7 +7,7 @@
   outline: none !important;
   box-shadow: none !important;
   padding: 20px;
-  border: 1px solid #222;
+  border: 1px solid white;
   background-color: transparent;
   font-size: 17px;
   color: #222222;
@@ -42,7 +42,7 @@
 
 .form-container form button {
   color: #222;
-  border: 1px solid #222;
+  border: 1px solid white;
   background: transparent;
   border-radius: 4px;
   outline: none;
