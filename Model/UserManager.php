@@ -106,17 +106,31 @@ class UserManager
     
     public function userCheckLogin($data)
     {
-        if (empty($data['username']) OR empty($data['password']))
-            return false;
+        $valid = true;
+        $errors = array();
+        if (empty($data['username']) OR empty($data['password'])){
+            $valid = false;
+            $errors['username'] = 'Fields missing';
+        }
         $user = $this->getUserByUsername($data['username']);
-        if ($user === false)
-            return false;
+        if ($user === false){
+            $valid = false;
+            $errors['username'] = 'User not found ';
+        }
         $hash = $this->userHash($data['password']);
         if ($hash !== $user['password'])
         {
-            return false;
+            $valid = false;
+            $errors['password'] = 'Password does not match with username';
         }
-        return true;
+
+          if($valid == false){
+            echo json_encode(array('success'=>false, 'errors'=>$errors));
+            exit(0);
+        }
+        else{
+            return true;
+        }
     }
     
     public function userLogin($username)

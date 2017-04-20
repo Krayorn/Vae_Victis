@@ -8,20 +8,27 @@ class SecurityController extends BaseController
 {
     public function loginAction()
     {
-        $error = '';
-        if ($_SERVER['REQUEST_METHOD'] === 'POST')
-        {
-            $manager = UserManager::getInstance();
-            if ($manager->userCheckLogin($_POST))
-            {
-                $manager->userLogin($_POST['username']);
-                $this->redirect('home');
-            }
-            else {
-                $error = "Invalid username or password";
-            }
+        if(isset($_SESSION['user_id'])){
+            $this->redirect('home');
         }
-        echo $this->renderView('login.html.twig', ['error' => $error]);
+        else{
+            $error = '';
+            echo 'yo';
+            if ($_SERVER['REQUEST_METHOD'] === 'POST')
+            {
+                echo 'slt';
+                $manager = UserManager::getInstance();
+                if ($manager->userCheckLogin($_POST))
+                {
+                    echo 'yo';
+                    $manager->userLogin($_POST['username']);
+                }
+                else {
+                    $error = "Invalid username or password";
+                }
+            }
+            echo $this->renderView('login.html.twig', ['error' => $error]);
+        }
     }
 
     public function logoutAction()
