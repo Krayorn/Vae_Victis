@@ -9,9 +9,6 @@
   padding: 20px;
   border: 1px solid white;
   background-color: transparent;
-  font-size: 17px;
-  color: #222222;
-  font-family: inherit;
   transition: all 0.2s linear 0s;
 }
 
@@ -38,15 +35,6 @@
 
 .form-container form input + .placeholder {
   height: calc(100% - 2px);
-}
-
-.form-container form button {
-  color: #222;
-  border: 1px solid white;
-  background: transparent;
-  border-radius: 4px;
-  outline: none;
-  padding: 10px 20px;
 }
 
 #example-2.form-container .placeholder {

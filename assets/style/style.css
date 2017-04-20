@@ -10,7 +10,7 @@ body {
   background: url("http://www.gamelove.com/sites/www.gamelove.com/files/news/listing/for-honor-periode-de-beta-ferme-date-inscription-image-listing.jpg") no-repeat center top;
   background-size: cover;
   margin: 0px;
-  font-size: 30px;
+  background-attachment: fixed;
 }
 
 a {
@@ -46,7 +46,7 @@ li {
 }
 .topnav li a {
   color: white;
-  font-size: 45px;
+  font-size: 20px;
   font-family: 'title';
 }
 .topnav #active {
@@ -74,6 +74,13 @@ li {
   opacity: 0.8;
   margin: 10% 10% 0% 10%;
   padding: 10% 0%;
+  text-align: center;
+}
+.form-container .formbg {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
 .form-container .form-item-block input {
   color: white;
@@ -91,16 +98,66 @@ li {
   justify-content: space-around;
   align-items: center;
 }
-.form-container .form-item-block {
-  margin-left: 30%;
-}
 .form-container img {
-  width: 130px;
+  width: 50px;
 }
 
 .border {
   border: 1px solid white;
   border-radius: 5px;
+}
+
+.btn-12 {
+  border: 2px solid white;
+  z-index: 1;
+  color: white;
+}
+
+.btn-12:after {
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  background: white;
+  transition: all 0.3s ease;
+}
+
+.btn-12:hover {
+  color: black;
+}
+
+.btn-12:hover:after {
+  top: 0;
+  height: 100%;
+}
+
+.btn-12:active {
+  top: 2px;
+}
+
+.buttons-coll {
+  width: 90%;
+  margin: 50px auto;
+  text-align: center;
+}
+
+button {
+  margin: 20px;
+}
+
+.custom-btn {
+  padding: 10px 25px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  background: transparent;
+  outline: none !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
 }
 
 /*# sourceMappingURL=style.css.map */
