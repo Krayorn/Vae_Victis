@@ -53,7 +53,6 @@ $.fn.foxholder = function(number) {
       var labelTop;
       labelTop = parseInt($(this).css('padding-top'));
       $(this).next('label').css({'top': 0 - (labelTop + 6)});
-      console.log(labelTop);
     });
 
     $('#example-2 input, #example-2 textarea').blur(function() {

@@ -15,7 +15,7 @@ class SecurityController extends BaseController
             if ($manager->userCheckLogin($_POST))
             {
                 $manager->userLogin($_POST['username']);
-            //    $this->redirect('home');
+                $this->redirect('home');
             }
             else {
                 $error = "Invalid username or password";
@@ -38,7 +38,6 @@ class SecurityController extends BaseController
             $manager = UserManager::getInstance();
             if ($manager->userCheckRegister($_POST))
             {
-
                 $manager->userRegister($_POST);
                 $this->redirect('home');
             }

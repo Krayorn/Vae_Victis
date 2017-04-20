@@ -7,7 +7,7 @@ html {
 }
 
 body {
-  background: url("http://www.gamelove.com/sites/www.gamelove.com/files/news/listing/for-honor-periode-de-beta-ferme-date-inscription-image-listing.jpg") no-repeat center top;
+  background: url("../images/bg.jpg") no-repeat center top;
   background-size: cover;
   margin: 0px;
   background-attachment: fixed;
@@ -98,22 +98,22 @@ li {
   justify-content: space-around;
   align-items: center;
 }
-.form-container img {
+.form-container #faction img {
   width: 50px;
 }
-
-.border {
-  border: 1px solid white;
-  border-radius: 5px;
-}
-
-.btn-12 {
+.form-container .custom-btn {
+  padding: 10px 25px;
+  font-weight: 500;
+  background: transparent;
+  outline: none;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
   border: 2px solid white;
   z-index: 1;
   color: white;
 }
-
-.btn-12:after {
+.form-container .custom-btn:after {
   position: absolute;
   content: "";
   width: 100%;
@@ -124,40 +124,17 @@ li {
   background: white;
   transition: all 0.3s ease;
 }
-
-.btn-12:hover {
+.form-container .custom-btn:hover {
   color: black;
 }
-
-.btn-12:hover:after {
+.form-container .custom-btn:hover:after {
   top: 0;
   height: 100%;
 }
 
-.btn-12:active {
-  top: 2px;
-}
-
-.buttons-coll {
-  width: 90%;
-  margin: 50px auto;
-  text-align: center;
-}
-
-button {
-  margin: 20px;
-}
-
-.custom-btn {
-  padding: 10px 25px;
-  font-family: 'Roboto', sans-serif;
-  font-weight: 500;
-  background: transparent;
-  outline: none !important;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  display: inline-block;
+.border {
+  border: 1px solid white;
+  border-radius: 5px;
 }
 
 /*# sourceMappingURL=style.css.map */

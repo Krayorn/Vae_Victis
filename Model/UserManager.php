@@ -35,13 +35,31 @@ class UserManager
     
     public function userCheckRegister($data)
     {
-        if (empty($data['username']) OR empty($data['email']) OR empty($data['password']) OR empty($data['faction']))
-            return false;
-        $data = $this->getUserByUsername($data['username']);
-        if ($data !== false)
-            return false;
-        // TODO : Check valid email
-        return true;
+        $valid = true;
+        $errors = array();
+        
+        if (empty($data['username']) || empty($data['email']) || empty($data['password']) || empty($data['confirm_password'])){
+            $valid = false;
+            $errors['username'] = 'Missing fields';
+        }
+
+        if(strlen($data['username']) < 6){
+            $valid = false;
+            $errors['username'] = 'Username too short';
+        }
+
+        if($data['password'] !== $data['confirm_password']){
+            $valid = false;
+            $errors['confirm'] = 'passwords does not match';
+        }
+
+        if($valid == false){
+            echo json_encode(array('success'=>false, 'errors'=>$errors));
+            exit(0);
+        }
+        else{
+            return true;
+        }
     }
     
     private function userHash($pass)

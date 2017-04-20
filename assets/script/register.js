@@ -17,12 +17,12 @@ $(function () {
 
     $('.arrow').click(function(){
         $('.arrow').toggleClass('none');
-        $('#active').siblings().toggle("slow");
+        $('#active').siblings().toggle("fast");
     });
 
 
     var result = $('#result');
-    var button = $('.none');
+    var button = $('.registerResult');
     var errorUsername = $('#errorUsername');
     var errorFaction = $('#errorFaction');
     var errorEmail = $('#errorEmail');
@@ -78,7 +78,9 @@ $(function () {
             });
         }
     });
-    registerForm.submit(function () {
+
+  /*  registerForm.submit(function () {
+        console.log($this);  
         var formValid = true;
         var faction = $('input:checked[name=faction]');
         var chosenFaction = [];
@@ -90,18 +92,18 @@ $(function () {
             });
         }  else {
             formValid = false;
-            errorFaction.html('Veuillez cocher au moins une faction');
+            errorFaction.data('Veuillez cocher au moins une faction');
         }
 
-        errorUsername.html('');
-        errorFaction.html('');
-        errorPassword.html('');
-        errorConfirm.html('');
+          errorUsername.data('');
+        errorFaction.data('');
+        errorPassword.data('');
+        errorConfirm.data('');
 
-        vikingCheck.html('');
-        samuraiCheck.html('');
-        knightCheck.html('');
-        neutralCheck.html('');
+        vikingCheck.data('');
+        samuraiCheck.data('');
+        knightCheck.data('');
+        neutralCheck.data('');
 
         var form = {
             username:   $('#username').val(),
@@ -116,67 +118,68 @@ $(function () {
 
         if (!usernameValidation(form.username)|| form.username.length < 4 || form.username.length > 10 ) {
             formValid = false;
-            errorUsername.html('Veuillez saisir un pseudo valide');
+            errorUsername.data('Veuillez saisir un pseudo valide');
 
         }
         if (form.password.length < 4) {
             formValid = false;
-            errorPassword.html('Veuillez saisir un mot de passe avec au moins 6 carractères');
+            errorPassword.data('Veuillez saisir un mot de passe avec au moins 6 carractères');
         }
 
         if (form.confirm != form.password) { // si la confirmation est différente du mot de passe
 
             formValid = false;
-            errorConfirm.html('Veuillez saisir le même mot de passe');
+            errorConfirm.data('Veuillez saisir le même mot de passe');
         }
         if (!emailValidation(form.email)){
             formValid = false;
-            errorEmail.html('Veuillez saisir un email conforme');
+            errorEmail.data('Veuillez saisir un email conforme');
         }
 
         if (formValid) {
-            registerForm.slideToggle("slow", function () {
-                button.css('display','block');
-                result.css('display','block');
-
-                result.html('<br>'+'Vos informations : <br>' + 'Pseudo  :' + form.username + '<br>' + 'Email :' +
-                    form.email + '<br>' + 'Faction : ' + form.faction+ '<br>' +  'Mot de passe : ' + form.password);
-                $('#yes').click(function () {
-
-
-                    var url = "?action=register"; // the script where you handle the form input.
-
-                    $.ajax({
-                        type: "POST",
-                        url: url,
-                        data: registerForm.serialize(), // serializes the form's elements.
-                        success: function(data)
-                        {
-                            window.location.href= '?action=home';
-                        }
-                    });
-
-
-
-
-
-                });
-                $('#no').click(function () {
-                    registerForm.slideDown();
-
-                    console.log('banane');
-                    button.css('display','none');
-                    result.css('display','none');
-
-
-                });
+            var url = "?action=register"; // the script where you handle the form input.
+       
+            $.ajax({
+                url: $this.attr('action'), // Le nom du fichier indiqué dans le formulaire
+                type: $this.attr('method'), // La méthode indiquée dans le formulaire (get ou post)
+                data: $this.serialize(),
+                success: function(data)
+                {
+                    console.log(data);
+                }
             });
+            return false;
+        });*/
 
-
-
-
+    $('#registerForm').on('submit', function(e) {
+        e.preventDefault(); // J'empêche le comportement par défaut du navigateur, c-à-d de soumettre le formulaire
+ 
+        var $this = $(this); // L'objet jQuery du formulaire
+ 
+        // Je vérifie une première fois pour ne pas lancer la requête HTTP
+        // si je sais que mon PHP renverra une erreur
+        if($('#username').val() == '' || $('#email').val() == '' || $('#password').val() == '' || $('#confirm_password').val() == '') {
+            errorUsername.text('Tous les champs ne sont pas remplis');
+        } else {
+            // Envoi de la requête HTTP en mode asynchrone
+            $.ajax({
+                url: $this.attr('action'), // Le nom du fichier indiqué dans le formulaire
+                type: $this.attr('method'), // La méthode indiquée dans le formulaire (get ou post)
+                data: $this.serialize(), // Je sérialise les données (j'envoie toutes les valeurs présentes dans le formulaire)
+                dataType: 'json', // JSON,
+                success: function(data) { // Je récupère la réponse du fichier PHP
+                    if(data.reponse === 'ok') {
+                       console.log('Tout est bon');
+                    } else {
+                      errorUsername.text(data.errors['username']);
+                      errorEmail.text(data.errors['email']);
+                      errorPassword.text(data.errors['password']);
+                      errorConfirm.text(data.errors['confirm']);
+                      errorFaction.text(data.errors['faction']);
+                    }
+                }
+            });
         }
-        return false;
     });
 
-});
+    });
