@@ -32,43 +32,29 @@ class SecurityController extends BaseController
 
     public function registerAction()
     {
-        $error = '';
-        if ($_SERVER['REQUEST_METHOD'] === 'POST')
-        {
-            $manager = UserManager::getInstance();
-            if ($manager->userCheckRegister($_POST))
-            {
-                $manager->userRegister($_POST);
-                $this->redirect('home');
-            }
-            else {
-                $error = "Invalid data";
-            }    
-        }
-        echo $this->renderView('register.html.twig', ['error' => $error]);
-    }
-
-
-public function homeAction()
-{
-    $error = '';
-    if ($_SERVER['REQUEST_METHOD'] === 'POST')
-    {
-        $manager = UserManager::getInstance();
-
-        if($manager->userCheckArticles($_POST)){
-            $manager->insertArticles($_POST);
+        if(isset($_SESSION['user_id'])){
             $this->redirect('home');
         }
-
-
-
-
-
-        else {
-            $error = "Invalid data";
+        else{
+            $error = '';
+            if ($_SERVER['REQUEST_METHOD'] === 'POST')
+            {
+                $manager = UserManager::getInstance();
+                if ($manager->userCheckRegister($_POST))
+                {
+                    $manager->userRegister($_POST);
+                    $this->redirect('home');
+                }
+                else {
+                    $error = "Invalid data";
+                }    
+            }
+            echo $this->renderView('register.html.twig', ['error' => $error]);
         }
     }
-    echo $this->renderView('home.html.twig', ['error' => $error]);
-}
+
+    public function profilAction()
+    {
+        echo $this->renderView('profil.html.twig');
+    }
 }

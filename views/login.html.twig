@@ -1,12 +1,19 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
+
+<ul class="topnav">
+    <li id="active"><a href="#">Login</a><div class="down arrow"></div><div class="up none arrow"></div></li>
+    <li class="none"><a href="?action=home">Home</a></li>
+    <li class="none"><a href="?action=register">Register</a></li>
+</ul>
+
 <div id="form">
 <form action="?action=login" method="POST" id="loginForm">
     <label for="username">Login :</label> <span id="errorUsername" class="errorBlock"></span><br>
     <input type="text" name="username" id="username"><br>
     <label for="password">Password : </label>
-    <input type="password" name="password" id="password"><br>
+    <input type="password" name="password" id="password"><br>   
     <input type="submit" name="userLogin" >
 </form>
     <a href="?action=register">Register</a>

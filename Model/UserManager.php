@@ -32,6 +32,13 @@ class UserManager
         ['username' => $username]);
         return $data;
     }
+
+    public function getUserByEmail($email)
+    {
+        $data = $this->DBManager->findOneSecure("SELECT * FROM users WHERE email = :email",
+        ['email' => $email]);
+        return $data;
+    }
     
     public function userCheckRegister($data)
     {
@@ -47,10 +54,22 @@ class UserManager
             $valid = false;
             $errors['username'] = 'Username too short';
         }
+        
+        $testUsername = $this->getUserByUsername($data['username']);
+        if ($testUsername !== false){
+            $valid = false;
+            $errors['username'] = 'Username already used';
+        }
+
+        $testEmail = $this->getUserByEmail($data['email']);
+        if ($testEmail !== false){
+            $valid = false;
+            $errors['email'] = 'Email already used';
+        }
 
         if($data['password'] !== $data['confirm_password']){
             $valid = false;
-            $errors['confirm'] = 'passwords does not match';
+            $errors['confirm'] = 'Password does not match';
         }
 
         if($valid == false){

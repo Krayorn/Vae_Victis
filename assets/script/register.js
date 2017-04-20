@@ -88,7 +88,6 @@ $(function () {
         if (faction.is(':checked')) {
             faction.each(function () {
                 chosenFaction.push($(this).val());
-
             });
         }  else {
             formValid = false;
@@ -154,6 +153,11 @@ $(function () {
     $('#registerForm').on('submit', function(e) {
         e.preventDefault(); // J'empêche le comportement par défaut du navigateur, c-à-d de soumettre le formulaire
  
+        errorUsername.text('');
+        errorEmail.text('');
+        errorPassword.text('');
+        errorConfirm.text('');
+        errorFaction.text('');
         var $this = $(this); // L'objet jQuery du formulaire
  
         // Je vérifie une première fois pour ne pas lancer la requête HTTP
@@ -168,9 +172,7 @@ $(function () {
                 data: $this.serialize(), // Je sérialise les données (j'envoie toutes les valeurs présentes dans le formulaire)
                 dataType: 'json', // JSON,
                 success: function(data) { // Je récupère la réponse du fichier PHP
-                    if(data.reponse === 'ok') {
-                       console.log('Tout est bon');
-                    } else {
+                    if(data.success === false){
                       errorUsername.text(data.errors['username']);
                       errorEmail.text(data.errors['email']);
                       errorPassword.text(data.errors['password']);
