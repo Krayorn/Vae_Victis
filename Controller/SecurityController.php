@@ -13,15 +13,17 @@ class SecurityController extends BaseController
         }
         else{
             $error = '';
-            echo 'yo';
+
             if ($_SERVER['REQUEST_METHOD'] === 'POST')
             {
                 echo 'slt';
                 $manager = UserManager::getInstance();
                 if ($manager->userCheckLogin($_POST))
                 {
-                    echo 'yo';
+
                     $manager->userLogin($_POST['username']);
+                    $this->redirect('home');
+                    echo 'yo';
                 }
                 else {
                     $error = "Invalid username or password";
@@ -34,7 +36,7 @@ class SecurityController extends BaseController
     public function logoutAction()
     {
         session_destroy();
-        echo $this->redirect('login');
+         $this->redirect('login');
     }
 
     public function registerAction()
@@ -60,8 +62,8 @@ class SecurityController extends BaseController
         }
     }
 
-    public function profilAction()
+    public function profileAction()
     {
-        echo $this->renderView('profil.html.twig');
+        echo $this->renderView('profile.html.twig');
     }
 }

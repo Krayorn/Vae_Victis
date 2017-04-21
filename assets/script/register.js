@@ -224,19 +224,20 @@ $(function () {
 
         if (formValid) {
             // Envoi de la requête HTTP en mode asynchrone
+            window.location.href = '?action=home';
             $.ajax({
                 url: $this.attr('action'), // Le nom du fichier indiqué dans le formulaire
                 type: $this.attr('method'), // La méthode indiquée dans le formulaire (get ou post)
                 data: $this.serialize(), // Je sérialise les données (j'envoie toutes les valeurs présentes dans le formulaire)
                 dataType: 'json', // JSON,
                 success: function(data) { // Je récupère la réponse du fichier PHP
-                    window.location.href = '?action=home';
-                    if(data.success === false){
-                      errorUsername.html(data.errors['username']);
-                      errorEmail.html(data.errors['email']);
-                      errorPassword.html(data.errors['password']);
-                      errorConfirm.html(data.errors['confirm']);
-                      errorFaction.html(data.errors['faction']);
+
+                    if(data.success === false) {
+                        errorUsername.html(data.errors['username']);
+                        errorEmail.html(data.errors['email']);
+                        errorPassword.html(data.errors['password']);
+                        errorConfirm.html(data.errors['confirm']);
+                        errorFaction.html(data.errors['faction']);
 
                     }
                 }

@@ -8,28 +8,30 @@ class DefaultController extends BaseController
 {
     public function homeAction()
     {
-        $name = '';
-        $error = '';
-        if ($_SERVER['REQUEST_METHOD'] === 'POST')
-        {
-            $manager = UserManager::getInstance();
 
-            if($manager->userCheckArticles($_POST)){
+        $error = '';
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $manager = UserManager::getInstance();
+        echo 'slt';
+            if ($manager->userCheckArticles($_POST)) {
+                echo 'yo';
                 $manager->insertArticles($_POST);
                 $this->redirect('home');
-            }
-            else {
+            } else {
                 $error = "Invalid data";
             }
         }
-        if(!empty($_SESSION['user_id'])){
+
+        if (!empty($_SESSION['user_id']))
+        {
             $manager = UserManager::getInstance();
             $user = $manager->getUserById($_SESSION['user_id']);
-            $name = $user['username'];
+
+            echo $this->renderView('home.html.twig',
+                ['name' => $user['username']]);
         }
-          echo $this->renderView('home.html.twig',
-                                   ['error' => $error, 'user' => $name]);
-    
-        }
+        else
+            $this->redirect('login');
+    }
 
 }

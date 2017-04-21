@@ -50,7 +50,7 @@ class UserManager
             $errors['username'] = 'Missing fields';
         }
 
-        if(strlen($data['username']) < 6){
+        if(strlen($data['username']) < 4){
             $valid = false;
             $errors['username'] = 'Username too short';
         }
@@ -104,35 +104,64 @@ class UserManager
 
 
     
+  /*  public function userCheckLogin($data)
+    {
+        $valid = true;
+        $errors = array();
+        if (empty($data['username']) OR empty($data['password'])){
+            $valid = false;
+
+        }
+   /*     $user = $this->getUserByUsername($data['username']);
+        if ($user === false){
+            $valid = false;
+            $errors['username'] = 'User not found ';
+        }
+        /*$hash = $this->userHash($data['password']);
+        if ($hash !== $user['password'])
+        {
+            $valid = false;
+            $errors['password'] = 'Password does not match with username';
+        }
+          if($valid == false){
+            echo json_encode(array('success'=>false, 'errors'=>$errors));
+            return false;
+        }
+        else{
+            return true;
+        }
+    }*/
+
     public function userCheckLogin($data)
     {
         $valid = true;
         $errors = array();
         if (empty($data['username']) OR empty($data['password'])){
             $valid = false;
-            $errors['username'] = 'Fields missing';
+            $errors['field'] = 'Fields missing';
+
         }
         $user = $this->getUserByUsername($data['username']);
-        if ($user === false){
+        if (!$user){
             $valid = false;
             $errors['username'] = 'User not found ';
+
         }
+
         $hash = $this->userHash($data['password']);
         if ($hash !== $user['password'])
         {
             $valid = false;
             $errors['password'] = 'Password does not match with username';
-        }
 
-          if($valid == false){
+        }
+        if($valid == false){
             echo json_encode(array('success'=>false, 'errors'=>$errors));
             exit(0);
-        }
-        else{
+        }else{
             return true;
         }
     }
-    
     public function userLogin($username)
     {
         $data = $this->getUserByUsername($username);
@@ -146,24 +175,31 @@ class UserManager
     {
 
         $user['user_id'] = $_SESSION['user_id'];
-        $user['date'] = '2003-08-04';
+        $user['date'] = '';
         $user['title'] = $data['title'];
         $user['description'] = $data['description'];
         $user['content'] = $data['content'];
-        $user['nbr_commentary'] =  0;
-        $user['update_date'] ='2003-08-04';
-        $user['tags']= $data['tagFaction'];
+        $user['nbr_commentary'] =  '0';
+        $user['update_date'] ='';
+        $user['tags']= 'viking';
         $this->DBManager->insert('articles', $user);
     }
     public function userCheckArticles($data)
     {
+        $valid = true;
+        $errors = array();
         if (empty($data['title']) OR empty($data['description']) OR empty($data['content']))
-            return false;
-        $user = $this->getUserByUsername($data['username']);
-        if ($user === false)
-            return false;
+            $valid = false;
+            $errors['article'] = 'Missing fields';
 
-        return true;
+
+
+        if($valid == false){
+             json_encode(array('success'=>false, 'errors'=>$errors));
+            exit(0);
+        }else{
+            return true;
+        }
     }
 
 

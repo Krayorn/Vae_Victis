@@ -14,13 +14,14 @@
 
 </ul>
 
-<h1>Hello {{ user }} !</h1>
+<h1>Hello {{ name }} !</h1>
     <div id="form">
-        <form action="?action=register" method="POST" id="articlesForm">
-             Title : <input type="text" name="title" id="title"><br>
-            Description: <textarea name="description" id="description"></textarea><br>
-            Contenu:     <textarea name="content" id="content"></textarea><br>
-            <h1>Tags</h1>
+        <span id="errorFields" class="errorBlock"></span>
+        <form action="?action=home" method="POST" id="articlesForm">
+             Title : <input type="text" name="title" id="title"><br>  <span id="errorTitle" class="errorBlock"></span>
+            Description: <textarea name="description" id="description"></textarea><br>  <span id="errorDescription" class="errorBlock"></span>
+            Contenu:     <textarea name="content" id="content"></textarea><br>  <span id="errorContent" class="errorBlock"></span>
+       <!--     <h1>Tags</h1>
             Choix 1 : <select name="tagFaction" id="tagFaction" >
                 <option  value="vikings">Vikings</option>
                 <option  value="samurai">Samurai</option>
@@ -31,7 +32,7 @@
                 <option  value="items">Equipement</option>
                 <option value="start">Stratégie</option>
                 <option  value="fight">Combat</option>
-            </select>
+            </select>-->
             <input type="submit" name="articles">
         </form>
 
