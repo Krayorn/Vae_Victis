@@ -1,6 +1,7 @@
 routes:
     home: 'Default:home'
-    profil: 'Security:profile'
+    profile: 'Security:profile'
+    profileEditing: 'Security:profileEditing'
     login: 'Security:login'
     logout: 'Security:logout'
     register: 'Security:register'

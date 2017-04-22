@@ -32,7 +32,6 @@ class UserManager
         ['username' => $username]);
         return $data;
     }
-
     public function getUserByEmail($email)
     {
         $data = $this->DBManager->findOneSecure("SELECT * FROM users WHERE email = :email",
@@ -170,6 +169,22 @@ class UserManager
         $_SESSION['user_id'] = $data['id'];
         return true;
     }
+    public function userCheckArticles($data)
+    {
+        $valid = true;
+        $errors = array();
+        if (empty($data['title']) OR empty($data['description']) OR empty($data['content'])){
+            $valid = false;
+            $errors['article'] = 'Missing fields';
+        }
+        if($valid == false){
+            json_encode(array('success'=>false, 'errors'=>$errors));
+            exit(0);
+        }else{
+            return true;
+        }
+    }
+
 
     public function insertArticles($data)
     {
@@ -184,23 +199,5 @@ class UserManager
         $user['tags']= 'viking';
         $this->DBManager->insert('articles', $user);
     }
-    public function userCheckArticles($data)
-    {
-        $valid = true;
-        $errors = array();
-        if (empty($data['title']) OR empty($data['description']) OR empty($data['content']))
-            $valid = false;
-            $errors['article'] = 'Missing fields';
-
-
-
-        if($valid == false){
-             json_encode(array('success'=>false, 'errors'=>$errors));
-            exit(0);
-        }else{
-            return true;
-        }
-    }
-
 
 }

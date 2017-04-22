@@ -12,8 +12,12 @@ $(function () {
         var $this = $(this);
         var choosenTags = [];
         var $title = $('#title').val();
+        console.log($title);
+
         var $description = $('#description').val();
+        console.log($description);
         var $content = $('#content').val();
+        console.log($content);
         var $tagFaction = $('#tagFaction').val();
         var $tagTypes = $('#tagTypes').val();
 
@@ -29,22 +33,17 @@ console.log(formValid);
                 $.ajax({
                     url: $this.attr('action'), // Le nom du fichier indiqué dans le formulaire
                     type: $this.attr('method'), // La méthode indiquée dans le formulaire (get ou post)
+                    data: $this.serialize(),
                     dataType: 'json', // JSON,
-                    data: {
 
-                        title:$title,
-                        description:$description,
-                        content:$content,
-                        tags:choosenTags
-                    },
-                    success: function(response)
+                    success: function(response,statut,error)
                     {
                         console.log(data.errors['field']);
                         console.log(data.errors['username']);
 
                     },
-                    error: function(response){
-                        console.log('error');
+                    error: function(response,statut,error){
+                        console.log(reponse,staut,error);
                     }
                 });
             }
