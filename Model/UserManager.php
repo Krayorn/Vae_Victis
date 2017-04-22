@@ -83,7 +83,7 @@ class UserManager
     
     private function userHash($pass)
     {
-        $hash = password_hash($pass, PASSWORD_BCRYPT, ['salt' => 'saltysaltysaltysalty!!']);
+        $hash = password_hash($pass, PASSWORD_BCRYPT);
         return $hash;
     }
 
@@ -99,35 +99,31 @@ class UserManager
         $user['nbr_commentary']='0';
         $user['nbr_articles']='0';
         $this->DBManager->insert('users', $user);
+        echo json_encode(array('success'=>true));
+        exit(0);
     }
-
-
-
-
 
     public function userCheckLogin($data)
     {
         $valid = true;
         $errors = array();
-        if (empty($data['username']) OR empty($data['password'])){
+       if (empty($data['username']) OR empty($data['password'])){
             $valid = false;
             $errors['field'] = 'Fields missing';
-
         }
         $user = $this->getUserByUsername($data['username']);
         if (!$user){
             $valid = false;
             $errors['username'] = 'User not found ';
-
         }
-
-        $hash = $this->userHash($data['password']);
-        if ($hash !== $user['password'])
+            
+        if (password_verify($data['password'], $user['password']) == false)
         {
             $valid = false;
             $errors['password'] = 'Password does not match with username';
 
         }
+
         if($valid == false){
             echo json_encode(array('success'=>false, 'errors'=>$errors));
             exit(0);
@@ -141,7 +137,8 @@ class UserManager
         if ($data === false)
             return false;
         $_SESSION['user_id'] = $data['id'];
-        return true;
+        echo json_encode(array('success'=>true));
+        exit(0);
     }
     public function userCheckArticles($data)
     {

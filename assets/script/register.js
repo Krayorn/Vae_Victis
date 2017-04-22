@@ -81,8 +81,8 @@ $(function () {
 
 
 
-    registerForm.submit(function () {
-    
+    registerForm.submit(function (e) {
+    e.preventDefault();
         errorUsername.html('');
         errorEmail.html('');
         errorPassword.html('');
@@ -123,54 +123,49 @@ $(function () {
         if (!usernameValidation(form.username)|| form.username.length < 4 || form.username.length > 10 ) {
             formValid = false;
             errorUsername.html('Veuillez saisir un pseudo valide');
-            console.log('Username');
 
         }
         if (form.password.length < 4) {
             formValid = false;
             errorPassword.html('Veuillez saisir un mot de passe avec au moins 6 carractères');
-            console.log('password');
         }
 
         if (form.confirm != form.password) { // si la confirmation est différente du mot de passe
 
             formValid = false;
             errorConfirm.html('Veuillez saisir le même mot de passe');
-            console.log('passwordC');
         }
         if (!emailValidation(form.email)){
             formValid = false;
             errorEmail.html('Veuillez saisir un email conforme');
-            console.log('email');
         }
         if(!faction){
             formValid = false;
             errorFaction.html('Veuillez saisir un email conforme');
-            console.log('faction');
         }
 
         if (formValid) {
             // Envoi de la requête HTTP en mode asynchrone
-            window.location.href = '?action=home';
+            //window.location.href = '?action=home'; Mek, la tu rediriges avant le test des errors en php, la function success plus bas s'effectue uniquement quand on a une réponse du php donc tu mets tes actions a faire ensuite la dedans
             $.ajax({
                 url: $this.attr('action'), // Le nom du fichier indiqué dans le formulaire
                 type: $this.attr('method'), // La méthode indiquée dans le formulaire (get ou post)
                 data: $this.serialize(), // Je sérialise les données (j'envoie toutes les valeurs présentes dans le formulaire)
                 dataType: 'json', // JSON,
                 success: function(data) { // Je récupère la réponse du fichier PHP
-
                     if(data.success === false) {
                         errorUsername.html(data.errors['username']);
                         errorEmail.html(data.errors['email']);
                         errorPassword.html(data.errors['password']);
                         errorConfirm.html(data.errors['confirm']);
                         errorFaction.html(data.errors['faction']);
-
                     }
+                    else{
+                        document.location.href="?action=login";
+                    } // et la pop, je vérifie si le retour me renvoie une erreur, si c'est pas le cas, hop je valide et je redirige la page : bô jeu
                 }
             });
         }
-        return false;
     });
 
     });
