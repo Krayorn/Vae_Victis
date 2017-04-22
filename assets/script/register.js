@@ -79,76 +79,7 @@ $(function () {
         }
     });
 
-  /*  registerForm.submit(function () {
-        console.log($this);  
-        var formValid = true;
-        var faction = $('input:checked[name=faction]');
-        var chosenFaction = [];
 
-        if (faction.is(':checked')) {
-            faction.each(function () {
-                chosenFaction.push($(this).val());
-            });
-        }  else {
-            formValid = false;
-            errorFaction.data('Veuillez cocher au moins une faction');
-        }
-
-          errorUsername.data('');
-        errorFaction.data('');
-        errorPassword.data('');
-        errorConfirm.data('');
-
-        vikingCheck.data('');
-        samuraiCheck.data('');
-        knightCheck.data('');
-        neutralCheck.data('');
-
-        var form = {
-            username:   $('#username').val(),
-            email: $('#email').val(),
-            faction: faction.val(),
-            password: $('#password').val(),
-            confirm: $('#confirm_password').val()
-
-        };
-
-
-
-        if (!usernameValidation(form.username)|| form.username.length < 4 || form.username.length > 10 ) {
-            formValid = false;
-            errorUsername.data('Veuillez saisir un pseudo valide');
-
-        }
-        if (form.password.length < 4) {
-            formValid = false;
-            errorPassword.data('Veuillez saisir un mot de passe avec au moins 6 carractères');
-        }
-
-        if (form.confirm != form.password) { // si la confirmation est différente du mot de passe
-
-            formValid = false;
-            errorConfirm.data('Veuillez saisir le même mot de passe');
-        }
-        if (!emailValidation(form.email)){
-            formValid = false;
-            errorEmail.data('Veuillez saisir un email conforme');
-        }
-
-        if (formValid) {
-            var url = "?action=register"; // the script where you handle the form input.
-       
-            $.ajax({
-                url: $this.attr('action'), // Le nom du fichier indiqué dans le formulaire
-                type: $this.attr('method'), // La méthode indiquée dans le formulaire (get ou post)
-                data: $this.serialize(),
-                success: function(data)
-                {
-                    console.log(data);
-                }
-            });
-            return false;
-        });*/
 
     registerForm.submit(function () {
     
@@ -159,11 +90,7 @@ $(function () {
         errorFaction.html('');
         var $this = $(this); // L'objet jQuery du formulaire
  
-        // Je vérifie une première fois pour ne pas lancer la requête HTTP
-        // si je sais que mon PHP renverra une erreur
-        /*if($('#username').val() == '' || $('#email').val() == '' || $('#password').val() == '' || $('#confirm_password').val() == '') {
-            errorUsername.text('Tous les champs ne sont pas remplis');
-        } else {*/
+
         var formValid = true;
         var faction = $('input:checked[name=faction]');
         var chosenFaction = [];

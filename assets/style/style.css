@@ -211,3 +211,59 @@
 }
 
 /*# sourceMappingURL=style.css.map */
+
+.info{
+  margin-bottom : 50px;
+}
+/*# sourceMappingURL=style.css.map */
+.align{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  align-content: stretch;
+  color: white;
+}
+
+.parameter{
+  width: 5%;
+  margin-bottom : 3%;
+  padding-bottom: 2%;
+}
+
+#firstnameForm{
+  display: none;
+}
+
+#lastnameForm{
+  display: none;
+}
+#emailForm{
+  display: none;
+}
+#factionForm{
+  display: none;
+}
+#usernameForm{
+  display: none;
+}
+#profile{
+
+  font-family: 'Open Sans Condensed', arial, sans-serif;
+  width: 500px;
+  padding: 30px;
+  background: #FFFFFF;
+  color: #000000;
+  margin: 150px auto;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.22); }
+
+#imgProfile{
+  width: 20%;
+  margin-left: 70%;
+
+}
+.infoUser{
+  padding: 2%;
+  margin-bottom: 5%;
+}
