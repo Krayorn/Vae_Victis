@@ -28,6 +28,7 @@
         padding-top: 50px;
         @media (min-width: 1025px){
             padding-left: 20%;
+            padding-top: 0px;
         }
     }
 
@@ -112,6 +113,9 @@
         margin : 10% 10% 0% 10%;
         padding : 10% 0%;
         text-align: center;
+        @media (min-width: 1025px){
+            margin : 5% 10% 0% 10%;
+        }
         .formbg{
             @include flex_trinity(column, flex-start);
             align-items: center;
@@ -179,6 +183,11 @@
         @include title;
         font-size: 18px;
         color: white;
+        @media (min-width: 1025px){
+            position: absolute;
+            left: 0;
+            z-index: 2;
+        }    
     }
 
 }
