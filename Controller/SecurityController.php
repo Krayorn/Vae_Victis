@@ -16,14 +16,12 @@ class SecurityController extends BaseController
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST')
             {
-                echo 'slt';
                 $manager = UserManager::getInstance();
                 if ($manager->userCheckLogin($_POST))
                 {
 
                     $manager->userLogin($_POST['username']);
                     $this->redirect('home');
-                    echo 'yo';
                 }
                 else {
                     $error = "Invalid username or password";

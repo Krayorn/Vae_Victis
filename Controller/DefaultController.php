@@ -12,9 +12,7 @@ class DefaultController extends BaseController
         $error = '';
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $manager = UserManager::getInstance();
-        echo 'slt';
             if ($manager->userCheckArticles($_POST)) {
-                echo 'yo';
                 $manager->insertArticles($_POST);
                 $this->redirect('home');
             } else {
@@ -30,8 +28,11 @@ class DefaultController extends BaseController
             echo $this->renderView('home.html.twig',
                 ['name' => $user['username']]);
         }
-        else
-            $this->redirect('login');
+        else{
+            $user = '';
+            echo $this->renderView('home.html.twig',
+                ['name' => $user]);
+        }
     }
 
 }
