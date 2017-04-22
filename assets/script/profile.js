@@ -24,7 +24,7 @@ $(function () {
     var usernameForm = $('#usernameForm');
 
 
-    var errorFirstname = $('#errorFirstname');
+    var errorFirstnameEditing = $('#errorFirstnameEditing');
     var errorLastname = $('#errorLastname');
     var errorEmail = $('#errorEmail');
     var errorUsername = $('#errorUsername');
@@ -54,33 +54,78 @@ $(function () {
         usernameForm.css('display','block')
     });
     firstnameForm.submit(function(){
-        errorFirstname.html('');
+        errorFirstnameEditing.html('');
 
         var formValid = true;
-
+        var $this = $(this);
 
         var $firstname = $('#firstnameEditing').val();
 
 
 
 
-        if (!nameValidation($firstname) ) {
+      /*  if (!nameValidation($firstname) ) {
             formValid = false;
             errorFirstname.html('Veuillez saisir un prénom valide');
+        }*/
+        if (formValid) {
+            // Envoi de la requête HTTP en mode asynchrone
+
+            $.ajax({
+                url: $this.attr('action'), // Le nom du fichier indiqué dans le formulaire
+                type: $this.attr('method'), // La méthode indiquée dans le formulaire (get ou post)
+                data: $this.serialize(), // Je sérialise les données (j'envoie toutes les valeurs présentes dans le formulaire)
+                dataType: 'json', // JSON,
+                success: function(data) { // Je récupère la réponse du fichier PHP
+
+                    if(data.success === false) {
+                        errorFirstnameEditing.html(data.errors['fields']);
+
+
+                    }
+                },
+                error: function(response,statut,error){
+                    console.log(response,statut,error);
+                }
+            });
         }
-        return formValid;
+        return false;
+
     });
 
     usernameForm.submit(function(){
         errorUsername.html('');
         var formValid = true;
         var $username = $('#usernameEditing').val();
-        if (!usernameValidation($username) ) {
+        var $this = $(this);
+     /*   if (!usernameValidation($username) ) {
             formValid = false;
             errorUsername.html('Veuillez saisir un pseudo valide');
             console.log('bot ok');
+        }*/
+     console.log(formValid);
+        if (formValid) {
+            // Envoi de la requête HTTP en mode asynchrone
+
+            $.ajax({
+                url: $this.attr('action'), // Le nom du fichier indiqué dans le formulaire
+                type: $this.attr('method'), // La méthode indiquée dans le formulaire (get ou post)
+                data: $this.serialize(), // Je sérialise les données (j'envoie toutes les valeurs présentes dans le formulaire)
+                success: function(data) { // Je récupère la réponse du fichier PHP
+
+                    if(data.success === false) {
+                        errorUsername.html(data.errors['fields']);
+                        console.log('ok');
+
+
+                    }
+                },
+                error: function(response,statut,error){
+                    console.log(response,statut,error);
+                }
+            });
         }
-        return formValid;
+        return false;
     });
 
 

@@ -208,5 +208,38 @@ class UserManager
         $query = $this->DBManager->findOneSecure("UPDATE users SET `email`= :emailEditing WHERE `id` = :user_id", $update);
         return $query;
     }
+    public function userCheckFirstname($data)
+    {
+        $valid = true;
+        $errors = array();
+        if (empty($data['firstnameEditing'])){
+            $valid = false;
+            $errors['fields'] = 'Fields missing';
+
+        }
+        if($valid === false){
+            echo json_encode(array('success'=>false, 'errors'=>$errors));
+            exit(0);
+        }else{
+            return true;
+        }
+    }
+
+    public function userCheckUsername($data)
+    {
+        $valid = true;
+        $errors = array();
+        if (empty($data['usernameEditing'])){
+            $valid = false;
+            $errors['fields'] = 'Fields missing';
+
+        }
+        if(!$valid){
+            echo json_encode(array('success'=>false, 'errors'=>$errors),JSON_UNESCAPED_UNICODE,http_response_code(400));
+            exit(0);
+        }else{
+            return true;
+        }
+    }
 
 }

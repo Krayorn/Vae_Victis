@@ -75,13 +75,21 @@ class SecurityController extends BaseController
         $error = '';
         $manager = UserManager::getInstance();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            echo 'hihi';
             if(isset($_POST['infoFirstname'])){
-            $manager->firstnameEdition($_POST);
-                $this->redirect('profileEditing');
+                if( $manager->userCheckFirstname($_POST)){
+                    $manager->firstnameEdition($_POST);
+                    $this->redirect('profileEditing');
+                }
+
         }
-            if(isset($_POST['infoUsername'])){
-                $manager->usernameEdition($_POST);
-                $this->redirect('profileEditing');
+            if(isset($_POST['infoUsername'])) {
+                echo 'yo';
+                if ($manager->userCheckUsername($_POST)) {
+                    echo 'slt';
+                    $manager->usernameEdition($_POST);
+                    $this->redirect('profileEditing');
+                }
             }
             if(isset($_POST['infoLastname'])){
                 $manager->lastnameEdition($_POST);
