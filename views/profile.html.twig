@@ -1,48 +1,5 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-    <form action="?action=profile" method="POST" enctype="multipart/form-data" class="sendFile">
-        <fieldset class="fieldsetSend">
-            <legend> Drop your file</legend>
-
-            <input type="file" name="file" id="file"><br><br>
-            <input type="submit" name="upload" value="submit">
-        </fieldset>
-
-    </form>
-
-    <div class="align">
-        <div class="infoUser"> Pseudo : {{ username }}</div>
-
-    </div>
-    <div class="align">
-        <div class="infoUser"> Email: {{ email }}</div>
-
-    </div>
-
-    <div class="align">
-        <div class="infoUser"> Faction : {{ faction }}</div>
-
-    </div>
-
-    <div class="align">
-        <div class="infoUser"> Prénom: {{ firstname }}</div>
-
-    </div>
-
-    <div class="align">
-        <div class="infoUser"> Nom: {{ lastname }}</div>
-
-    </div>
-    <div class="align">
-        <div class="infoUser"> Nombre de commentaires : {{ nbr_commentary }}</div>
-
-    </div>
-    <div class="align">
-        <div class="infoUser"> Nombre d'articles: {{ nbr_articles }}</div>
-
-    </div>
-
-
-
+<h1>About us</h1>
 {% endblock %}
