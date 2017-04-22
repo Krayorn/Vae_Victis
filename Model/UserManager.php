@@ -25,6 +25,7 @@ class UserManager
         $data = $this->DBManager->findOne("SELECT * FROM users WHERE id = ".$id);
         return $data;
     }
+
     
     public function getUserByUsername($username)
     {
@@ -102,34 +103,7 @@ class UserManager
 
 
 
-    
-  /*  public function userCheckLogin($data)
-    {
-        $valid = true;
-        $errors = array();
-        if (empty($data['username']) OR empty($data['password'])){
-            $valid = false;
 
-        }
-   /*     $user = $this->getUserByUsername($data['username']);
-        if ($user === false){
-            $valid = false;
-            $errors['username'] = 'User not found ';
-        }
-        /*$hash = $this->userHash($data['password']);
-        if ($hash !== $user['password'])
-        {
-            $valid = false;
-            $errors['password'] = 'Password does not match with username';
-        }
-          if($valid == false){
-            echo json_encode(array('success'=>false, 'errors'=>$errors));
-            return false;
-        }
-        else{
-            return true;
-        }
-    }*/
 
     public function userCheckLogin($data)
     {
@@ -198,6 +172,41 @@ class UserManager
         $user['update_date'] ='';
         $user['tags']= 'viking';
         $this->DBManager->insert('articles', $user);
+    }
+    function firstnameEdition($data)
+    {
+        $update['firstnameEditing'] = $data['firstnameEditing'];
+        $update['user_id'] = $_SESSION['user_id'];
+        $query = $this->DBManager->findOneSecure("UPDATE users SET `firstname`= :firstnameEditing WHERE `id` = :user_id", $update);
+        return $query;
+    }
+    function lastnameEdition($data)
+    {
+        $update['lastnameEditing'] = $data['lastnameEditing'];
+        $update['user_id'] = $_SESSION['user_id'];
+        $query = $this->DBManager->findOneSecure("UPDATE users SET `lastname`= :lastnameEditing WHERE `id` = :user_id", $update);
+        return $query;
+    }
+    function usernameEdition($data)
+    {
+        $update['usernameEditing'] = $data['usernameEditing'];
+        $update['user_id'] = $_SESSION['user_id'];
+        $query = $this->DBManager->findOneSecure("UPDATE users SET `username`= :usernameEditing WHERE `id` = :user_id", $update);
+        return $query;
+    }
+    function factionEdition($data)
+    {
+        $update['factionEditing'] = $data['factionEditing'];
+        $update['user_id'] = $_SESSION['user_id'];
+        $query = $this->DBManager->findOneSecure("UPDATE users SET `faction`= :factionEditing WHERE `id` = :user_id", $update);
+        return $query;
+    }
+    function emailEdition($data)
+    {
+        $update['emailEditing'] = $data['emailEditing'];
+        $update['user_id'] = $_SESSION['user_id'];
+        $query = $this->DBManager->findOneSecure("UPDATE users SET `email`= :emailEditing WHERE `id` = :user_id", $update);
+        return $query;
     }
 
 }

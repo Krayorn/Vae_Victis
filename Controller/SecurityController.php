@@ -12,25 +12,21 @@ class SecurityController extends BaseController
             $this->redirect('home');
         } else {
             $error = '';
-
-            if ($_SERVER['REQUEST_METHOD'] === 'POST')
-
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $manager = UserManager::getInstance();
                 if ($manager->userCheckLogin($_POST)) {
-
                     $manager->userLogin($_POST['username']);
                     $this->redirect('home');
-
                     echo 'yo';
                 }
-                else {
-
-                    $error = "Invalid username or password";
-                }
+            }
+            else {
+                $error = "Invalid username or password";
             }
             echo $this->renderView('login.html.twig', ['error' => $error]);
         }
 
+    }
 
     public function logoutAction()
     {
@@ -78,6 +74,29 @@ class SecurityController extends BaseController
     {
         $error = '';
         $manager = UserManager::getInstance();
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if(isset($_POST['infoFirstname'])){
+            $manager->firstnameEdition($_POST);
+                $this->redirect('profileEditing');
+        }
+            if(isset($_POST['infoUsername'])){
+                $manager->usernameEdition($_POST);
+                $this->redirect('profileEditing');
+            }
+            if(isset($_POST['infoLastname'])){
+                $manager->lastnameEdition($_POST);
+                $this->redirect('profileEditing');
+            }
+            if(isset($_POST['infoFaction'])){
+                $manager->factionEdition($_POST);
+                $this->redirect('profileEditing');
+            }
+            if(isset($_POST['infoEmail'])){
+                $manager->emailEdition($_POST);
+                $this->redirect('profileEditing');
+            }
+    }
+
         $user = $manager->getUserById($_SESSION['user_id']);
         echo $this->renderView('profileEditing.html.twig', ['error' => $error,
             'username' => $user['username'],

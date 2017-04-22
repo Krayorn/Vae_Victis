@@ -1,5 +1,35 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-<h1>About us</h1>
+    <div class="align">
+        <div class="infoUser"> Username : {{ username }}</div>
+
+    </div>
+    <div class="align">
+        <div class="infoUser"> Email: {{ email }}</div>
+
+    </div>
+
+    <div class="align">
+        <div class="infoUser"> Faction : {{ faction }}</div>
+
+    </div>
+
+    <div class="align">
+        <div class="infoUser"> Prénom: {{ firstname }}</div>
+
+    </div>
+
+    <div class="align">
+        <div class="infoUser"> Nom: {{ lastname }}</div>
+
+    </div>
+    <div class="align">
+        <div class="infoUser"> Nombre de commentaires: {{ nbr_commentary }}</div>
+
+    </div>
+    <div class="align">
+        <div class="infoUser"> Nombre d'articles : {{ nbr_articles }}</div>
+
+    </div>
 {% endblock %}
