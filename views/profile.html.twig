@@ -1,6 +1,26 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
+<ul class="topnav">
+    {% if isConnected is defined %}
+        {% if visitor is defined %}
+            <li id="active"><a href="#">{{user.username}}</a><div class="down arrow"></div><div class="up none arrow"></div></li>
+            <li class="none"><a href="?action=home">Home</a></li>
+            <li class="none"><a href="?action=profile&amp;username={{visitor.username}}">My Profile</a></li>
+            <li class="none"><a href="?action=logout">Logout</a></li>
+        {% else %}
+            <li id="active"><a href="#">My Profile</a><div class="down arrow"></div><div class="up none arrow"></div></li>
+            <li class="none"><a href="?action=home">Home</a></li>
+            <li class="none"><a href="?action=logout">Logout</a></li>
+        {% endif %}
+    {% else %}
+    <li id="active"><a href="#">{{user.username}}</a><div class="down arrow"></div><div class="up none arrow"></div></li>
+    <li class="none"><a href="?action=home">Home</a></li>
+    <li class="none"><a href="?action=login">Login</a></li>
+    <li class="none"><a href="?action=register">Register</a></li>
+    {% endif %}
+</ul>
+
     <h1>User :  {{ username }} !</h1>
     <div id="form">
         <span id="errorFields" class="errorBlock"></span>
@@ -37,34 +57,34 @@
 
     </div>
     <div class="align">
-        <div class="infoUser"> Username : {{ username }}</div>
+        <div class="infoUser"> Username : {{ user.username }}</div>
 
     </div>
     <div class="align">
-        <div class="infoUser"> Email: {{ email }}</div>
-
-    </div>
-
-    <div class="align">
-        <div class="infoUser"> Faction : {{ faction }}</div>
+        <div class="infoUser"> Email: {{ user.email }}</div>
 
     </div>
 
     <div class="align">
-        <div class="infoUser"> Prénom: {{ firstname }}</div>
+        <div class="infoUser"> Faction : {{ user.faction }}</div>
 
     </div>
 
     <div class="align">
-        <div class="infoUser"> Nom: {{ lastname }}</div>
+        <div class="infoUser"> Prénom: {{ user.firstname }}</div>
+
+    </div>
+
+    <div class="align">
+        <div class="infoUser"> Nom: {{ user.lastname }}</div>
 
     </div>
     <div class="align">
-        <div class="infoUser"> Nombre de commentaires: {{ nbr_commentary }}</div>
+        <div class="infoUser"> Nombre de commentaires: {{ user.nbr_commentary }}</div>
 
     </div>
     <div class="align">
-        <div class="infoUser"> Nombre d'articles : {{ nbr_articles }}</div>
+        <div class="infoUser"> Nombre d'articles : {{ user.nbr_articles }}</div>
 
     </div>
 

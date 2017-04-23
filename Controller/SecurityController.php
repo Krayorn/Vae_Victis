@@ -70,11 +70,22 @@ class SecurityController extends BaseController
                 $this->redirect('home');
             }
             else{
-                echo $this->renderView('profile.html.twig', ['error' => $error,
-                    'username' => $user['username'],
-                    'email' => $user['email'],
-                    'faction' => $user['faction'], 'firstname' => $user['firstname'], 'lastname' => $user['lastname'],
-                    'nbr_commentary' => $user['nbr_commentary'], 'nbr_articles' => $user['nbr_articles']]);
+                if(isset($_SESSION['user_id'])){
+                    $isConnected = true;
+                    if($_SESSION['user_id'] == $user['id']){
+                        echo $this->renderView('profile.html.twig', ['error' => $error,
+                        'user' => $user, 'isConnected' => $isConnected]);
+                    }
+                    else{
+                        $visitor = $manager->getUserById($_SESSION['user_id']);
+                        echo $this->renderView('profile.html.twig', ['error' => $error,
+                            'user' => $user, 'isConnected' => $isConnected, 'visitor' => $visitor]);
+                    }
+                }
+                else{
+                    echo $this->renderView('profile.html.twig', ['error' => $error,
+                        'user' => $user]);
+                }
             }
         }
         else{
