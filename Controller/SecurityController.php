@@ -10,7 +10,7 @@ class SecurityController extends BaseController
     {
         if (isset($_SESSION['user_id'])) {
             $this->redirect('home');
-        } else {
+        }else {
             $error = '';
            if ($_SERVER['REQUEST_METHOD'] === 'POST'){
                 $manager = UserManager::getInstance();
@@ -52,29 +52,34 @@ class SecurityController extends BaseController
 
     public function profileAction()
     {
+        if(isset($_GET['username'])){
+            $error = '';
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $manager = UserManager::getInstance();
+                /*if($manager->userCheckArticles($_POST)) {*/
+                    $manager->insertArticles($_POST);
+                    $this->redirect('profile');
+                /*}else{
+                    $error='invalid data';
+                }*/
+            }
 
-        $error = '';
-        $error = '';
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $manager = UserManager::getInstance();
-            /*if($manager->userCheckArticles($_POST)) {*/
-                $manager->insertArticles($_POST);
-                $this->redirect('profile');
-            /*}else{
-                $error='invalid data';
-            }*/
+            $user = $manager->getUserByUsername($_GET['username']);
+            if($user == false){
+                $this->redirect('home');
+            }
+            else{
+                echo $this->renderView('profile.html.twig', ['error' => $error,
+                    'username' => $user['username'],
+                    'email' => $user['email'],
+                    'faction' => $user['faction'], 'firstname' => $user['firstname'], 'lastname' => $user['lastname'],
+                    'nbr_commentary' => $user['nbr_commentary'], 'nbr_articles' => $user['nbr_articles']]);
+            }
         }
-
-        $manager = UserManager::getInstance();
-
-
-        $user = $manager->getUserById($_SESSION['user_id']);
-
-        echo $this->renderView('profile.html.twig', ['error' => $error,
-            'username' => $user['username'],
-            'email' => $user['email'],
-            'faction' => $user['faction'], 'firstname' => $user['firstname'], 'lastname' => $user['lastname'],
-            'nbr_commentary' => $user['nbr_commentary'], 'nbr_articles' => $user['nbr_articles']]);
+        else{
+            $this->redirect('home');
+        }
     }
 
 

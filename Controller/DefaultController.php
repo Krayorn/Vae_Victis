@@ -26,12 +26,12 @@ class DefaultController extends BaseController
             $user = $manager->getUserById($_SESSION['user_id']);
 
             echo $this->renderView('home.html.twig',
-                ['name' => $user['username']]);
+                ['name' => $user['username'], 'isConnected' => $user['id']]);
         }
         else{
             $user = '';
             echo $this->renderView('home.html.twig',
-                ['name' => $user]);
+                ['isConnected' => $user]);
         }
     }
 
