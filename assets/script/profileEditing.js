@@ -59,72 +59,22 @@ $(function () {
         usernameForm.css('display','block')
     });
 
-
-
-  /*  firstnameForm.submit(function(){
-        errorFirstnameEditing.html('');
-
-        var formValid = true;
-        var $this = $(this);
-
-        var $firstname = $('#firstnameEditing').val();
-
-
-
-
-        if (!nameValidation($firstname) ) {
-            formValid = false;
-            errorFirstname.html('Veuillez saisir un prénom valide');
-        }
-        if (formValid) {
-            // Envoi de la requête HTTP en mode asynchrone
-
-            $.ajax({
-                url: $this.attr('action'), // Le nom du fichier indiqué dans le formulaire
-                type: $this.attr('method'), // La méthode indiquée dans le formulaire (get ou post)
-                data: $this.serialize(), // Je sérialise les données (j'envoie toutes les valeurs présentes dans le formulaire)
-                dataType: 'json', // JSON,
-                success: function(data) { // Je récupère la réponse du fichier PHP
-
-                    if(data.success === false) {
-                        errorFirstnameEditing.html(data.errors['fields']);
-
-
-                    }
-                },
-                error: function(response,statut,error){
-                    console.log(response,statut,error);
-                }
-            });
-        }
-        return false;
-
-    });*/
-
     usernameForm.submit(function(){
         errorUsername.html('');
         var formValid = true;
         var $username = $('#usernameEditing').val();
         var $this = $(this);
-     /*   if (!usernameValidation($username) ) {
-            formValid = false;
-            errorUsername.html('Veuillez saisir un pseudo valide');
-            console.log('bot ok');
-        }*/
-     console.log(formValid);
-     console.log($this);
+
         if (formValid) {
-            // Envoi de la requête HTTP en mode asynchrone
 
             $.ajax({
-                url: $this.attr('action'), // Le nom du fichier indiqué dans le formulaire
-                type: $this.attr('method'), // La méthode indiquée dans le formulaire (get ou post)
-                data: $this.serialize(), // Je sérialise les données (j'envoie toutes les valeurs présentes dans le formulaire)
+                url: $this.attr('action'),
+                type: $this.attr('method'),
+                data: $this.serialize(),
                 dataType: 'JSON',
-                success: function(data) { // Je récupère la réponse du fichier PHP
+                success: function(data) {
                     if(data.success === false) {
                         errorUsername.html(data.errors['fields']);
-                        console.log('ok');
                     }
                     if(data.success === true){
                         $('#usernameRecap').html('Username : ' + $username);
@@ -137,25 +87,8 @@ $(function () {
         return false;
     });
 
-
-
-
-
- /*   lastnameForm.submit(function(){
-        var formValid = true;
-
-        errorLastname.html('');
-
-        var $lastname = $('#lastnameEditing').val();
-
-        if(!nameValidation($lastname)){
-            formValid = false;
-            errorLastname.html('Veuillez saisir un nom de famille valide');
-        }
-      return formValid;
-    });*/
-
-  /*  emailForm.submit(function(){
+    emailForm.submit(function(){
+        var $this = $(this);
         var formValid = true;
         errorEmail.html('');
         var $email = $('#emailEditing').val();
@@ -163,27 +96,122 @@ $(function () {
             formValid = false;
             errorEmail.html('Veuillez saisir un email valide');
         }
-        return formValid;
-    });*/
 
+        if(formValid){
+            $.ajax({
+                url: $this.attr('action'),
+                type: $this.attr('method'),
+                data: $this.serialize(),
+                dataType: 'JSON',
+                success: function(data) {
+                    if(data.success === false) {
+                        errorEmail.html(data.errors['fields']);
+                    }
+                    if(data.success === true){
+                        $('#emailRecap').html('Email : ' + $email);
+                        $('#emailEditing').val('');
+                        emailForm.css('display','none');
+                    }
+                },
+            });            
+        }
+        return false;
+    });
 
-  /*  factionForm.submit(function(){
+    firstnameForm.submit(function(){
+        errorFirstnameEditing.html('');
         var formValid = true;
+        var $this = $(this);
 
+        var $firstname = $('#firstnameEditing').val();
+        if (!nameValidation($firstname) ) {
+            formValid = false;
+            errorFirstname.html('Veuillez saisir un prénom valide');
+        }
+        if (formValid) {
+            $.ajax({
+                url: $this.attr('action'),
+                type: $this.attr('method'),
+                data: $this.serialize(),
+                dataType: 'json', 
+                success: function(data) { 
+                    if(data.success === false) {
+                        errorFirstnameEditing.html(data.errors['fields']);
+                    }
+                    if(data.success === true){
+                        $('#firstnameRecap').html('Firstname : ' + $firstname);
+                        $('#firstnameEditing').val('');
+                        firstnameForm.css('display','none');
+                    }
+                },
+            });
+        }
+        return false;
+
+    });
+
+   lastnameForm.submit(function(){
+        var formValid = true;
+        errorLastname.html('');
+        var $this = $(this);
+        var $lastname = $('#lastnameEditing').val();
+        if(!nameValidation($lastname)){
+            formValid = false;
+            errorLastname.html('Veuillez saisir un nom de famille valide');
+        }
+        if (formValid) {
+            $.ajax({
+                url: $this.attr('action'),
+                type: $this.attr('method'),
+                data: $this.serialize(),
+                dataType: 'json', 
+                success: function(data) {
+                    if(data.success === false) {
+                        errorLastname.html(data.errors['fields']);
+                    }
+                    if(data.success === true){
+                        $('#lastnameRecap').html('Lastname : ' + $lastname);
+                        $('#lastnameEditing').val('');
+                        lastnameForm.css('display','none');
+                    }
+                },
+            });
+        }        
+      return false;
+    });
+
+    factionForm.submit(function(){
+        var formValid = true;
+        var $this = $(this);
         var $faction = $('#factionEditing').val();
-            console.log($faction);
         errorFaction.html('');
 
         if($faction == ''){
             formValid = false;
             errorFaction.html('Veuillez saisir un numéro de téléphone valide') ;
         }
-
-
-        return formValid;
-    });*/
+        if(formValid){
+            $.ajax({
+                url: $this.attr('action'),
+                type: $this.attr('method'),
+                data: $this.serialize(),
+                dataType: 'json', 
+                success: function(data) {
+                    if(data.success === false) {
+                        errorFaction.html(data.errors['fields']);
+                    }
+                    if(data.success === true){
+                        console.log($faction);
+                        $('#factionRecap').html('Faction : ' + $faction);
+                        factionForm.css('display','none');
+                    }
+                },
+            });
+        }
+        return false;
+    });
 
 });
 /**
- * Created by Dam's on 22/04/2017.
+ * 
  */

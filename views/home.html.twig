@@ -4,7 +4,7 @@
 
 <ul class="topnav">
     <li id="active"><a href="#">Home</a><div class="down arrow"></div><div class="up none arrow"></div></li>
-    {% if isConnected is not empty %}
+    {% if isConnected is defined %}
     <li class="none"><a href="?action=profile&amp;username={{name}}">Profil</a></li>
     <li class="none"><a href="?action=logout">Logout</a></li>
     {% else %}

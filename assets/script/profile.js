@@ -5,8 +5,7 @@ $(function () {
     var errorTitle = $('#errorTitle');
     var errorDescription= $('#errorDescription');
     var errorContent = $('#errorContent');
-
-    console.log(articlesForm);
+    
     articlesForm.submit(function(){
         var formValid =true;
         var $this = $(this);
