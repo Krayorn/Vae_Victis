@@ -21,21 +21,31 @@
     {% endif %}
 </ul>
 
+
     <h1>User :  {{ user['username'] }} !</h1>
+{% if isConnected is defined and visitor is not defined %}
     <div id="form">
         <span id="errorFields" class="errorBlock"></span>
         <form action="?action=profile&amp;username={{username}}" method="POST" id="articlesForm">
             Title : <input type="text" name="title" id="title"><br>  <span id="errorTitle" class="errorBlock"></span>
             Description: <textarea name="description" id="description"></textarea><br>  <span id="errorDescription" class="errorBlock"></span>
-            Contenu:     <textarea name="content" id="content"></textarea><br>  <span id="errorContent" class="errorBlock"></span>
+            Contenu:     <textarea name="content" id="article_content"></textarea><br>  <span id="errorContent" class="errorBlock"></span>
 
             <input type="submit" name="articles">
         </form>
+    </div>
+
+        <script>
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+        CKEDITOR.replace( 'article_content' );
+    </script>
+{% endif %}
+
         {% if isConnected is defined and visitor is not defined %}
         <a href="?action=profileEditing">Editez les informations</a>
         {% endif %}
 
-    </div>
     <div id="errorArticle">
 
     </div>

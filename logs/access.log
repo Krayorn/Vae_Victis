@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 2017-04-24 18:30 => function : userLogin || User Appolyon just connected.
 2017-04-24 18:39 => function : insertArticles || User Appolyon just created a new Article named Je .
 2017-04-24 18:40 => function : insertArticles || User Appolyon just created a new Article named Je .
@@ -18,3 +19,5 @@
 2017-04-24 19:50 => function : insertArticles || User Appolyon just created a new Article named Jed.
 2017-04-24 21:10 => function : userRegister || User Berserker just register.
 2017-04-24 21:10 => function : userLogin || User Berserker just connected.
+=======
+>>>>>>> 396e7ac5911201071a75e26a6f7bf071a5719dcf
