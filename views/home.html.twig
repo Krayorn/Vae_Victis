@@ -5,7 +5,7 @@
 <ul class="topnav">
     <li id="active"><a href="#">Home</a><div class="down arrow"></div><div class="up none arrow"></div></li>
     {% if isConnected is defined %}
-    <li class="none"><a href="?action=profile&amp;username={{name}}">Profil</a></li>
+    <li class="none"><a href="?action=profile&amp;username={{user['username']}}">Profil</a></li>
     <li class="none"><a href="?action=logout">Logout</a></li>
     {% else %}
     <li class="none"><a href="?action=login">Login</a></li>
@@ -14,5 +14,11 @@
 </ul>
 
 <h1>Hello {{ name }} !</h1>
+    {% for key in articles %}
+        <div>{{ key.title }}</div><br><br>
+        <div>{{ key.description }}</div><br><br>
+                <a href=""> Voir l'article complet</a>
+
+    {% endfor %}
     <a href="?action=logout">Logout</a>
 {% endblock %}

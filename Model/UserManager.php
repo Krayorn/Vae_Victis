@@ -33,6 +33,12 @@ class UserManager
         ['username' => $username]);
         return $data;
     }
+    public function getArticleByTitle($title)
+    {
+        $data = $this->DBManager->findOneSecure("SELECT * FROM articles WHERE title = :title",
+            ['title' => $title]);
+        return $data;
+    }
     public function getUserByEmail($email)
     {
         $data = $this->DBManager->findOneSecure("SELECT * FROM users WHERE email = :email",
@@ -154,6 +160,11 @@ class UserManager
             $valid = false;
             $errors['article'] = 'Missing fields';
         }
+        $testTitle = $this->getArticleByTitle($data['title']);
+        if ($testTitle !== false){
+            $valid = false;
+            $errors['title'] = 'Title already used';
+        }
         if(!$valid){
             json_encode(array('success'=>false, 'errors'=>$errors));
             exit(0);
@@ -177,7 +188,14 @@ class UserManager
         echo json_encode(array('success'=>true));
         exit(0);
     }
+    public function myArticles()
+    {
+        $id_user = $_SESSION['user_id'];
 
+        $data = $this->DBManager->findAllSecure("SELECT * FROM articles WHERE user_id = :id_user",
+            ['id_user' => $id_user]);
+        return $data;
+    }
      public function firstnameEdition($data)
     {
         $update['firstnameEditing'] = $data['firstnameEditing'];
