@@ -56,14 +56,14 @@ class SecurityController extends BaseController
             $error = '';
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $manager = UserManager::getInstance();
-                /*if($manager->userCheckArticles($_POST)) {*/
+                if ($manager->userCheckArticles($_POST)) {
                     $manager->insertArticles($_POST);
                     $this->redirect('profile');
-                /*}else{
-                    $error='invalid data';
-                }*/
-            }
 
+                } else {
+                    $error = 'invalid data';
+                }
+            }
             $manager = UserManager::getInstance();
             $user = $manager->getUserByUsername($_GET['username']);
             if($user == false){

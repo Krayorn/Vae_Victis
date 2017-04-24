@@ -21,39 +21,20 @@
     {% endif %}
 </ul>
 
-    <h1>User :  {{ username }} !</h1>
+    <h1>User :  {{ user['username'] }} !</h1>
     <div id="form">
         <span id="errorFields" class="errorBlock"></span>
         <form action="?action=profile&amp;username={{username}}" method="POST" id="articlesForm">
             Title : <input type="text" name="title" id="title"><br>  <span id="errorTitle" class="errorBlock"></span>
             Description: <textarea name="description" id="description"></textarea><br>  <span id="errorDescription" class="errorBlock"></span>
             Contenu:     <textarea name="content" id="content"></textarea><br>  <span id="errorContent" class="errorBlock"></span>
-                <h1>Tags faction</h1>
 
-
-            <input type="checkbox" name="tags" value="vikings"> vikings
-            <input type="checkbox" name="tags" value="samurai">samurai
-            <input type="checkbox" name="tags" value="chevaliers">chevaliers
-            <input type="checkbox" name="tags" value="neutral"> neutre
-            <h1> Other tags</h1>
-            <input type="checkbox" name="tags" value="items">Equipement
-            <input type="checkbox" name="tags" value="strat"> Stratégie
-            <input type="checkbox" name="tags" value="fight"> Combat<br>
-<!--
-                 Choix 1 : <select name="tagFaction" id="tagFaction" >
-                     <option  value="vikings">Vikings</option>
-                     <option  value="samurai">Samurai</option>
-                     <option  value="chevaliers">Chevaliers</option>
-                     <option value="neutre">Neutre</option>
-                 </select>
-                 Choix 2 : <select name="tagTypes" id="tagTypes">
-                     <option  value="items">Equipement</option>
-                     <option value="strat">Stratégie</option>
-                     <option  value="fight">Combat</option>
-                 </select>-->
             <input type="submit" name="articles">
         </form>
+        <a href="?action=profileEditing">Editez les informations</a>
 
+    </div>
+    <div id="errorArticle">
 
     </div>
     <div class="align">
