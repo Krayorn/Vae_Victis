@@ -53,7 +53,7 @@ class SecurityController extends BaseController
     public function profileAction()
     {
         if(isset($_GET['username'])){
-            $error = '';
+                $error = '';
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $manager = UserManager::getInstance();
                 if ($manager->userCheckArticles($_POST)) {

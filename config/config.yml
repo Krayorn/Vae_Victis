@@ -1,5 +1,6 @@
 routes:
     home: 'Default:home'
+    articles: 'Default:articles'
     profile: 'Security:profile'
     profileEditing: 'Security:profileEditing'
     login: 'Security:login'
