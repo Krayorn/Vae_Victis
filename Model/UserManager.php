@@ -246,6 +246,12 @@ class UserManager
             ['id_user' => $id_user]);
         return $data;
     }
+
+    public function allArticles(){
+        $data = $this->DBManager->findAllSecure("SELECT * FROM articles");
+        return $data;  
+    }
+
      public function firstnameEdition($data)
     {
         $update['firstnameEditing'] = $data['firstnameEditing'];
