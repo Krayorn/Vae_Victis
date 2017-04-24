@@ -5,7 +5,7 @@
     <div class="align">
         <div class="infoUser" id="usernameRecap"> Username : {{ username }}</div> <img id="parameterUsername" class="parameter" src="assets/images/parametre.png">
         <div id="infoUsername">
-            <form action="?action=profileEditing" method="POST" name="usernameForm" id="usernameForm">
+            <form action="?action=profileEditing" method="POST" name="usernameForm" class="none" id="usernameForm">
                 <input type="text" name="usernameEditing" id="usernameEditing"><br>  <span id="errorUsername" class="errorBlock"></span><br>
                 <input type="submit" value="valider">
             </form>
@@ -14,7 +14,7 @@
     <div class="align">
         <div class="infoUser" id="emailRecap"> Email: {{ email }}</div><img id="parameterEmail" class="parameter" src="assets/images/parametre.png">
         <div id="infoEmail">
-            <form action="?action=profileEditing" method="POST" name="emailForm" id="emailForm">
+            <form action="?action=profileEditing" method="POST" name="emailForm" class="none" id="emailForm">
                 <input type="text" name="emailEditing" id="emailEditing"><br><span id="errorEmail" class="errorBlock"></span><br>
                 <input type="submit" value="valider">
             </form>
@@ -24,7 +24,7 @@
     <div class="align">
         <div class="infoUser" id="factionRecap"> Faction : {{ faction }}</div><img class="parameter" id="parameterFaction" src="assets/images/parametre.png">
         <div id="infoFaction">
-            <form action="?action=profileEditing" method="POST" name="factionForm" id="factionForm">
+            <form action="?action=profileEditing" method="POST" name="factionForm" class="none" id="factionForm">
                 Choix 1 : <select name="factionEditing" id="factionEditing" >
                     <option  value="vikings">Vikings</option>
                     <option  value="samurai">Samurai</option>
@@ -39,8 +39,8 @@
     <div class="align">
         <div class="infoUser" id="firstnameRecap"> Prénom: {{ firstname }}</div> <img id="parameterFirstname" class="parameter" src="assets/images/parametre.png">
         <div id="infoFirstname">
-            <form action="?action=profileEditing" method="POST" name="firstnameForm" id="firstnameForm">
-                <input type="text" name="firstnameEditing" id="firstnameEditing"><br>  <span id="errorFirstnameEditing" class="errorBlock"></span><br>
+            <form action="?action=profileEditing" method="POST" name="firstnameForm" class="none" id="firstnameForm">
+                <input type="text" name="firstnameEditing" id="firstnameEditing"><br>  <span id="errorFirstname" class="errorBlock"></span><br>
                 <input type="submit" value="valider">
             </form>
         </div>
@@ -49,7 +49,7 @@
     <div class="align">
         <div class="infoUser" id="lastnameRecap"> Nom: {{ lastname }}</div><img class="parameter" id="parameterLastname" src="assets/images/parametre.png">
         <div id="infoLastname">
-            <form action="?action=profileEditing" method="POST" name="lastnameForm" id="lastnameForm">
+            <form action="?action=profileEditing" method="POST" name="lastnameForm" class="none" id="lastnameForm">
                 <input type="text" name="lastnameEditing" id="lastnameEditing"><br>  <span id="errorLastname" class="errorBlock"></span><br>
                 <input type="submit" value="valider">
             </form>

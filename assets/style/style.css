@@ -232,22 +232,6 @@
   padding-bottom: 2%;
 }
 
-#firstnameForm{
-  display: none;
-}
-
-#lastnameForm{
-  display: none;
-}
-#emailForm{
-  display: none;
-}
-#factionForm{
-  display: none;
-}
-#usernameForm{
-  display: none;
-}
 #profile{
 
   font-family: 'Open Sans Condensed', arial, sans-serif;
