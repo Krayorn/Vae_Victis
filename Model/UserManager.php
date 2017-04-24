@@ -173,8 +173,9 @@ class UserManager
         $user['content'] = $data['content'];
         $user['nbr_commentary'] =  '0';
         $user['update_date'] = $this->giveDate();
-        $user['tags']= $data['tagFaction'];
         $this->DBManager->insert('articles', $user);
+        echo json_encode(array('success'=>true));
+        exit(0);
     }
 
      public function firstnameEdition($data)
