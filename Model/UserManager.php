@@ -183,14 +183,16 @@ class UserManager
         $update['firstnameEditing'] = $data['firstnameEditing'];
         $update['user_id'] = $_SESSION['user_id'];
         $query = $this->DBManager->findOneSecure("UPDATE users SET `firstname`= :firstnameEditing WHERE `id` = :user_id", $update);
-        return $query;
+        echo json_encode(array('success'=>true));
+        exit(0);        
     }
     public function lastnameEdition($data)
     {
         $update['lastnameEditing'] = $data['lastnameEditing'];
         $update['user_id'] = $_SESSION['user_id'];
         $query = $this->DBManager->findOneSecure("UPDATE users SET `lastname`= :lastnameEditing WHERE `id` = :user_id", $update);
-        return $query;
+        echo json_encode(array('success'=>true));
+        exit(0);      
     }
 
     public function usernameEdition($data)
@@ -207,32 +209,50 @@ class UserManager
         $update['factionEditing'] = $data['factionEditing'];
         $update['user_id'] = $_SESSION['user_id'];
         $query = $this->DBManager->findOneSecure("UPDATE users SET `faction`= :factionEditing WHERE `id` = :user_id", $update);
-        return $query;
+        echo json_encode(array('success'=>true));
+        exit(0);  
     }
+
     public function emailEdition($data)
     {
         $update['emailEditing'] = $data['emailEditing'];
         $update['user_id'] = $_SESSION['user_id'];
         $query = $this->DBManager->findOneSecure("UPDATE users SET `email`= :emailEditing WHERE `id` = :user_id", $update);
-        return $query;
+        echo json_encode(array('success'=>true));
+        exit(0);
     }
+
     public function userCheckFirstname($data)
     {
-        header('Content-Type: application/json');
         $valid = true;
         $errors = array();
         if (empty($data['firstnameEditing'])){
             $valid = false;
             $errors['fields'] = 'Fields missing';
-
         }
         if($valid === false){
-            header('Content-Type: application/json');
             echo json_encode(array('success'=>false, 'errors'=>$errors));
-
             exit(0);
-        }else{
-            header('Content-Type: application/json');
+        }
+        else{
+            return true;
+        }
+
+    }
+
+    public function userCheckLastname($data)
+    {
+        $valid = true;
+        $errors = array();
+        if (empty($data['lastnameEditing'])){
+            $valid = false;
+            $errors['fields'] = 'Fields missing';
+        }
+        if($valid === false){
+            echo json_encode(array('success'=>false, 'errors'=>$errors));
+            exit(0);
+        }
+        else{
             return true;
         }
 
@@ -252,6 +272,21 @@ class UserManager
         }else{
             return true;
         }
+    }
+
+    public function userCheckEmail($data){
+        $valid = true;
+        $errors = array();
+        if (empty($data['emailEditing'])){
+            $valid = false;
+            $errors['fields'] = 'Fields missing';
+        }
+        if(!$valid){
+            echo json_encode(array('success'=>false, 'errors'=>$errors));
+            exit(0);
+        }else{
+            return true;
+        }        
     }
 
 }

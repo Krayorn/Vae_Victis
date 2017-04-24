@@ -5,9 +5,13 @@ $(function () {
     var errorTitle = $('#errorTitle');
     var errorDescription= $('#errorDescription');
     var errorContent = $('#errorContent');
+
     var errorArticle = $('#errorArticle')
 
     console.log(articlesForm);
+
+    
+
     articlesForm.submit(function(){
         var formValid =true;
         var $this = $(this);

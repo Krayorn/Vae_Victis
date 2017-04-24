@@ -99,32 +99,30 @@ class SecurityController extends BaseController
         $error = '';
         $manager = UserManager::getInstance();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            if(isset($_POST['infoFirstname'])){
+            if(isset($_POST['firstnameEditing'])){
                 if( $manager->userCheckFirstname($_POST)){
                     $manager->firstnameEdition($_POST);
-                    $this->redirect('profileEditing');
                 }
-
-        }
+            }
             if(isset($_POST['usernameEditing'])) {
                 if ($manager->userCheckUsername($_POST)) {
                     $manager->usernameEdition($_POST);
-                    $this->redirect('profileEditing');
                 }
             }
-            if(isset($_POST['infoLastname'])){
-                $manager->lastnameEdition($_POST);
-                $this->redirect('profileEditing');
+            if(isset($_POST['lastnameEditing'])){
+                if( $manager->userCheckLastname($_POST)){
+                    $manager->lastnameEdition($_POST);
+                }
             }
-            if(isset($_POST['infoFaction'])){
+            if(isset($_POST['factionEditing'])){
                 $manager->factionEdition($_POST);
-                $this->redirect('profileEditing');
             }
-            if(isset($_POST['infoEmail'])){
-                $manager->emailEdition($_POST);
-                $this->redirect('profileEditing');
+            if(isset($_POST['emailEditing'])){
+                if ($manager->userCheckEmail($_POST)) {
+                    $manager->emailEdition($_POST);
+                }
             }
-    }
+        }
 
         $user = $manager->getUserById($_SESSION['user_id']);
         echo $this->renderView('profileEditing.html.twig', ['error' => $error,
