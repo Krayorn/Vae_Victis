@@ -17,8 +17,18 @@
 <h1>Hello {{ user['username'] }} !</h1>
 
     {% for key in articles %}
-        <div>{{ key.title }}</div><br><br>
-        <div>{{ key.description }}</div><br><br>
-        <a href="?action=articles&amp;title={{key.title}}"> Voir l'article complet</a>
+        {% set username = allUsernames[key['user_id']] %}
+        {% set commentary = allNbrCommentary[key['user_id']] %}
+        {% set title =key['title'] %}
+        {% set description =key['description'] %}
+
+        <div id="infoArticleUser">
+          Utilisateur :  {{ username }}
+            Nombre de commentaire de l'article : {{ commentary }}
+
+        </div><br>
+        <div> Titre :{{ title }}</div><br><br>
+        <div> Description :{{ description }}</div><br><br>
+        <a href="?action=articles&amp;title={{key.title}}"> Voir l'article complet</a><br>
     {% endfor %}
 {% endblock %}

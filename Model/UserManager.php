@@ -58,6 +58,19 @@ class UserManager
                 ['article_id' => $article_id]);
             return $data;
         }
+    public function getUserArticles()
+    {
+        $data = $this->DBManager->findAllSecure("SELECT * FROM articles");
+        return $data;
+    }
+
+    public function getUserBtArticleId($article_id)
+    {
+
+        $data = $this->DBManager->findOneSecure("SELECT * FROM users WHERE id = :article_id",
+            ['article_id' => $article_id]);
+        return $data;
+    }
 
     public function userCheckRegister($data)
     {
