@@ -10,17 +10,16 @@ class DefaultController extends BaseController
     {
 
 
-
+        $manager = UserManager::getInstance();
+        $articles = $manager->allArticles();
         if (!empty($_SESSION['user_id']))
         {
-            $manager = UserManager::getInstance();
             $user = $manager->getUserById($_SESSION['user_id']);
-            $articles = $manager->myArticles();
             echo $this->renderView('home.html.twig',
                 ['user' => $user, 'isConnected' => $user['id'],'articles'=> $articles]);
         }
         else{
-            echo $this->renderView('home.html.twig');
+            echo $this->renderView('home.html.twig', ['articles'=> $articles]);
         }
     }
     public function articlesAction(){
@@ -33,7 +32,16 @@ class DefaultController extends BaseController
                 $manager->insertCommentary($_POST, $article);
             }
             $commentary = $manager->getCommentaryByArticleId($article['id']);
-            echo $this->renderView('articles.html.twig', ['article' =>$article,'commentary'=>$commentary]);
+            if(isset($_SESSION['user_id'])){
+                $user = $manager->getUserById($_SESSION['user_id']);
+                echo $this->renderView('articles.html.twig', ['article' =>$article,'commentary'=>$commentary, 'isConnected' => $user]);
+            }
+            else{
+                echo $this->renderView('articles.html.twig', ['article' =>$article,'commentary'=>$commentary]);
+            }
+        }
+        else{
+            $this->redirect('home');
         }
     }
 
