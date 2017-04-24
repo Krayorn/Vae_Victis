@@ -35,7 +35,7 @@ class UserManager
     }
     public function getArticlesByTitle($title)
     {
-        $data = $this->DBManager->findOneSecure("SELECT title FROM articles WHERE title = :title",
+        $data = $this->DBManager->findOneSecure("SELECT * FROM articles WHERE title = :title",
             ['title' => $title]);
         return $data;
     }
