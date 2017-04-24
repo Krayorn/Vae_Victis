@@ -6,3 +6,11 @@
 2017-04-24 16:46 => function : emailEdition || User Hersir just updated his email to Hersir@honor.fr.
 2017-04-24 16:47 => function : insertArticles || User Hersir just created a new Article named VIKINGSOP.
 2017-04-24 16:58 => function : userLogin || User Hersir just connected.
+2017-04-24 19:44 => function : userRegister || User Franck just register.
+2017-04-24 19:44 => function : userLogin || User Franck just connected.
+2017-04-24 19:45 => function : insertArticles || User Franck just created a new Article named Mon premier article.
+2017-04-24 19:46 => function : usernameEdition || User Franck just updated his username to Musiciennul.
+2017-04-24 19:47 => function : userLogin || User Musiciennul just connected.
+2017-04-24 21:04 => function : userLogin || User Musiciennul just connected.
+2017-04-24 21:04 => function : insertArticles || User Musiciennul just created a new Article named new Article.
+2017-04-24 21:47 => function : userLogin || User Musiciennul just connected.

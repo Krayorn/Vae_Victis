@@ -6,7 +6,7 @@
     <li id="active"><a href="#">{{article.title}}</a><div class="down arrow"></div><div class="up none arrow"></div></li>
     {% if isConnected is defined %}
     <li class="none"><a href="?action=home">Home</a></li>
-    <li class="none"><a href="?action=profile&amp;username={{user.username}}">Profil</a></li>
+    <li class="none"><a href="?action=profile&amp;username={{isConnected.username}}">Profil</a></li>
     <li class="none"><a href="?action=logout">Logout</a></li>
     {% else %}
     <li class="none"><a href="?action=home">Home</a></li>
@@ -23,9 +23,13 @@
 
     <div id="commentary">
         {% for key in commentary %}
-            <div class="commentary">{{ key.content }}</div>
+            <div class="commentary">
+            <div class="commentary_content">{{ key.content | raw }}</div>
+            </div>
         {% endfor %}
     </div>
+
+    {% if isConnected is defined %}
     <div id="form">
         <span id="errorCommentary" class="errorBlock"></span>
         <h1> Postez un commentaire</h1>
@@ -35,5 +39,12 @@
             <input type="submit" name="commentary">
         </form>
     </div>
+    {% endif %}
+
+<script>
+// Replace the <textarea id="editor1"> with a CKEditor
+// instance, using default configuration.
+    CKEDITOR.replace( 'contentCommentary' );
+</script>
 
 {% endblock %}
