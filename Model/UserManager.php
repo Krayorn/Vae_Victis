@@ -35,7 +35,7 @@ class UserManager
     }
     public function getArticlesByTitle($title)
     {
-        $data = $this->DBManager->findOneSecure("SELECT * FROM articles WHERE title = :title",
+        $data = $this->DBManager->findOneSecure("SELECT title FROM articles WHERE title = :title",
             ['title' => $title]);
         return $data;
     }
@@ -45,6 +45,13 @@ class UserManager
         ['email' => $email]);
         return $data;
     }
+    public function getEmailByUserId($user_id)
+    {
+        $data = $this->DBManager->findOneSecure("SELECT email FROM users WHERE id = :user_id",
+            ['user_id' => $user_id]);
+        return $data;
+    }
+
         public function getCommentaryByArticleId($article_id)
         {
             $data = $this->DBManager->findAllSecure("SELECT * FROM commentary WHERE article_id = :article_id",
@@ -172,11 +179,11 @@ class UserManager
             $valid = false;
             $errors['article'] = 'Missing fields';
         }
-      /* $testTitle = $this->getArticlesByTitle($data['title']);
+       $testTitle = $this->getArticlesByTitle($data['title']);
         if ($testTitle){
             $valid = false;
             $errors['title'] = 'Title already used';
-        }*/
+        }
         if(!$valid){
             json_encode(array('success'=>false, 'errors'=>$errors));
             exit(0);
@@ -184,6 +191,24 @@ class UserManager
             return true;
         }
     }
+    public function userCheckCommentary($data)
+    {
+        $valid = true;
+        $errors = array();
+        if (empty($data['contentCommentary'])){
+            $valid = false;
+            $errors['article'] = 'Missing fields';
+        }
+
+
+        if(!$valid){
+            json_encode(array('success'=>false, 'errors'=>$errors));
+            exit(0);
+        }else{
+            return true;
+        }
+    }
+
 
     public function insertArticles($data)
     {
@@ -279,6 +304,10 @@ class UserManager
             $valid = false;
             $errors['fields'] = 'Fields missing';
         }
+        if(strlen($data['firstnameEditing']) < 4){
+            $valid = false;
+            $errors['fields'] = 'Prénom trop court';
+        }
         if($valid === false){
             echo json_encode(array('success'=>false, 'errors'=>$errors));
             exit(0);
@@ -296,6 +325,10 @@ class UserManager
         if (empty($data['lastnameEditing'])){
             $valid = false;
             $errors['fields'] = 'Fields missing';
+        }
+        if(strlen($data['lastnameEditing']) < 4){
+            $valid = false;
+            $errors['fields'] = 'Nom de famille trop court';
         }
         if($valid === false){
             echo json_encode(array('success'=>false, 'errors'=>$errors));
@@ -315,6 +348,10 @@ class UserManager
             $valid = false;
             $errors['fields'] = 'Fields missing';
         }
+        if(strlen($data['usernameEditing']) < 4){
+            $valid = false;
+            $errors['fields'] = 'Pseudo trop court';
+        }
         if(!$valid){
             echo json_encode(array('success'=>false, 'errors'=>$errors));
             exit(0);
@@ -330,12 +367,31 @@ class UserManager
             $valid = false;
             $errors['fields'] = 'Fields missing';
         }
+        $testEmail = $this->getEmailByUserId($data['emailEditing']);
+        if (!$testEmail){
+            $valid = false;
+            $errors['email'] = 'Email déjà utilisé';
+        }
         if(!$valid){
             echo json_encode(array('success'=>false, 'errors'=>$errors));
             exit(0);
         }else{
             return true;
         }        
+    }
+    public function userCheckFaction($data){
+        $valid = true;
+        $errors = array();
+        if (empty($data['factionEditing'])){
+            $valid = false;
+            $errors['fields'] = 'Faction manquante';
+        }
+        if(!$valid){
+            echo json_encode(array('success'=>false, 'errors'=>$errors));
+            exit(0);
+        }else{
+            return true;
+        }
     }
 
 

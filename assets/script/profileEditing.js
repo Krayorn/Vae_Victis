@@ -104,6 +104,7 @@ $(function () {
                 success: function(data) {
                     if(data.success === false) {
                         errorEmail.html(data.errors['fields']);
+                        errorEmail.html(data.errors['email']);
                     }
                     if(data.success === true){
                         $('#emailRecap').html('Email : ' + $email);
