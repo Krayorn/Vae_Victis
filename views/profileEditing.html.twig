@@ -4,8 +4,8 @@
 
     <div class="align">
         <div class="infoUser"> Username : {{ username }}</div> <img id="parameterUsername" class="parameter" src="assets/images/parametre.png">
-        <div id="usernameForm">
-            <form action="?action=profileEditing" method="POST" name="infoUsername" id="infoUsername">
+        <div id="infoUsername">
+            <form action="?action=profileEditing" method="POST" name="usernameForm" id="usernameForm">
                 <input type="text" name="usernameEditing" id="usernameEditing"><br>  <span id="errorUsername" class="errorBlock"></span><br>
                 <input type="submit" value="valider" name="infoUsername">
             </form>

@@ -4,7 +4,7 @@
     <h1>User :  {{ username }} !</h1>
     <div id="form">
         <span id="errorFields" class="errorBlock"></span>
-        <form action="?action=profile" method="POST" id="articlesForm">
+        <form action="?action=profile&amp;username={{username}}" method="POST" id="articlesForm">
             Title : <input type="text" name="title" id="title"><br>  <span id="errorTitle" class="errorBlock"></span>
             Description: <textarea name="description" id="description"></textarea><br>  <span id="errorDescription" class="errorBlock"></span>
             Contenu:     <textarea name="content" id="content"></textarea><br>  <span id="errorContent" class="errorBlock"></span>

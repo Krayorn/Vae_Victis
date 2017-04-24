@@ -212,6 +212,7 @@ class UserManager
     }
     public function userCheckFirstname($data)
     {
+        header('Content-Type: application/json');
         $valid = true;
         $errors = array();
         if (empty($data['firstnameEditing'])){
@@ -220,11 +221,15 @@ class UserManager
 
         }
         if($valid === false){
+            header('Content-Type: application/json');
             echo json_encode(array('success'=>false, 'errors'=>$errors));
+
             exit(0);
         }else{
+            header('Content-Type: application/json');
             return true;
         }
+
     }
 
     public function userCheckUsername($data)
@@ -238,8 +243,10 @@ class UserManager
         }
         if(!$valid){
             echo json_encode(array('success'=>false, 'errors'=>$errors));
+            header('Content-Type: application/json');
             exit(0);
         }else{
+            header('Content-Type: application/json');
             return true;
         }
     }

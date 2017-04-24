@@ -23,6 +23,11 @@ $(function () {
     var factionForm = $('#factionForm');
     var usernameForm = $('#usernameForm');
 
+ /*   var infoFirstname = $('#infoFirstname');
+    var infoLastname = $('#infoLastname');
+    var infoEmail = $('#infoEmail');
+    var infoUsername = $('#infoUsername');*/
+
 
     var errorFirstnameEditing = $('#errorFirstnameEditing');
     var errorLastname = $('#errorLastname');
@@ -53,6 +58,9 @@ $(function () {
     parameterUsername.click(function() {
         usernameForm.css('display','block')
     });
+
+
+
     firstnameForm.submit(function(){
         errorFirstnameEditing.html('');
 
