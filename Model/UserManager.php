@@ -86,12 +86,14 @@ class UserManager
         $hash = password_hash($pass, PASSWORD_BCRYPT);
         return $hash;
     }
+
     public function giveDate()
     {
         $date = date("Y-m-d");
         $hours = date("H:i");
         return $date." ".$hours;
     }
+
     public function userRegister($data)
     {
         $user['role'] =     '1';
@@ -104,6 +106,7 @@ class UserManager
         $user['nbr_commentary']='0';
         $user['nbr_articles']='0';
         $this->DBManager->insert('users', $user);
+        $write = $this->write_log('access.log', ' => function : userRegister || User ' . $user['username'] . ' just register.' . "\n");
         echo json_encode(array('success'=>true));
         exit(0);
     }
@@ -136,13 +139,16 @@ class UserManager
             return true;
         }
     }
+
     public function userLogin($username)
     {
         $data = $this->getUserByUsername($username);
         if ($data === false)
             return false;
         $_SESSION['user_id'] = $data['id'];
+        $_SESSION['username'] = $data['username'];
         echo json_encode(array('success'=>true));
+        $write = $this->write_log('access.log', ' => function : userLogin || User ' . $_SESSION['username'] . ' just connected.' . "\n");
         exit(0);
     }
 
@@ -162,7 +168,6 @@ class UserManager
         }
     }
 
-
     public function insertArticles($data)
     {
 
@@ -174,6 +179,7 @@ class UserManager
         $user['nbr_commentary'] =  '0';
         $user['update_date'] = $this->giveDate();
         $this->DBManager->insert('articles', $user);
+        $write = $this->write_log('access.log', ' => function : insertArticles || User ' . $_SESSION['username'] . ' just created a new Article named ' . $user['title'] . '.' . "\n");
         echo json_encode(array('success'=>true));
         exit(0);
     }
@@ -183,14 +189,17 @@ class UserManager
         $update['firstnameEditing'] = $data['firstnameEditing'];
         $update['user_id'] = $_SESSION['user_id'];
         $query = $this->DBManager->findOneSecure("UPDATE users SET `firstname`= :firstnameEditing WHERE `id` = :user_id", $update);
+        $write = $this->write_log('access.log', ' => function : firstnameEdition || User ' . $_SESSION['username'] . ' just updated his name to ' . $update['firstnameEditing'] . '.' . "\n");        
         echo json_encode(array('success'=>true));
         exit(0);        
     }
+
     public function lastnameEdition($data)
     {
         $update['lastnameEditing'] = $data['lastnameEditing'];
         $update['user_id'] = $_SESSION['user_id'];
         $query = $this->DBManager->findOneSecure("UPDATE users SET `lastname`= :lastnameEditing WHERE `id` = :user_id", $update);
+        $write = $this->write_log('access.log', ' => function : lastnameEdition || User ' . $_SESSION['username'] . ' just updated his lastname to ' . $update['lastnameEditing'] . '.' . "\n");
         echo json_encode(array('success'=>true));
         exit(0);      
     }
@@ -200,6 +209,7 @@ class UserManager
         $update['usernameEditing'] = $data['usernameEditing'];
         $update['user_id'] = $_SESSION['user_id'];
         $query = $this->DBManager->findOneSecure("UPDATE users SET `username`= :usernameEditing WHERE `id` = :user_id", $update);
+        $write = $this->write_log('access.log', ' => function : usernameEdition || User ' . $_SESSION['username'] . ' just updated his username to ' . $update['usernameEditing'] . '.' . "\n");
         echo json_encode(array('success'=>true));
         exit(0);
     }
@@ -209,6 +219,7 @@ class UserManager
         $update['factionEditing'] = $data['factionEditing'];
         $update['user_id'] = $_SESSION['user_id'];
         $query = $this->DBManager->findOneSecure("UPDATE users SET `faction`= :factionEditing WHERE `id` = :user_id", $update);
+        $write = $this->write_log('access.log', ' => function : factionEdition || User ' . $_SESSION['username'] . ' just updated his faction to ' . $update['factionEditing'] . '.' . "\n");
         echo json_encode(array('success'=>true));
         exit(0);  
     }
@@ -218,6 +229,7 @@ class UserManager
         $update['emailEditing'] = $data['emailEditing'];
         $update['user_id'] = $_SESSION['user_id'];
         $query = $this->DBManager->findOneSecure("UPDATE users SET `email`= :emailEditing WHERE `id` = :user_id", $update);
+        $write = $this->write_log('access.log', ' => function : emailEdition || User ' . $_SESSION['username'] . ' just updated his email to ' . $update['emailEditing'] . '.' . "\n");
         echo json_encode(array('success'=>true));
         exit(0);
     }
@@ -289,4 +301,13 @@ class UserManager
         }        
     }
 
+
+    public function write_log($file, $text){
+        $date = $this->giveDate();
+        $file_log = fopen('logs/' . $file, 'a');
+        $log_info = $date . $text;
+        fwrite($file_log, $log_info);
+        fclose($file_log); 
+        return true;
+    }
 }
