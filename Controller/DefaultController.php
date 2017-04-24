@@ -25,9 +25,15 @@ class DefaultController extends BaseController
     }
     public function articlesAction(){
 
-        if(isset($_GET['id'])) {
+        if(isset($_GET['title'])) {
             $error = '';
-            echo $this->renderView('articles.html.twig', []);
+            $manager = UserManager::getInstance();
+            $article = $manager->getArticlesByTitle($_GET['title']);
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $manager->insertCommentary($_POST, $article);
+            }
+            $commentary = $manager->getCommentaryByArticleId($article['id']);
+            echo $this->renderView('articles.html.twig', ['article' =>$article,'commentary'=>$commentary]);
         }
     }
 

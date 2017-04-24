@@ -141,7 +141,7 @@ $(function () {
                         $('#firstnameEditing').val('');
                         firstnameForm.css('display','none');
                     }
-                },
+                }
             });
         }
         return false;

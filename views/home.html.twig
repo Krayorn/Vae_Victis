@@ -17,7 +17,7 @@
     {% for key in articles %}
         <div>{{ key.title }}</div><br><br>
         <div>{{ key.description }}</div><br><br>
-                <a href=""> Voir l'article complet</a>
+        <a href="?action=articles&amp;title={{key.title}}"> Voir l'article complet</a>
 
     {% endfor %}
     <a href="?action=logout">Logout</a>

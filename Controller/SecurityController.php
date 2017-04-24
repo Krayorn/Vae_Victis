@@ -58,7 +58,7 @@ class SecurityController extends BaseController
                 $manager = UserManager::getInstance();
                 if ($manager->userCheckArticles($_POST)) {
                     $manager->insertArticles($_POST);
-                    $this->redirect('profile');
+                    //$this->redirect('profile');
 
                 } else {
                     $error = 'invalid data';

@@ -33,7 +33,7 @@ class UserManager
         ['username' => $username]);
         return $data;
     }
-    public function getArticleByTitle($title)
+    public function getArticlesByTitle($title)
     {
         $data = $this->DBManager->findOneSecure("SELECT * FROM articles WHERE title = :title",
             ['title' => $title]);
@@ -45,7 +45,13 @@ class UserManager
         ['email' => $email]);
         return $data;
     }
-    
+        public function getCommentaryByArticleId($article_id)
+        {
+            $data = $this->DBManager->findAllSecure("SELECT * FROM commentary WHERE article_id = :article_id",
+                ['article_id' => $article_id]);
+            return $data;
+        }
+
     public function userCheckRegister($data)
     {
         $valid = true;
@@ -160,11 +166,11 @@ class UserManager
             $valid = false;
             $errors['article'] = 'Missing fields';
         }
-        $testTitle = $this->getArticleByTitle($data['title']);
-        if ($testTitle !== false){
+      /* $testTitle = $this->getArticlesByTitle($data['title']);
+        if ($testTitle){
             $valid = false;
             $errors['title'] = 'Title already used';
-        }
+        }*/
         if(!$valid){
             json_encode(array('success'=>false, 'errors'=>$errors));
             exit(0);
@@ -188,6 +194,19 @@ class UserManager
         echo json_encode(array('success'=>true));
         exit(0);
     }
+
+    public function insertCommentary($data,$article)
+    {
+        $user['user_id'] = $_SESSION['user_id'];
+        $user['date'] = $this ->giveDate();
+        $user['article_id'] = $article['id'];
+        $user['content'] = $data['contentCommentary'];
+        $user['update_date'] = $this->giveDate();
+        $this->DBManager->insert('commentary', $user);
+        echo json_encode(array('success'=>true));
+        exit(0);
+    }
+
     public function myArticles()
     {
         $id_user = $_SESSION['user_id'];
