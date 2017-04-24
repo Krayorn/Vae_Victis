@@ -99,7 +99,6 @@ class SecurityController extends BaseController
         $error = '';
         $manager = UserManager::getInstance();
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            echo 'hihi';
             if(isset($_POST['infoFirstname'])){
                 if( $manager->userCheckFirstname($_POST)){
                     $manager->firstnameEdition($_POST);
@@ -107,10 +106,8 @@ class SecurityController extends BaseController
                 }
 
         }
-            if(isset($_POST['infoUsername'])) {
-                echo 'yo';
+            if(isset($_POST['usernameEditing'])) {
                 if ($manager->userCheckUsername($_POST)) {
-                    echo 'slt';
                     $manager->usernameEdition($_POST);
                     $this->redirect('profileEditing');
                 }

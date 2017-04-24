@@ -61,7 +61,7 @@ $(function () {
 
 
 
-    firstnameForm.submit(function(){
+  /*  firstnameForm.submit(function(){
         errorFirstnameEditing.html('');
 
         var formValid = true;
@@ -72,10 +72,10 @@ $(function () {
 
 
 
-      /*  if (!nameValidation($firstname) ) {
+        if (!nameValidation($firstname) ) {
             formValid = false;
             errorFirstname.html('Veuillez saisir un prénom valide');
-        }*/
+        }
         if (formValid) {
             // Envoi de la requête HTTP en mode asynchrone
 
@@ -99,7 +99,7 @@ $(function () {
         }
         return false;
 
-    });
+    });*/
 
     usernameForm.submit(function(){
         errorUsername.html('');
@@ -112,6 +112,7 @@ $(function () {
             console.log('bot ok');
         }*/
      console.log(formValid);
+     console.log($this);
         if (formValid) {
             // Envoi de la requête HTTP en mode asynchrone
 
@@ -121,17 +122,16 @@ $(function () {
                 data: $this.serialize(), // Je sérialise les données (j'envoie toutes les valeurs présentes dans le formulaire)
                 dataType: 'JSON',
                 success: function(data) { // Je récupère la réponse du fichier PHP
-
                     if(data.success === false) {
                         errorUsername.html(data.errors['fields']);
                         console.log('ok');
-
-
+                    }
+                    if(data.success === true){
+                        $('#usernameRecap').html('Username : ' + $username);
+                        $('#usernameEditing').val('');
+                        usernameForm.css('display','none');
                     }
                 },
-                error: function(response,statut,error){
-                    console.log(response,statut,error);
-                }
             });
         }
         return false;
@@ -141,7 +141,7 @@ $(function () {
 
 
 
-    lastnameForm.submit(function(){
+ /*   lastnameForm.submit(function(){
         var formValid = true;
 
         errorLastname.html('');
@@ -153,9 +153,9 @@ $(function () {
             errorLastname.html('Veuillez saisir un nom de famille valide');
         }
       return formValid;
-    });
+    });*/
 
-    emailForm.submit(function(){
+  /*  emailForm.submit(function(){
         var formValid = true;
         errorEmail.html('');
         var $email = $('#emailEditing').val();
@@ -164,10 +164,10 @@ $(function () {
             errorEmail.html('Veuillez saisir un email valide');
         }
         return formValid;
-    });
+    });*/
 
 
-    factionForm.submit(function(){
+  /*  factionForm.submit(function(){
         var formValid = true;
 
         var $faction = $('#factionEditing').val();
@@ -181,7 +181,7 @@ $(function () {
 
 
         return formValid;
-    });
+    });*/
 
 });
 /**
