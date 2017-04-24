@@ -13,7 +13,9 @@
     {% endif %}
 </ul>
 
-<h1>Hello {{ user.username }} !</h1>
+
+<h1>Hello {{ user['username'] }} !</h1>
+
     {% for key in articles %}
         <div>{{ key.title }}</div><br><br>
         <div>{{ key.description }}</div><br><br>

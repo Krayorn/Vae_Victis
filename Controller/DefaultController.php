@@ -8,8 +8,6 @@ class DefaultController extends BaseController
 {
     public function homeAction()
     {
-
-
         $manager = UserManager::getInstance();
         $articles = $manager->allArticles();
         if (!empty($_SESSION['user_id']))
@@ -23,7 +21,6 @@ class DefaultController extends BaseController
         }
     }
     public function articlesAction(){
-
         if(isset($_GET['title'])) {
             $error = '';
             $manager = UserManager::getInstance();
@@ -44,5 +41,4 @@ class DefaultController extends BaseController
             $this->redirect('home');
         }
     }
-
 }

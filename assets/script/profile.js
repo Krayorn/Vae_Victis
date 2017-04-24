@@ -42,21 +42,19 @@ $(function () {
 
          success: function(data)
          {
-             console.log('yo');
-             // if(data.success === false) {
-             //  //   errorArticle.html(data.errors['article']);
-             //     errorArticle.html(data.errors['title']);
-             //     console.log('ok');
-             // }
-             // if(data.success === true){
-             // $titleInput.val('');
-             // $descriptionInput.val('');
-             // $contentInput.val('');
-             // }
-         },
-         // error: function(response,statut,error){
-         //     console.log(response,statut,error);
-         // }
+
+            if(data.success === false) {
+                errorArticle.html(data.errors['article']);
+                 errorFields.html(data.errors['title']);
+                  console.log('ok');
+            }
+             if(data.success === true){
+             $titleInput.val('');
+            $descriptionInput.val('');
+              $contentInput.val('');
+            }
+         }
+
          });
          }
 

@@ -5,8 +5,9 @@ $(function () {
     commentaryForm.submit(function(){
         var formValid = true;
        var  $this = $(this);
+       var $divCommentary = $('.commentary');
         var $contentCommentary = $('#contentCommentary').val();
-
+        var $contentCommentaryInput = $('#contentCommentary');
         if($contentCommentary === ''){
             formValid = '';
             errorCommentary.html('Field missing');
@@ -24,6 +25,11 @@ $(function () {
 
                      if(data.success === true){
                          console.log('c ok');
+
+                        var div = $divCommentary.length -1;
+                        console.log(div);
+                        div.text($contentCommentary);
+                         $contentCommentaryInput.html('');
                      }
                 }
             });
