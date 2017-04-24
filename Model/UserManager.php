@@ -145,6 +145,7 @@ class UserManager
         echo json_encode(array('success'=>true));
         exit(0);
     }
+
     public function userCheckArticles($data)
     {
         $valid = true;
@@ -175,6 +176,7 @@ class UserManager
         $user['tags']= $data['tagFaction'];
         $this->DBManager->insert('articles', $user);
     }
+
      public function firstnameEdition($data)
     {
         $update['firstnameEditing'] = $data['firstnameEditing'];
@@ -189,13 +191,16 @@ class UserManager
         $query = $this->DBManager->findOneSecure("UPDATE users SET `lastname`= :lastnameEditing WHERE `id` = :user_id", $update);
         return $query;
     }
+
     public function usernameEdition($data)
     {
         $update['usernameEditing'] = $data['usernameEditing'];
         $update['user_id'] = $_SESSION['user_id'];
         $query = $this->DBManager->findOneSecure("UPDATE users SET `username`= :usernameEditing WHERE `id` = :user_id", $update);
-        return $query;
+        echo json_encode(array('success'=>true));
+        exit(0);
     }
+
     public function factionEdition($data)
     {
         $update['factionEditing'] = $data['factionEditing'];
@@ -239,14 +244,11 @@ class UserManager
         if (empty($data['usernameEditing'])){
             $valid = false;
             $errors['fields'] = 'Fields missing';
-
         }
         if(!$valid){
             echo json_encode(array('success'=>false, 'errors'=>$errors));
-            header('Content-Type: application/json');
             exit(0);
         }else{
-            header('Content-Type: application/json');
             return true;
         }
     }
