@@ -20,9 +20,7 @@ class DefaultController extends BaseController
                 ['name' => $user['username'], 'isConnected' => $user['id']]);
         }
         else{
-            $user = '';
-            echo $this->renderView('home.html.twig',
-                ['isConnected' => $user]);
+            echo $this->renderView('home.html.twig');
         }
     }
 
