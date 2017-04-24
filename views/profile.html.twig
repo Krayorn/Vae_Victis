@@ -31,7 +31,9 @@
 
             <input type="submit" name="articles">
         </form>
+        {% if isConnected is defined and visitor is not defined %}
         <a href="?action=profileEditing">Editez les informations</a>
+        {% endif %}
 
     </div>
     <div id="errorArticle">

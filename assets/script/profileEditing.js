@@ -1,7 +1,5 @@
 $(function () {
 
-
-
     function emailValidation(email) {
         var emailRegExp = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         return emailRegExp.test(email);
@@ -29,7 +27,7 @@ $(function () {
     var infoUsername = $('#infoUsername');*/
 
 
-    var errorFirstnameEditing = $('#errorFirstnameEditing');
+    var errorFirstname = $('#errorFirstname');
     var errorLastname = $('#errorLastname');
     var errorEmail = $('#errorEmail');
     var errorUsername = $('#errorUsername');
@@ -119,7 +117,7 @@ $(function () {
     });
 
     firstnameForm.submit(function(){
-        errorFirstnameEditing.html('');
+        errorFirstname.html('');
         var formValid = true;
         var $this = $(this);
 
@@ -136,7 +134,7 @@ $(function () {
                 dataType: 'json', 
                 success: function(data) { 
                     if(data.success === false) {
-                        errorFirstnameEditing.html(data.errors['fields']);
+                        errorFirstname.html(data.errors['fields']);
                     }
                     if(data.success === true){
                         $('#firstnameRecap').html('Firstname : ' + $firstname);

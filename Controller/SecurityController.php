@@ -126,10 +126,7 @@ class SecurityController extends BaseController
 
         $user = $manager->getUserById($_SESSION['user_id']);
         echo $this->renderView('profileEditing.html.twig', ['error' => $error,
-            'username' => $user['username'],
-            'email' => $user['email'],
-            'faction' => $user['faction'], 'firstname' => $user['firstname'], 'lastname' => $user['lastname'],
-            'nbr_commentary' => $user['nbr_commentary'], 'nbr_articles' => $user['nbr_articles']]);
+            'user' => $user]);
     }
 
 }
