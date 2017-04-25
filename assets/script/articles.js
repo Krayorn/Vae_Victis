@@ -5,18 +5,21 @@ $(function () {
     commentaryForm.submit(function(){
         var formValid = true;
        var  $this = $(this);
-       var $divCommentary = $('.commentary');
-        var $contentCommentary = $('#contentCommentary').val();
-        var $contentCommentaryInput = $('#contentCommentary');
-        if($contentCommentary === ''){
+       var divCommentary = $('#commentary');
+       // var $contentCommentary = $('#contentCommentary').val();
+       // var $contentCommentaryInput = $('#contentCommentary');
+    /*    if($contentCommentary === ''){
             formValid = '';
             errorCommentary.html('Field missing');
-        }
+        }*/
+    var $content = CKEDITOR.instances['contentCommentary'].getData();
+    console.log($content);
         if(formValid){
+
             $.ajax({
                 url: $this.attr('action'), // Le nom du fichier indiqué dans le formulaire
                 type: $this.attr('method'), // La méthode indiquée dans le formulaire (get ou post)
-                data: $this.serialize(),
+                data: {content : $content},
                 dataType: 'json', // JSON,
 
                 success: function(data)
@@ -26,10 +29,11 @@ $(function () {
                      if(data.success === true){
                          console.log('c ok');
 
-                        var div = $divCommentary.length -1;
-                        console.log(div);
-                        div.text($contentCommentary);
-                         $contentCommentaryInput.html('');
+
+                        divCommentary.append($content);
+                        divCommentary.classList.add('commentary_content');
+
+
                      }
                 }
             });

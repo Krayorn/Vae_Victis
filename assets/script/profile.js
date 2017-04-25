@@ -21,9 +21,9 @@ $(function () {
         var $description = $('#description').val();
         var $descriptionInput = $('#description');
         console.log($description);
-        var $content = $('#content').val();
-        var $contentInput = $('#content');
-        console.log($content);
+        var $content = CKEDITOR.instances['article_content'].getData();
+
+
 
 
 
@@ -37,7 +37,7 @@ $(function () {
          $.ajax({
          url: $this.attr('action'), // Le nom du fichier indiqué dans le formulaire
          type: $this.attr('method'), // La méthode indiquée dans le formulaire (get ou post)
-         data: $this.serialize(),
+         data: {title : $title, description : $description,content:$content},
          dataType: 'json', // JSON,
 
          success: function(data)

@@ -244,11 +244,14 @@ class UserManager
         $user['user_id'] = $_SESSION['user_id'];
         $user['date'] = $this ->giveDate();
         $user['article_id'] = $article['id'];
-        $user['content'] = $data['contentCommentary'];
+        $user['content'] = $data['content'];
         $user['update_date'] = $this->giveDate();
         $this->DBManager->insert('commentary', $user);
+        $this->addCommentaryUser();
+        $this->addCommentaryArticle($article['id']);
         echo json_encode(array('success'=>true));
         exit(0);
+
     }
 
     public function myArticles()
@@ -263,6 +266,22 @@ class UserManager
     public function allArticles(){
         $data = $this->DBManager->findAllSecure("SELECT * FROM articles");
         return $data;  
+    }
+    public function addCommentaryUser()
+    {
+
+        $update['user_id'] = $_SESSION['user_id'];
+        $query = $this->DBManager->findOneSecure("UPDATE users SET `nbr_commentary`=  nbr_commentary + 1 WHERE `id` = :user_id", $update);
+        $write = $this->write_log('access.log', ' => function : addCommentary || User ' . $_SESSION['username'] . ' just added a commentary .' . "\n");
+
+        return $query;
+    }
+    public function addCommentaryArticle($article_id)
+    {
+
+        $update['article_id'] = $article_id;
+        $query = $this->DBManager->findOneSecure("UPDATE articles SET `nbr_commentary`=  nbr_commentary + 1 WHERE `id` = :article_id", $update);
+        return $query;
     }
 
      public function firstnameEdition($data)
