@@ -6,7 +6,7 @@ $(function () {
     var errorDescription= $('#errorDescription');
     var errorContent = $('#errorContent');
 
-    var errorArticle = $('#errorArticle')
+    var errorArticle = $('#errorArticle');
 
     console.log(articlesForm);
 
@@ -17,22 +17,20 @@ $(function () {
         var $this = $(this);
         var $title = $('#title').val();
         var $titleInput = $('#title');
-        console.log($title);
         var $description = $('#description').val();
         var $descriptionInput = $('#description');
-        console.log($description);
         var $content = CKEDITOR.instances['article_content'].getData();
 
 
 
 
 
-        if( $title == '' || $description == '' || $content == ''){
-            formValid =  false;
-            errorFields.html('Fields missing');
+        // if( $title == '' || $description == '' || $content == ''){
+        //     formValid =  false;
+        //     errorFields.html('Fields missing');
+        //
+        // }
 
-        }
-        console.log(formValid);
         if(formValid){
          $.ajax({
          url: $this.attr('action'), // Le nom du fichier indiqué dans le formulaire
@@ -42,6 +40,7 @@ $(function () {
 
          success: function(data)
          {
+             console.log(data);
 
             if(data.success === false) {
                 errorArticle.html(data.errors['article']);
@@ -53,7 +52,10 @@ $(function () {
             $descriptionInput.val('');
               $contentInput.val('');
             }
-         }
+         },
+             error: function(response,statut,error){
+             console.log(response,statut,error);
+             }
 
          });
          }

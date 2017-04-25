@@ -53,13 +53,10 @@ class DefaultController extends BaseController
             }
 
             if($article){
-
                 $userInfo['username'] = $infoUser['username'];
                 $userInfo['faction'] = $infoUser['faction'];
                 $userInfo['nbr_commentary'] = $infoUser['nbr_commentary'];
                 $userInfo['nbr_articles'] = $infoUser['nbr_articles'];
-
-
                 $allNbrCommentary = $article['nbr_commentary'];
             }
 
@@ -75,7 +72,7 @@ class DefaultController extends BaseController
             echo $this->renderView('articles.html.twig', ['article' =>$article,'commentary'=>$commentary, 'isConnected' => $user,'userInfo'=>$userInfo,'allUserCommentary'=>$allUserCommentary,'allFaction'=> $allFaction,'allUsernames'=>$allUsernames]);
         }
         else{
-                echo $this->renderView('articles.html.twig', ['article' =>$article,'commentary'=>$commentary,'allNbrCommentary'=>$allNbrCommentary]);
+                echo $this->renderView('articles.html.twig', ['article' =>$article,'commentary'=>$commentary,'userInfo'=>$userInfo,'allUserCommentary'=>$allUserCommentary,'allFaction'=> $allFaction,'allUsernames'=>$allUsernames]);
             }
         }
         else{

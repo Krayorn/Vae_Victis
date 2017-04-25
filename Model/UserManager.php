@@ -198,12 +198,28 @@ class UserManager
             $errors['title'] = 'Title already used';
         }
         if(!$valid){
-            json_encode(array('success'=>false, 'errors'=>$errors));
+           echo json_encode(array('success'=>false, 'errors'=>$errors));
             exit(0);
         }else{
             return true;
         }
     }
+
+    public function insertArticles($data)
+    {
+        $user['user_id'] = $_SESSION['user_id'];
+        $user['date'] = $this ->giveDate();
+        $user['title'] = $data['title'];
+        $user['description'] = $data['description'];
+        $user['content'] = $data['content'];
+        $user['nbr_commentary'] =  '0';
+        $user['update_date'] = $this->giveDate();
+        $this->DBManager->insert('articles', $user);
+        $write = $this->write_log('access.log', ' => function : insertArticles || User ' . $_SESSION['username'] . ' just created a new Article named ' . $user['title'] . '.' . "\n");
+        echo json_encode(array('success'=>true));
+        exit(0);
+    }
+
     public function userCheckCommentary($data)
     {
         $valid = true;
@@ -220,23 +236,6 @@ class UserManager
         }else{
             return true;
         }
-    }
-
-
-    public function insertArticles($data)
-    {
-
-        $user['user_id'] = $_SESSION['user_id'];
-        $user['date'] = $this ->giveDate();
-        $user['title'] = $data['title'];
-        $user['description'] = $data['description'];
-        $user['content'] = $data['content'];
-        $user['nbr_commentary'] =  '0';
-        $user['update_date'] = $this->giveDate();
-        $this->DBManager->insert('articles', $user);
-        $write = $this->write_log('access.log', ' => function : insertArticles || User ' . $_SESSION['username'] . ' just created a new Article named ' . $user['title'] . '.' . "\n");
-        echo json_encode(array('success'=>true));
-        exit(0);
     }
 
     public function insertCommentary($data,$article)
@@ -282,6 +281,19 @@ class UserManager
         $update['article_id'] = $article_id;
         $query = $this->DBManager->findOneSecure("UPDATE articles SET `nbr_commentary`=  nbr_commentary + 1 WHERE `id` = :article_id", $update);
         return $query;
+    }
+
+    public function articleEdition($data,$article)
+    {
+        $update['titleEditing'] = $data['titleEditing'];
+        $update['descriptionEditing'] = $data['descriptionEditing'];
+        $update['contentEditing'] = $data['contentEditing'];
+        $update['user_id'] = $_SESSION['user_id'];
+        $update['article_id'] = $article;
+        $query = $this->DBManager->findOneSecure("UPDATE articles SET `title`= :titleEditing,`description` := descriptionEditing,`content`:= contentEditing WHERE `user_id` = :user_id AND `id`:=article_id", $update);
+        $write = $this->write_log('access.log', ' => function : articleEdition || User ' . $_SESSION['username'] . ' just updated his article '."\n");
+        echo json_encode(array('success'=>true));
+        exit(0);
     }
 
      public function firstnameEdition($data)
