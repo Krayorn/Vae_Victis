@@ -11,6 +11,11 @@
         justify-content: $content;
     }
 
+    @mixin background_opacity(){
+        background-color: black;
+        opacity: 0.7;
+    }
+
     @mixin title{
         font-size : 20px;
         font-family: 'title';
@@ -18,6 +23,10 @@
 
     html{
         height: 100vh;
+    }
+
+    p{
+        margin: 0;
     }
 
     body{
@@ -38,6 +47,7 @@
 
     a{
         text-decoration: none;
+        color : white;
     }
 
     .none{
@@ -112,8 +122,7 @@
     }
 
     .form-container{
-        background-color: black;
-        opacity: 0.8;
+        @include background_opacity();
         margin : 10% 10% 0% 10%;
         padding : 10% 0%;
         text-align: center;
@@ -139,37 +148,6 @@
             align-items: center;
             img{
                 width:50px;
-            }
-        }
-        .custom-btn {
-            padding: 10px 25px;
-            font-weight: 500;
-            background: transparent;
-            outline: none;
-            transition: all 0.3s ease;  
-            position: relative;
-            display: inline-block;
-            border: 2px solid white;
-            z-index: 1;
-            color: white;
-            @include title;
-            &:after{
-                position: absolute;
-                content: "";
-                width: 100%;
-                height: 0;
-                bottom: 0;
-                left: 0;
-                z-index: -1;
-                background: white;
-                transition: all 0.3s ease;
-            }
-            &:hover{
-                color: black;
-                &:after{
-                    top: 0;
-                    height: 100%;
-                }
             }
         }
     }
@@ -203,11 +181,68 @@
 
     #commentary{
         .commentary{
-            @include flex_trinity(row, space-between);
-            background-color: blue;
+            margin : 20px 0px;
+            @include flex_trinity(column, space-between);
+            @include background_opacity();
+            color : white;
+            @media(min-width: 641px){
+                flex-direction: row;
+                justify-content: flex-start;
+            }
+            .commentary_user_info{
+                @include flex_trinity(row, space-between);
+                @media(min-width: 641px){
+                    flex-direction: column;
+                }   
+            }
+            .commentary_content{
+                padding-left: 25px;
+            }
         }
     }
 
+    #recap_profil{
+        @include flex_trinity(column, space-between);
+        @include background_opacity();
+        padding: 30px 20px;
+        .recapInfo{
+            color:white;
+        }
+        #button_editing{
+            width: 160px;
+        }
+    }
 
+    .custom-btn {
+        padding: 10px 25px;
+        font-weight: 500;
+        background: transparent;
+        outline: none;
+        transition: all 0.3s ease;  
+        position: relative;
+        display: inline-block;
+        border: 2px solid white;
+        z-index: 1;
+        color: white;
+        @include title;
+        &:after{
+            position: absolute;
+            content: "";
+            width: 100%;
+            height: 0;
+            bottom: 0;
+            left: 0;
+            z-index: -1;
+            background: white;
+            transition: all 0.3s ease;
+        }
+        &:hover{
+            color: black;
+            &:after{
+                top: 0;
+                height: 100%;
+            }
+        }
+    }
 }
 

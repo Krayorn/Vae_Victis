@@ -21,8 +21,21 @@
     {% endif %}
 </ul>
 
+<div id="recap_profil">
+    <div class="recapInfo">Username : {{user.username}}</div>
+    <div class="recapInfo">Email : {{user.email}}</div>
+    <div class="recapInfo">Faction : {{user.faction}}</div>
+    <div class="recapInfo">Firstname : {{user.firstname}}</div>
+    <div class="recapInfo">Lastname : {{user.lastname}}</div>
+    <div class="recapInfo">Nmber of commentary : {{user.nbr_commentary}}</div>
+    <div class="recapInfo">Number of articles : {{user.nbr_articles}}</div>
 
-    <h1>User :  {{ user['username'] }} !</h1>
+{% if isConnected is defined and visitor is not defined %}
+    <a class="custom-btn" id="button_editing" href="?action=profileEditing">Editez les informations</a>
+{% endif %}
+
+</div>
+
 {% if isConnected is defined and visitor is not defined %}
 
     <div id="errorArticle">
@@ -47,41 +60,4 @@
     </script>
 {% endif %}
 
-        {% if isConnected is defined and visitor is not defined %}
-        <a href="?action=profileEditing">Editez les informations</a>
-        {% endif %}
-
-    <div class="align">
-        <div class="infoUser"> Username : {{ user.username }}</div>
-
-    </div>
-    <div class="align">
-        <div class="infoUser"> Email: {{ user.email }}</div>
-
-    </div>
-
-    <div class="align">
-        <div class="infoUser"> Faction : {{ user.faction }}</div>
-
-    </div>
-
-    <div class="align">
-        <div class="infoUser"> Prénom: {{ user.firstname }}</div>
-
-    </div>
-
-    <div class="align">
-        <div class="infoUser"> Nom: {{ user.lastname }}</div>
-
-    </div>
-    <div class="align">
-        <div class="infoUser"> Nombre de commentaires: {{ user.nbr_commentary }}</div>
-
-    </div>
-    <div class="align">
-        <div class="infoUser"> Nombre d'articles : {{ user.nbr_articles }}</div>
-
-    </div>
-
-    <a href="?action=logout">Logout</a>
 {% endblock %}

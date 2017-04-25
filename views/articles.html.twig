@@ -14,6 +14,7 @@
     <li class="none"><a href="?action=register">Register</a></li>
     {% endif %}
 </ul>
+
     <div class="infoUSer">
         {{ userInfo['username'] }}
         {{ userInfo['faction'] }}
@@ -22,7 +23,6 @@
     </div>
 
     <div class="article_view">
-
         <div>{{ article.title }}</div>
         <div>{{ article.description }}</div>
         <div>{{ article.content | raw }}</div>
@@ -34,12 +34,17 @@
                 {% set username = allUsernames[key['user_id']] %}
                 {% set commentary = allUserCommentary[key['user_id']] %}
                 {% set faction = allFaction[key['user_id']] %}
-                <div id="infoUser">
-                   {{ username }}
-                   {{ commentary }}
-                   {{ faction }}
-                </div>
                 <div class="commentary">
+                    <div class="commentary_user_info">
+                        <div class="primary_user_info">
+                            <a href="?action=profile&amp;username={{username}}">{{username}}</a>
+                            <p>{{ faction }}</p>
+                        </div>
+                        <div class="secondary_user_info">
+                            <p>Le {{date}}</p>
+                            <p>Nbr de commentaires : {{commentary}}<p>
+                        </div>
+                    </div>
                     <div class="commentary_content">{{ key.content | raw }}</div>
                 </div>
             {% endfor %}
