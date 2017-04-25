@@ -28,7 +28,7 @@ class DefaultController extends BaseController
                 ['user' => $user, 'isConnected' => $user['id'],'articles'=> $articles,'allUsernames'=>$allUsernames,'allNbrCommentary'=>$allNbrCommentary]);
         }
         else{
-            echo $this->renderView('home.html.twig', ['articles'=> $articles]);
+            echo $this->renderView('home.html.twig', ['articles'=> $articles,'allUsernames'=>$allUsernames,'allNbrCommentary'=>$allNbrCommentary]);
         }
     }
     public function articlesAction(){
