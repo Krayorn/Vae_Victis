@@ -18,27 +18,29 @@
     {% endif %}
 </ul>
 
-    <div class="article_view">
+    <article class="solo_view">
+        <header id="titleContent">
+            {{ article.title }}
+        </header>
         <div class="infoUSer">
             {{ userInfo['username'] }}
             {{ userInfo['faction'] }}
             {{ userInfo['nbr_commentary'] }}
             {{ userInfo['nbr_articles'] }}
         </div>
-        <div id="titleContent">{{ article.title }}</div>
-        <div id="descriptionContent">{{ article.description }}</div>
+        <div class="not_useful" id="descriptionContent">{{ article.description }}</div>
         <div id="articleContent">{{ article.content | raw }}</div>
-        <div><img id="imgEditionArticle" src="assets/images/parametre.png"></div>
+        <div><img class="img_params" id="imgEditionArticle" src="assets/images/parametre.png"></div>
         <div class="article_user_info">
             <div class="primary_user_info">
                 <a href="?action=profile&amp;username={{username}}">{{username}}</a>
                 <p>{{ faction }}</p>
             </div>
             <div class="secondary_user_info">
-                <p>Le {{key.date}}</p>
-                <p class="not_useful">Nbr de commentaires : {{article.commentary}}<p>
+                <p class="not_useful">Nbr de commentaires de l'article: {{article.nbr_commentary}}<p>
+                <p>Le {{article.date}}</p>
             </div>
-        </div>
+    </article>
 
     </div>
     <div id="formEdition">
