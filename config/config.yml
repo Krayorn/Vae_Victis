@@ -1,7 +1,7 @@
 routes:
     home: 'Default:home'
     articles: 'Default:articles'
-    profile: 'Security:profile'
+    profile: 'Default:profile'
     profileEditing: 'Security:profileEditing'
     login: 'Security:login'
     logout: 'Security:logout'
