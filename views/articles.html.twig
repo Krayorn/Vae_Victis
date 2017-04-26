@@ -79,28 +79,30 @@
                     <div class="commentary_content">{{ key.content | raw }}</div>
                     <button class="commentaryEdition">Editez votre commentaire</button>
                     <!-- The Modal -->
-                    <div id="myModal" class="modal">
+                </div>
 
-                        <!-- Modal content -->
-                        <div class="modal-content">
-                            <h1> Postez un commentaire</h1>
-                            <span class="close">&times;</span>
-                            <div id="formCommentaryEdition">
-                                <span class="errorCommentaryEdition errorBlock" ></span>
+            {% endfor %}
+                        <div id="myModal" class="modal">
 
-                                <form action="?action=articles&amp;id={{article.id  }}" method="POST" id="commentaryFormEdition">
-                                    <label for="contentCommentaryEdition">Contenu:</label>
-                                    <textarea name="contentCommentaryEdition" id="contentCommentaryEdition"></textarea><br>  <span id="errorContent" class="errorBlock"></span>
-                                    <input type="submit" name="commentary">
-                                </form>
+                            <!-- Modal content -->
+                            <div class="modal-content">
+                                <h1> Postez un commentaire</h1>
+                                <span class="close">&times;</span>
+                                <div id="formCommentaryEdition">
+                                    <span class="errorCommentaryEdition errorBlock" ></span>
+
+                                    <form action="?action=articles&amp;id={{article.id  }}" method="POST" id="commentaryFormEdition">
+                                        <label for="contentCommentaryEdition">Contenu:</label>
+                                        <textarea name="contentCommentaryEdition" id="contentCommentaryEdition"></textarea><br>  <span id="errorContent" class="errorBlock"></span>
+                                        <input type="submit" name="commentary">
+                                    </form>
+                                </div>
                             </div>
-                        </div>
 
                     </div>
 
-                </div>
-            {% endfor %}
-        </div>
+
+
 
 
     {% if isConnected is defined %}
