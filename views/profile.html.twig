@@ -36,8 +36,8 @@
 
 </div>
 
-{% if isConnected is defined and visitor is not defined %}
-
+{% if isConnected.role >= 2 and visitor is not defined %}
+<div class="insert_article">
     <div id="errorArticle">
 
     </div>
@@ -52,7 +52,7 @@
             <input type="submit" name="articles">
         </form>
     </div>
-
+</div>
         <script>
     // Replace the <textarea id="editor1"> with a CKEditor
     // instance, using default configuration.

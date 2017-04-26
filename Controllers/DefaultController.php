@@ -51,7 +51,7 @@ class DefaultController extends BaseController
             }
             else{
                 if(isset($_SESSION['user_id'])){
-                    $isConnected = true;
+                    $isConnected = $user;
                     if($_SESSION['user_id'] == $user['id']){
                         echo $this->renderView('profile.html.twig', ['error' => $error,
                         'user' => $user, 'isConnected' => $isConnected]);
@@ -102,12 +102,14 @@ class DefaultController extends BaseController
             }
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-                if(isset($_POST['contentCommentary'])){
+                echo 'Test';
+                if(isset($_POST['content'])){
                     $manager->insertCommentary($_POST, $article);
                 }
 
-                if($manager->userCheckArticleEdition($_POST)){
+                if(isset($_POST['contentEditing'])){
+                    echo "verif";
+                    $manager->userCheckArticleEdition($_POST);
                     $manager->articleEdition($_POST, $article);
                 }
             }

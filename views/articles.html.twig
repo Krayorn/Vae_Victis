@@ -1,10 +1,6 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-
-
-
-
 <ul class="topnav">
     <li id="active"><a href="#">{{article.title}}</a><div class="down arrow"></div><div class="up none arrow"></div></li>
     {% if isConnected is defined %}
@@ -77,29 +73,31 @@
                         </div>
                     </div>
                     <div class="commentary_content">{{ key.content | raw }}</div>
-                    <button class="commentaryEdition">Editez votre commentaire</button>
-                    <!-- The Modal -->
+                        {% if key.user_id == isConnected.id %}
+                            <button class="commentaryEdition">Editez votre commentaire</button>
+                        {% endif %}
+
                 </div>
 
             {% endfor %}
-                        <div id="myModal" class="modal">
+        </div>
+    <div id="myModal" class="modal">
 
-                            <!-- Modal content -->
-                            <div class="modal-content">
-                                <h1> Postez un commentaire</h1>
-                                <span class="close">&times;</span>
-                                <div id="formCommentaryEdition">
-                                    <span class="errorCommentaryEdition errorBlock" ></span>
+    <!-- Modal content -->
+        <div class="modal-content">
+        <h1> Postez un commentaire</h1>
+        <span class="close">&times;</span>
+            <div id="formCommentaryEdition">
+                <span class="errorCommentaryEdition errorBlock" ></span>
 
-                                    <form action="?action=articles&amp;id={{article.id  }}" method="POST" id="commentaryFormEdition">
-                                        <label for="contentCommentaryEdition">Contenu:</label>
-                                        <textarea name="contentCommentaryEdition" id="contentCommentaryEdition"></textarea><br>  <span id="errorContent" class="errorBlock"></span>
-                                        <input type="submit" name="commentary">
-                                    </form>
-                                </div>
-                            </div>
-
-                    </div>
+                <form action="?action=articles&amp;id={{article.id  }}" method="POST" id="commentaryFormEdition">
+                <label for="contentCommentaryEdition">Contenu:</label>
+                <textarea name="contentCommentaryEdition" id="contentCommentaryEdition"></textarea><br>  <span id="errorContent" class="errorBlock"></span>
+                <input type="submit" name="commentary">
+                </form>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -117,8 +115,6 @@
     </div>
     {% endif %}
     <script>
-        // Replace the <textarea id="editor1"> with a CKEditor
-        // instance, using default configuration.
         CKEDITOR.replace('contentCommentary');
         CKEDITOR.replace('articleContentEdition');
         CKEDITOR.replace('contentCommentaryEdition');
