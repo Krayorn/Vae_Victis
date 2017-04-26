@@ -47,7 +47,6 @@
 
     a{
         text-decoration: none;
-        color : white;
     }
 
     .none{
@@ -174,29 +173,52 @@
         }    
     }
 
-    .article_view{
-        background-color: red;
-        @include flex_trinity(column, space-around);
-    }
-
     #commentary{
+        background-color: #727272;
+        margin: 0px 20px;
         .commentary{
             margin : 20px 0px;
             @include flex_trinity(column, space-between);
-            @include background_opacity();
             color : white;
+            border-bottom: solid 1px white;
+            padding: 20px 10px 10px 10px;
             @media(min-width: 641px){
                 flex-direction: row;
                 justify-content: flex-start;
             }
             .commentary_user_info{
                 @include flex_trinity(row, space-between);
+                padding-bottom: 25px;
                 @media(min-width: 641px){
                     flex-direction: column;
-                }   
+                }
+                a{
+                    color : orange;
+                }
             }
             .commentary_content{
                 padding-left: 25px;
+            }
+        }
+    }
+
+    .not_useful{
+        display: none;
+        @media(min-width: 641px){
+            display: block
+        }                    
+    }
+
+    .article_view{
+        @include background_opacity();
+        margin: 0px 20px;
+        color : white;
+        padding: 20px 10px 10px 10px;
+        .article_user_info{
+            @include flex_trinity(row, space-between);
+            padding-bottom: 25px;
+            @media(min-width: 641px){
+                flex-direction: column;
             }
         }
     }

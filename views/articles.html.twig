@@ -15,17 +15,26 @@
     {% endif %}
 </ul>
 
-    <div class="infoUSer">
-        {{ userInfo['username'] }}
-        {{ userInfo['faction'] }}
-        {{ userInfo['nbr_commentary'] }}
-        {{ userInfo['nbr_articles'] }}
-    </div>
-
     <div class="article_view">
+        <div class="infoUSer">
+            {{ userInfo['username'] }}
+            {{ userInfo['faction'] }}
+            {{ userInfo['nbr_commentary'] }}
+            {{ userInfo['nbr_articles'] }}
+        </div>
         <div>{{ article.title }}</div>
         <div>{{ article.description }}</div>
         <div>{{ article.content | raw }}</div>
+        <div class="article_user_info">
+            <div class="primary_user_info">
+                <a href="?action=profile&amp;username={{username}}">{{username}}</a>
+                <p>{{ faction }}</p>
+            </div>
+            <div class="secondary_user_info">
+                <p>Le {{key.date}}</p>
+                <p class="not_useful">Nbr de commentaires : {{article.commentary}}<p>
+            </div>
+        </div>
     </div>
 
 
@@ -41,8 +50,8 @@
                             <p>{{ faction }}</p>
                         </div>
                         <div class="secondary_user_info">
-                            <p>Le {{date}}</p>
-                            <p>Nbr de commentaires : {{commentary}}<p>
+                            <p>Le {{key.date}}</p>
+                            <p class="not_useful">Nbr de commentaires : {{commentary}}<p>
                         </div>
                     </div>
                     <div class="commentary_content">{{ key.content | raw }}</div>
