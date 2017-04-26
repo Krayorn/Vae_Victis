@@ -7,42 +7,37 @@ $(function () {
             CKEDITOR.instances['contentCommentary'].updateElement();
     }
     var commentaryEdition = $('.commentaryEdition');
-
+    var  $this = $(this);
 ///////////////////////////////////
     // Get the modal
-    var modal = document.getElementById('myModal');
+    var modal = $('#myModal');
 
 
 
 // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
+    var span = $(".close")[0];
     var commentaryContent =$('.commentary_content');
 // When the user clicks on the button, open the modal
     console.log(commentaryEdition);
     console.log(commentaryContent);
 
-    commentaryEdition.each(function () {
-        $(this).click(function () {
-            commentaryContent.each(function () {
-                console.log($(this));
-                CKEDITOR.instances['contentCommentaryEdition'].setData($(this).html());
-                modal.style.display = "block";
-            });
-        });
+    commentaryEdition.click(function(){
+        var contentCommentary = $(this).parent().children('.commentary_content').html();
+        modal.css('display','block');
+        CKEDITOR.instances['contentCommentaryEdition'].setData(contentCommentary);
     });
-
 
 
 
 // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
-        modal.style.display = "none";
+        modal.css('display','none');
     };
 
 // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
         if (event.target == modal) {
-            modal.style.display = "none";
+            modal.css('display','none');
         }
     };
 

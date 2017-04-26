@@ -103,19 +103,15 @@ class DefaultController extends BaseController
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-                if($manager->userCheckCommentary($_POST)){
+                if(isset($_POST['contentCommentary'])){
                     $manager->insertCommentary($_POST, $article);
                 }
 
 
-                if($manager->userCheckArticleEdition($_POST)){
-                    $manager->articleEdition($_POST, $article);
-                }
 
+                        $manager->articleEdition($_POST, $article);
 
-
-
-            }
+           }
             if(isset($_SESSION['user_id'])){
             $user = $manager->getUserById($_SESSION['user_id']);
             echo $this->renderView('articles.html.twig', ['article' =>$article,'commentary'=>$commentary, 'isConnected' => $user,'userInfo'=>$userInfo,'allUserCommentary'=>$allUserCommentary,'allFaction'=> $allFaction,'allUsernames'=>$allUsernames]);
