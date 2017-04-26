@@ -1,26 +1,4 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-2017-04-24 18:30 => function : userLogin || User Appolyon just connected.
-2017-04-24 18:39 => function : insertArticles || User Appolyon just created a new Article named Je .
-2017-04-24 18:40 => function : insertArticles || User Appolyon just created a new Article named Je .
-2017-04-24 18:40 => function : insertArticles || User Appolyon just created a new Article named Je .
-2017-04-24 18:40 => function : insertArticles || User Appolyon just created a new Article named Je .
-2017-04-24 18:40 => function : insertArticles || User Appolyon just created a new Article named Je .
-2017-04-24 18:40 => function : insertArticles || User Appolyon just created a new Article named Je .
-2017-04-24 18:45 => function : insertArticles || User Appolyon just created a new Article named Hello.
-2017-04-24 19:37 => function : emailEdition || User Appolyon just updated his email to appolyon@honor.com.
-2017-04-24 19:37 => function : emailEdition || User Appolyon just updated his email to appolyon@honor.com.
-2017-04-24 19:43 => function : emailEdition || User Appolyon just updated his email to appolyon@honor.com.
-2017-04-24 19:46 => function : insertArticles || User Appolyon just created a new Article named Je.
-2017-04-24 19:47 => function : insertArticles || User Appolyon just created a new Article named Je.
-2017-04-24 19:49 => function : insertArticles || User Appolyon just created a new Article named Jefez.
-2017-04-24 19:49 => function : insertArticles || User Appolyon just created a new Article named Je.
-2017-04-24 19:50 => function : insertArticles || User Appolyon just created a new Article named Je.
-2017-04-24 19:50 => function : insertArticles || User Appolyon just created a new Article named Jed.
-2017-04-24 21:10 => function : userRegister || User Berserker just register.
-2017-04-24 21:10 => function : userLogin || User Berserker just connected.
-=======
->>>>>>> 396e7ac5911201071a75e26a6f7bf071a5719dcf
+
 2017-04-25 10:10 => function : addCommentary || User Appolyon just added a commentary .
 2017-04-25 10:10 => function : addCommentary || User Appolyon just added a commentary .
 2017-04-25 10:10 => function : addCommentary || User Appolyon just added a commentary .
@@ -99,27 +77,3 @@
 2017-04-25 12:27 => function : insertArticles || User Berserker just created a new Article named gergegrege.
 2017-04-25 12:30 => function : insertArticles || User Berserker just created a new Article named Je m'apelles toto.
 2017-04-25 14:45 => function : addCommentary || User Berserker just added a commentary .
-2017-04-25 14:52 => function : userRegister || User Emissaire just register.
-2017-04-25 14:52 => function : userLogin || User Emissaire just connected.
-2017-04-25 14:52 => function : insertArticles || User Emissaire just created a new Article named LA PREMIERE CROISADE.
-2017-04-25 14:53 => function : userLogin || User Emissaire just connected.
-2017-04-25 14:53 => function : addCommentary || User Emissaire just added a commentary .
-2017-04-25 14:54 => function : addCommentary || User Emissaire just added a commentary .
-2017-04-25 14:55 => function : userLogin || User Warden just connected.
-2017-04-25 15:11 => function : addCommentary || User Warden just added a commentary .
-2017-04-25 15:12 => function : insertArticles || User Warden just created a new Article named Wareden.
-2017-04-25 15:37 => function : userLogin || User Hersir just connected.
-2017-04-25 21:21 => function : userLogin || User Warden just connected.
-2017-04-25 21:22 => function : addCommentary || User Warden just added a commentary .
-2017-04-25 21:23 => function : addCommentary || User Warden just added a commentary .
-2017-04-25 21:48 => function : insertArticles || User Warden just created a new Article named My First Article.
-2017-04-25 21:49 => function : addCommentary || User Warden just added a commentary .
-2017-04-25 21:51 => function : addCommentary || User Warden just added a commentary .
-2017-04-25 22:07 => function : addCommentary || User Warden just added a commentary .
-2017-04-25 22:08 => function : addCommentary || User Warden just added a commentary .
-2017-04-25 22:11 => function : addCommentary || User Warden just added a commentary .
-2017-04-25 22:11 => function : addCommentary || User Warden just added a commentary .
-2017-04-25 22:11 => function : addCommentary || User Warden just added a commentary .
-2017-04-25 22:16 => function : userLogin || User Warden just connected.
-2017-04-25 22:17 => function : userLogin || User Warden just connected.
-2017-04-26 09:41 => function : userLogin || User Hersir just connected.

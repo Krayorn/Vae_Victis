@@ -31,10 +31,10 @@ class DefaultController extends BaseController
     }
 
     public function articlesAction(){
-        if(isset($_GET['title'])) {
+        if(isset($_GET['id'])) {
             $error = '';
             $manager = UserManager::getInstance();
-            $article = $manager->getArticlesByTitle($_GET['title']);
+            $article = $manager->getArticlesById($_GET['id']);
             $infoUser = $manager->getUserById($article['user_id']);
             $userInfo = array();
             $key = '';
@@ -60,12 +60,18 @@ class DefaultController extends BaseController
             }
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                $manager->insertCommentary($_POST, $article);
+                if(isset($_POST['commentaryForm'])) {
+
+                    $manager->insertCommentary($_POST, $article);
+                }
+                if($manager->userCheckArticleEdition($_POST)){
+                    $manager->articleEdition($_POST, $article);
+                }
+
+
+
+
             }
-
-
-
-
             if(isset($_SESSION['user_id'])){
             $user = $manager->getUserById($_SESSION['user_id']);
             echo $this->renderView('articles.html.twig', ['article' =>$article,'commentary'=>$commentary, 'isConnected' => $user,'userInfo'=>$userInfo,'allUserCommentary'=>$allUserCommentary,'allFaction'=> $allFaction,'allUsernames'=>$allUsernames]);
