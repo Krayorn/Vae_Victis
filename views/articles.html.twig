@@ -2,18 +2,21 @@
 
 {% block content %}
 
-<ul class="topnav">
-    <li id="active"><a href="#">{{article.title}}</a><div class="down arrow"></div><div class="up none arrow"></div></li>
-    {% if isConnected is defined %}
-    <li class="none"><a href="?action=home">Home</a></li>
-    <li class="none"><a href="?action=profile&amp;username={{isConnected.username}}">Profil</a></li>
-    <li class="none"><a href="?action=logout">Logout</a></li>
-    {% else %}
-    <li class="none"><a href="?action=home">Home</a></li>
-    <li class="none"><a href="?action=login">Login</a></li>
-    <li class="none"><a href="?action=register">Register</a></li>
-    {% endif %}
-</ul>
+    <ul class="topnav">
+        <li id="active"><a href="#">{{ article.title }}</a>
+            <div class="down arrow"></div>
+            <div class="up none arrow"></div>
+        </li>
+        {% if isConnected is defined %}
+            <li class="none"><a href="?action=home">Home</a></li>
+            <li class="none"><a href="?action=profile&amp;username={{ isConnected.username }}">Profil</a></li>
+            <li class="none"><a href="?action=logout">Logout</a></li>
+        {% else %}
+            <li class="none"><a href="?action=home">Home</a></li>
+            <li class="none"><a href="?action=login">Login</a></li>
+            <li class="none"><a href="?action=register">Register</a></li>
+        {% endif %}
+    </ul>
     <div class="infoUSer">
         {{ userInfo['username'] }}
         {{ userInfo['faction'] }}
@@ -23,22 +26,36 @@
 
     <div class="article_view">
 
-        <div>{{ article.title }}</div>
-        <div>{{ article.description }}</div>
-        <div>{{ article.content | raw }}</div>
+        <div id="titleContent">{{ article.title }}</div>
+        <div id="descriptionContent">{{ article.description }}</div>
+        <div id="articleContent">{{ article.content | raw }}</div>
+        <div><img id="imgEditionArticle" src="assets/images/parametre.png"></div>
     </div>
+    <div id="formEdition">
+        <div id="resultEdition"></div>
+        <form action="?action=articles&amp;id={{ article.id }}" method="POST" id="articlesFormEdition">
+            Title : <input type="text" name="titleEdition" id="titleEdition"><br> <span id="errorTitle"
+                                                                                        class="errorBlock"></span>
+            Description: <textarea name="descriptionEdition" id="descriptionEdition"></textarea><br> <span
+                    id="errorDescription" class="errorBlock"></span>
+            Contenu: <textarea name="contentEdition" id="articleContentEdition"></textarea><br> <span id="errorContent"
+                                                                                                      class="errorBlock"></span>
 
-
+            <input type="submit" name="articleEdition">
+        </form>
+    </div>
+    <div id="fullContentCommentary">
         <div id="commentary">
             {% for key in commentary %}
                 {% set username = allUsernames[key['user_id']] %}
                 {% set commentary = allUserCommentary[key['user_id']] %}
                 {% set faction = allFaction[key['user_id']] %}
                 <div id="infoUser">
-                   {{ username }}
-                   {{ commentary }}
-                   {{ faction }}
+                    {{ username }}
+                    {{ commentary }}
+                    {{ faction }}
                 </div>
+
                 <div class="commentary">
                     <div class="commentary_content">{{ key.content | raw }}</div>
                 </div>
@@ -46,22 +63,24 @@
         </div>
 
 
-    {% if isConnected is defined %}
-    <div id="form">
-        <span id="errorCommentary" class="errorBlock"></span>
-        <h1> Postez un commentaire</h1>
-        <form action="?action=articles&amp;title={{article.title}}" method="POST" id="commentaryForm">
-           <label for="contentCommentary">Contenu:</label>
-            <textarea name="contentCommentary" id="contentCommentary"></textarea><br>  <span id="errorContent" class="errorBlock"></span>
-            <input type="submit" name="commentary">
-        </form>
+        {% if isConnected is defined %}
+            <div id="form">
+                <span id="errorCommentary" class="errorBlock"></span>
+                <h1> Postez un commentaire</h1>
+                <form action="?action=articles&amp;id={{ article.id }}" method="POST" id="commentaryForm">
+                    <label for="contentCommentary">Contenu:</label>
+                    <textarea name="contentCommentary" id="contentCommentary"></textarea><br> <span id="errorContent"
+                                                                                                    class="errorBlock"></span>
+                    <input type="submit" name="commentary">
+                </form>
+            </div>
+        {% endif %}
     </div>
-    {% endif %}
-
-<script>
-// Replace the <textarea id="editor1"> with a CKEditor
-// instance, using default configuration.
-    CKEDITOR.replace( 'contentCommentary' );
-</script>
+    <script>
+        // Replace the <textarea id="editor1"> with a CKEditor
+        // instance, using default configuration.
+        CKEDITOR.replace('contentCommentary');
+        CKEDITOR.replace('articleContentEdition');
+    </script>
 
 {% endblock %}

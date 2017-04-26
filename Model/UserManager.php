@@ -39,6 +39,12 @@ class UserManager
             ['title' => $title]);
         return $data;
     }
+    public function getArticlesById($article_id)
+    {
+        $data = $this->DBManager->findOneSecure("SELECT * FROM articles WHERE id = :article_id",
+            ['article_id' => $article_id]);
+        return $data;
+    }
     public function getUserByEmail($email)
     {
         $data = $this->DBManager->findOneSecure("SELECT * FROM users WHERE email = :email",
@@ -64,7 +70,7 @@ class UserManager
         return $data;
     }
 
-    public function getUserBtArticleId($article_id)
+    public function getUserByArticleId($article_id)
     {
 
         $data = $this->DBManager->findOneSecure("SELECT * FROM users WHERE id = :article_id",
@@ -282,15 +288,36 @@ class UserManager
         $query = $this->DBManager->findOneSecure("UPDATE articles SET `nbr_commentary`=  nbr_commentary + 1 WHERE `id` = :article_id", $update);
         return $query;
     }
+    public function userCheckArticleEdition($data)
+    {
+        $valid = true;
+        $errors = array();
+        if (empty($data['contentEditing'])){
+            $valid = false;
+            $errors['fields'] = 'Fields missing';
+        }
+        if(strlen($data['contentEditing']) < 4){
+            $valid = false;
+            $errors['fields'] = 'Prénom trop court';
+        }
+        if($valid === false){
+            echo json_encode(array('success'=>false, 'errors'=>$errors));
+            exit(0);
+        }
+        else{
+            return true;
+        }
 
+    }
     public function articleEdition($data,$article)
     {
         $update['titleEditing'] = $data['titleEditing'];
         $update['descriptionEditing'] = $data['descriptionEditing'];
         $update['contentEditing'] = $data['contentEditing'];
-        $update['user_id'] = $_SESSION['user_id'];
-        $update['article_id'] = $article;
-        $query = $this->DBManager->findOneSecure("UPDATE articles SET `title`= :titleEditing,`description` := descriptionEditing,`content`:= contentEditing WHERE `user_id` = :user_id AND `id`:=article_id", $update);
+        $update['article_id'] = $article['id'];
+        $update['update_date'] = $this->giveDate();
+        var_dump($update);
+        $query = $this->DBManager->findOneSecure("UPDATE articles SET `title`= :titleEditing,`description` = :descriptionEditing,`content` = :contentEditing,update_date = :update_date WHERE  `id` = :article_id", $update);
         $write = $this->write_log('access.log', ' => function : articleEdition || User ' . $_SESSION['username'] . ' just updated his article '."\n");
         echo json_encode(array('success'=>true));
         exit(0);
