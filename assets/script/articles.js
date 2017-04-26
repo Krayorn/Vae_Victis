@@ -6,6 +6,36 @@ $(function () {
         for ( instance in CKEDITOR.instances )
             CKEDITOR.instances['contentCommentary'].updateElement();
     }
+    var commentaryEdition = $('.commentaryEdition');
+    var commentary_content =$('.commentary_content');
+///////////////////////////////////
+    // Get the modal
+    var modal = document.getElementById('myModal');
+
+
+
+// Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+       commentaryEdition.click(function(){
+           for(var i=0 ; i<)
+        CKEDITOR.instances['contentCommentaryEdition'].setData(commentary_content.html());
+        modal.style.display = "block";
+    });
+
+// When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    };
+
+// When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    };
+
 
     var articlesFormEdition = $('#articlesFormEdition');
     var commentaryForm = $('#commentaryForm');
@@ -21,8 +51,11 @@ $(function () {
     var titleEdition = $('#titleEdition');
     var descriptionEdition = $('#descriptionEdition');
 
+
+
+
     formEdition.css('display','none');
-    imgEditionArticle.click(function(){
+    imgEditionArticle.click('slideToggle',function(){
         fullContentCommentary.css('display','none');
         formEdition.css('display','block');
         titleEdition.val(titleContent.html());
@@ -105,9 +138,8 @@ $(function () {
                     console.log('yo');
 
                      if(data.success === true){
-                        $newCommentary = '<div class="commentary"><div class="commentary_info_user">My New Commentary !</div><div class="commentary_content">' + $content +'</div></div>';
-                        divCommentary.append($newCommentary);
-                        divCommentary.addClass('commentary_content');
+
+
                      }
                 }
             });

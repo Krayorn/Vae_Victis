@@ -76,7 +76,3 @@
 2017-04-25 12:26 => function : userLogin || User Berserker just connected.
 2017-04-25 12:27 => function : insertArticles || User Berserker just created a new Article named gergegrege.
 2017-04-25 12:30 => function : insertArticles || User Berserker just created a new Article named Je m'apelles toto.
-2017-04-25 14:45 => function : addCommentary || User Berserker just added a commentary .
-2017-04-26 12:55 => function : insertArticles || User Hersir just created a new Article named Ceci est un nouvel article.
-2017-04-26 13:27 => function : articleEdition || User Hersir just updated his article 
-2017-04-26 13:28 => function : articleEdition || User Hersir just updated his article 
