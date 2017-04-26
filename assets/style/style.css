@@ -268,9 +268,7 @@
     background-color: rgba(0, 0, 0, 0.4);
     /* Black w/ opacity */
   }
-
-  /* Modal Content/Box */
-  .modal-content {
+  .modal .modal-content {
     background-color: #fefefe;
     margin: 15% auto;
     /* 15% from the top and centered */
@@ -279,17 +277,14 @@
     width: 80%;
     /* Could be more or less, depending on screen size */
   }
-
-  /* The Close Button */
-  .close {
+  .modal .close {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
   }
-
-  .close:hover,
-  .close:focus {
+  .modal .close:hover,
+  .modal .close:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
@@ -332,18 +327,19 @@
 }
 
 @media screen {
-  #recap_profil {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background-color: black;
-    opacity: 0.7;
-    padding: 30px 20px;
+  .box {
+    background-color: #264647;
+    margin: 0px 20px;
+    padding: 20px;
   }
-  #recap_profil .recapInfo {
+  .box ul {
+    padding: 0px;
+    display: flex;
+  }
+  .box #user_info .recapInfo {
     color: white;
   }
-  #recap_profil #button_editing {
+  .box #user_info #button_editing {
     width: 160px;
   }
 

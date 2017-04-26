@@ -5,12 +5,26 @@ $(function () {
     var errorTitle = $('#errorTitle');
     var errorDescription= $('#errorDescription');
     var errorContent = $('#errorContent');
+    var errorArticle = $('#errorArticle');  
 
-    var errorArticle = $('#errorArticle');
+    function switch_tab($tabs, $content){
+        $('.content').addClass('none');
+        $content.removeClass('none');
+        $('.tabs').removeClass('active');
+        $tabs.addClass('active');
+    }
 
-    console.log(articlesForm);
+    $('#profile_user_info').click(function(){
+        switch_tab($('#profile_user_info'), $('#user_info'))
+    })
 
-    
+    $('#profile_user_article').click(function(){
+        switch_tab($('#profile_user_article'), $('#user_article'))
+    })
+
+    $('#profile_new_article').click(function(){
+        switch_tab($('#profile_new_article'), $('#new_article'))
+    })
 
     articlesForm.submit(function(){
         var formValid =true;

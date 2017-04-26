@@ -274,15 +274,21 @@
         }
     }
 
-    #recap_profil{
-        @include flex_trinity(column, space-between);
-        @include background_opacity();
-        padding: 30px 20px;
-        .recapInfo{
-            color:white;
+    .box{
+        background-color: #264647;
+        margin : 0px 20px;
+        padding : 20px;
+        ul{
+            padding: 0px;
+            display: flex;
         }
-        #button_editing{
-            width: 160px;
+        #user_info{
+            .recapInfo{
+                color:white;
+            }
+            #button_editing{
+                width: 160px;
+            }
         }
     }
 
