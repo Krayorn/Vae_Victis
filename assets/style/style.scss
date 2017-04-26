@@ -41,7 +41,7 @@
         }
     }
 
-    .main_content{
+    main{
         min-height: 80vh;
     }
 
@@ -210,7 +210,7 @@
     }
 
     .article_view{
-        @include background_opacity();
+        background-color: #727272;
         margin: 0px 20px;
         color : white;
         padding: 20px 10px 10px 10px;

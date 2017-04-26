@@ -27,7 +27,7 @@
 }
 
 @media screen {
-  .main_content {
+  main {
     min-height: 80vh;
   }
 
@@ -242,8 +242,7 @@
 
 @media screen {
   .article_view {
-    background-color: black;
-    opacity: 0.7;
+    background-color: #727272;
     margin: 0px 20px;
     color: white;
     padding: 20px 10px 10px 10px;

@@ -17,12 +17,10 @@
     <!--    <script src="assets/script/home.js"></script>-->
     </head>
     <body>
-        {% if error is defined and error is not empty %}
-        <p class="error">Error : {{ error }}</p>
-        {% endif %}
-        <div class="main_content">
+
+        <main>
         {% block content %}{% endblock %}
-        </div>
+        </main>
         
         <footer>
             <div>
