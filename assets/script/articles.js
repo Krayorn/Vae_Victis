@@ -7,7 +7,7 @@ $(function () {
             CKEDITOR.instances['contentCommentary'].updateElement();
     }
     var commentaryEdition = $('.commentaryEdition');
-    var commentary_content =$('.commentary_content');
+
 ///////////////////////////////////
     // Get the modal
     var modal = document.getElementById('myModal');
@@ -16,13 +16,23 @@ $(function () {
 
 // Get the <span> element that closes the modal
     var span = document.getElementsByClassName("close")[0];
-
+    var commentaryContent =$('.commentary_content');
 // When the user clicks on the button, open the modal
-       commentaryEdition.click(function(){
-           for(var i=0 ; i<)
-        CKEDITOR.instances['contentCommentaryEdition'].setData(commentary_content.html());
-        modal.style.display = "block";
+    console.log(commentaryEdition);
+    console.log(commentaryContent);
+
+    commentaryEdition.each(function () {
+        $(this).click(function () {
+            commentaryContent.each(function () {
+                console.log($(this));
+                CKEDITOR.instances['contentCommentaryEdition'].setData($(this).html());
+                modal.style.display = "block";
+            });
+        });
     });
+
+
+
 
 // When the user clicks on <span> (x), close the modal
     span.onclick = function() {
