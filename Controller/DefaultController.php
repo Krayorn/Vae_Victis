@@ -14,11 +14,9 @@ class DefaultController extends BaseController
         $allUsernames = array();
         $allNbrCommentary = array();
         foreach($articles as $key ){
-
             $infoUser = $manager->getUserById($key['user_id']);
             $allUsernames[$key['user_id']] = $infoUser['username'];
             $allNbrCommentary[$key['user_id']] = $key['nbr_commentary'];
-
         }
 
         if (!empty($_SESSION['user_id']))
@@ -31,6 +29,7 @@ class DefaultController extends BaseController
             echo $this->renderView('home.html.twig', ['articles'=> $articles,'allUsernames'=>$allUsernames,'allNbrCommentary'=>$allNbrCommentary]);
         }
     }
+
     public function articlesAction(){
         if(isset($_GET['id'])) {
             $error = '';

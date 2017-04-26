@@ -26,6 +26,10 @@ $(function () {
         fullContentCommentary.css('display','none');
         formEdition.css('display','block');
         titleEdition.val(titleContent.html());
+
+        console.log(titleContent.html());
+        console.log(descriptionContent.html());
+
         descriptionEdition.val(descriptionContent.html());
         CKEDITOR.instances['articleContentEdition'].setData(articleContent.html());
     });
@@ -39,8 +43,6 @@ $(function () {
 
         var $articleContentEdition = CKEDITOR.instances['articleContentEdition'].getData();
 
-        console.log($articleContentEdition);
-        console.log($titleEdition);
         if(formValid){
 
             $.ajax({
@@ -103,13 +105,9 @@ $(function () {
                     console.log('yo');
 
                      if(data.success === true){
-                         console.log('c ok');
-
-
-                        divCommentary.append($content);
-                        divCommentary.classList.add('commentary_content');
-
-
+                        $newCommentary = '<div class="commentary"><div class="commentary_info_user">My New Commentary !</div><div class="commentary_content">' + $content +'</div></div>';
+                        divCommentary.append($newCommentary);
+                        divCommentary.addClass('commentary_content');
                      }
                 }
             });

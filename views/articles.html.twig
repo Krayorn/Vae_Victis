@@ -2,34 +2,44 @@
 
 {% block content %}
 
-    <ul class="topnav">
-        <li id="active"><a href="#">{{ article.title }}</a>
-            <div class="down arrow"></div>
-            <div class="up none arrow"></div>
-        </li>
-        {% if isConnected is defined %}
-            <li class="none"><a href="?action=home">Home</a></li>
-            <li class="none"><a href="?action=profile&amp;username={{ isConnected.username }}">Profil</a></li>
-            <li class="none"><a href="?action=logout">Logout</a></li>
-        {% else %}
-            <li class="none"><a href="?action=home">Home</a></li>
-            <li class="none"><a href="?action=login">Login</a></li>
-            <li class="none"><a href="?action=register">Register</a></li>
-        {% endif %}
-    </ul>
-    <div class="infoUSer">
-        {{ userInfo['username'] }}
-        {{ userInfo['faction'] }}
-        {{ userInfo['nbr_commentary'] }}
-        {{ userInfo['nbr_articles'] }}
-    </div>
+
+
+
+<ul class="topnav">
+    <li id="active"><a href="#">{{article.title}}</a><div class="down arrow"></div><div class="up none arrow"></div></li>
+    {% if isConnected is defined %}
+    <li class="none"><a href="?action=home">Home</a></li>
+    <li class="none"><a href="?action=profile&amp;username={{isConnected.username}}">Profil</a></li>
+    <li class="none"><a href="?action=logout">Logout</a></li>
+    {% else %}
+    <li class="none"><a href="?action=home">Home</a></li>
+    <li class="none"><a href="?action=login">Login</a></li>
+    <li class="none"><a href="?action=register">Register</a></li>
+    {% endif %}
+</ul>
 
     <div class="article_view">
-
+        <div class="infoUSer">
+            {{ userInfo['username'] }}
+            {{ userInfo['faction'] }}
+            {{ userInfo['nbr_commentary'] }}
+            {{ userInfo['nbr_articles'] }}
+        </div>
         <div id="titleContent">{{ article.title }}</div>
         <div id="descriptionContent">{{ article.description }}</div>
         <div id="articleContent">{{ article.content | raw }}</div>
         <div><img id="imgEditionArticle" src="assets/images/parametre.png"></div>
+        <div class="article_user_info">
+            <div class="primary_user_info">
+                <a href="?action=profile&amp;username={{username}}">{{username}}</a>
+                <p>{{ faction }}</p>
+            </div>
+            <div class="secondary_user_info">
+                <p>Le {{key.date}}</p>
+                <p class="not_useful">Nbr de commentaires : {{article.commentary}}<p>
+            </div>
+        </div>
+
     </div>
     <div id="formEdition">
         <div id="resultEdition"></div>
@@ -45,37 +55,41 @@
         </form>
     </div>
     <div id="fullContentCommentary">
-        <div id="commentary">
+
+      <div id="commentary">
             {% for key in commentary %}
                 {% set username = allUsernames[key['user_id']] %}
                 {% set commentary = allUserCommentary[key['user_id']] %}
                 {% set faction = allFaction[key['user_id']] %}
-                <div id="infoUser">
-                    {{ username }}
-                    {{ commentary }}
-                    {{ faction }}
-                </div>
-
                 <div class="commentary">
+                    <div class="commentary_user_info">
+                        <div class="primary_user_info">
+                            <a href="?action=profile&amp;username={{username}}">{{username}}</a>
+                            <p>{{ faction }}</p>
+                        </div>
+                        <div class="secondary_user_info">
+                            <p>Le {{key.date}}</p>
+                            <p class="not_useful">Nbr de commentaires : {{commentary}}<p>
+                        </div>
+                    </div>
                     <div class="commentary_content">{{ key.content | raw }}</div>
                 </div>
             {% endfor %}
         </div>
 
 
-        {% if isConnected is defined %}
-            <div id="form">
-                <span id="errorCommentary" class="errorBlock"></span>
-                <h1> Postez un commentaire</h1>
-                <form action="?action=articles&amp;id={{ article.id }}" method="POST" id="commentaryForm">
-                    <label for="contentCommentary">Contenu:</label>
-                    <textarea name="contentCommentary" id="contentCommentary"></textarea><br> <span id="errorContent"
-                                                                                                    class="errorBlock"></span>
-                    <input type="submit" name="commentary">
-                </form>
-            </div>
-        {% endif %}
+    {% if isConnected is defined %}
+    <div id="form">
+        <span id="errorCommentary" class="errorBlock"></span>
+        <h1> Postez un commentaire</h1>
+        <form action="?action=articles&amp;title={{article.title}}" method="POST" id="commentaryForm">
+           <label for="contentCommentary">Contenu:</label>
+            <textarea name="contentCommentary" id="contentCommentary"></textarea><br>  <span id="errorContent" class="errorBlock"></span>
+            <input type="submit" name="commentary">
+        </form>
     </div>
+    </div>
+    {% endif %}
     <script>
         // Replace the <textarea id="editor1"> with a CKEditor
         // instance, using default configuration.
