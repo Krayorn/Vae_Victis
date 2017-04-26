@@ -93,7 +93,6 @@ class DefaultController extends BaseController
                 $allUserCommentary[$key['user_id']] = $infoUserCommentary['nbr_commentary'];
                 $allFaction[$key['user_id']] = $infoUserCommentary['faction'];
             }
-    var_dump( $allUserCommentary);
             if($article){
                 $userInfo['username'] = $infoUser['username'];
                 $userInfo['faction'] = $infoUser['faction'];
@@ -104,16 +103,13 @@ class DefaultController extends BaseController
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-
+                if(isset($_POST['contentCommentary'])){
                     $manager->insertCommentary($_POST, $article);
+                }
 
                 if($manager->userCheckArticleEdition($_POST)){
                     $manager->articleEdition($_POST, $article);
                 }
-
-
-
-
             }
             if(isset($_SESSION['user_id'])){
             $user = $manager->getUserById($_SESSION['user_id']);

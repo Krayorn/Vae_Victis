@@ -316,7 +316,6 @@ class UserManager
         $update['contentEditing'] = $data['contentEditing'];
         $update['article_id'] = $article['id'];
         $update['update_date'] = $this->giveDate();
-        var_dump($update);
         $query = $this->DBManager->findOneSecure("UPDATE articles SET `title`= :titleEditing,`description` = :descriptionEditing,`content` = :contentEditing,update_date = :update_date WHERE  `id` = :article_id", $update);
         $write = $this->write_log('access.log', ' => function : articleEdition || User ' . $_SESSION['username'] . ' just updated his article '."\n");
         echo json_encode(array('success'=>true));

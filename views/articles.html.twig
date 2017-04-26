@@ -40,6 +40,7 @@
                 <p class="not_useful">Nbr de commentaires de l'article: {{article.nbr_commentary}}<p>
                 <p>Le {{article.date}}</p>
             </div>
+        </div>
     </article>
 
     </div>
@@ -109,9 +110,8 @@
         <form action="?action=articles&amp;id={{article.id}}" method="POST" id="commentaryForm">
            <label for="contentCommentary">Contenu:</label>
             <textarea name="contentCommentary" id="contentCommentary"></textarea><br>  <span id="errorContent" class="errorBlock"></span>
-            <input type="submit" name="commentary">
+            <input type="submit">
         </form>
-    </div>
     </div>
     {% endif %}
     <script>
