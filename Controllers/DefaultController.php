@@ -44,18 +44,46 @@ class DefaultController extends BaseController
             }
             $manager = UserManager::getInstance();
             $user = $manager->getUserByUsername($_GET['username']);
+            $allCommentary = $manager->getCommentaryByGetUserId($user['id'])  ;
+            $allArticles = $manager->getArticlesByGetUserId($user['id'])  ;
+
+            $listCommentary = array();
+            $listArticles = array();
+            $listDateArticles = array();
+            $listDateCommentary = array();
+            $articlesDescription = array();
+            $articlesTitle = array();
+            $articlesContent = array();
+            var_dump($allArticles);
+            foreach($allArticles as $key) {
+                $articlesContent[$key['id']] = $key['content'];
+                $articlesDescription[$key['id']] = $key['description'];
+                $articlesTitle[$key['id']] = $key['title'];
+                $listDateArticles[$key['id']] = $key['update_date'];
+
+            }
+            foreach($allCommentary as $key) {
+                $listCommentary[$key['id']] = $key['content'];
+                $listDateCommentary[$key['id']] = $key['update_date'];
+
+            }
+
+
             if ($user == false) {
                 $this->redirect('home');
             } else {
+
                 if (isset($_SESSION['user_id'])) {
+
                     $isConnected = $user;
                     if ($_SESSION['user_id'] == $user['id']) {
+
                         echo $this->renderView('profile.html.twig', ['error' => $error,
-                            'user' => $user, 'isConnected' => $isConnected]);
+                            'user' => $user, 'isConnected' => $isConnected, 'allArticles'=> $allArticles,'allCommentary'=> $allCommentary,'listCommentary' => $listCommentary,'listDateCommentary' => $listDateCommentary,'listArticles'=>$listArticles,'listDateArticles'=>$listDateArticles,'articlesTitle'=> $articlesTitle,'articlesDescription'=>$articlesDescription,'articlesContent'=> $articlesContent]);
                     } else {
                         $visitor = $manager->getUserById($_SESSION['user_id']);
                         echo $this->renderView('profile.html.twig', ['error' => $error,
-                            'user' => $user, 'isConnected' => $isConnected, 'visitor' => $visitor]);
+                            'user' => $user, 'isConnected' => $isConnected, 'visitor' => $visitor,  'allArticles'=> $allArticles,'allCommentary'=> $allCommentary,'listCommentary' => $listCommentary,'listDateCommentary' => $listDateCommentary,'listArticles'=>$listArticles,'listDateArticles'=>$listDateArticles,'articlesTitle'=> $articlesTitle,'articlesDescription'=>$articlesDescription,'articlesContent'=> $articlesContent]);
                     }
                 } else {
                     echo $this->renderView('profile.html.twig', ['error' => $error,
