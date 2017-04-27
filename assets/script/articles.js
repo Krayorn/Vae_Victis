@@ -84,9 +84,6 @@ if(span){
     var titleEdition = $('#titleEdition');
     var descriptionEdition = $('#descriptionEdition');
 
-
-
-
     formEdition.css('display','none');
     imgEditionArticle.click('slideToggle',function(){
         fullContentCommentary.css('display','none');

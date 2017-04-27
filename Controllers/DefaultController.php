@@ -54,7 +54,6 @@ class DefaultController extends BaseController
             $articlesDescription = array();
             $articlesTitle = array();
             $articlesContent = array();
-            var_dump($allArticles);
             foreach($allArticles as $key) {
                 $articlesContent[$key['id']] = $key['content'];
                 $articlesDescription[$key['id']] = $key['description'];
