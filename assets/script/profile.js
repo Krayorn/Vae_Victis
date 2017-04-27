@@ -16,15 +16,15 @@ $(function () {
 
     $('#profile_user_info').click(function(){
         switch_tab($('#profile_user_info'), $('#user_info'))
-    })
+    });
 
     $('#profile_user_article').click(function(){
         switch_tab($('#profile_user_article'), $('#user_article'))
-    })
+    });
 
     $('#profile_new_article').click(function(){
         switch_tab($('#profile_new_article'), $('#new_article'))
-    })
+    });
 
     articlesForm.submit(function(){
         var formValid =true;
@@ -33,6 +33,7 @@ $(function () {
         var $titleInput = $('#title');
         var $description = $('#description').val();
         var $descriptionInput = $('#description');
+        var $contentInput = $('#contentInput');
         var $content = CKEDITOR.instances['article_content'].getData();
 
 
