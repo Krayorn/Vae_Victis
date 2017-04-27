@@ -18,14 +18,11 @@ $(function () {
     var span = $(".close")[0];
     var commentaryContent =$('.commentary_content');
 // When the user clicks on the button, open the modal
-    console.log(commentaryEdition);
-    console.log(commentaryContent);
     var idHidden = $('#idHidden');
     commentaryEdition.click(function(){
         var contentCommentary = $(this).parent().children('.commentary_content').html();
         var idCommentary = $(this).parent().children('.idCommentary').html();
         idHidden.val(idCommentary);
-        console.log(idCommentary);
         modal.css('display','block');
         CKEDITOR.instances['contentCommentaryEdition'].setData(contentCommentary);
     });
@@ -33,18 +30,22 @@ $(function () {
    var  commentaryFormEdition = $('#commentaryFormEdition');
 
     commentaryFormEdition.submit(function(){
+        $this = $(this);
+        var commentary = commentaryEdition.parent().children('.commentary_content');
         var $idCommentary = idHidden.val();
         var $commentaryData = CKEDITOR.instances['contentCommentaryEdition'].getData();
-        console.log($idCommentary,$commentaryData);
         $.ajax({
+
             url: $this.attr('action'), // Le nom du fichier indiqué dans le formulaire
             type: $this.attr('method'), // La méthode indiquée dans le formulaire (get ou post)
             data: {id: $idCommentary, commentaryEditing : $commentaryData},
             dataType: 'json', // JSON,
             success: function(data)
             {
-                console.log('yo');
+
                 if(data.success === true){
+                    modal.css('display','none');
+                    commentary.html($commentaryData);
                }
             },
             error: function(response,statut,error){

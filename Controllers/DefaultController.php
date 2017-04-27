@@ -70,6 +70,7 @@ class DefaultController extends BaseController
     public function articlesAction()
     {
         if (isset($_GET['id'])) {
+
             $error = '';
             $manager = UserManager::getInstance();
             $article = $manager->getArticlesById($_GET['id']);
@@ -96,19 +97,21 @@ class DefaultController extends BaseController
                 $allNbrCommentary = $article['nbr_commentary'];
             }
 
+
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
                 if (isset($_POST['content'])) {
                     $manager->insertCommentary($_POST, $article);
                 }
                 if (isset($_POST['articleContentEdition'])) {
-                   if( $manager->userCheckArticleEdition($_POST)){
+                   if($manager->userCheckArticleEdition($_POST)){
                        $manager->articleEdition($_POST, $article);
                    }
 
 
                 }
 
-                if (isset($_POST['contentCommentaryEdition'])) {
+                if (isset($_POST['commentaryEditing'])) {
                     $manager->commentaryEdition($_POST);
                 }
             }

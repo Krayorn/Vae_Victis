@@ -324,12 +324,11 @@ class UserManager
 
     public function commentaryEdition($data)
     {
-        $update['commentaryEditing'] = $data['contentCommentaryEdition'];
+        $update['commentaryEditing'] = $data['commentaryEditing'];
         $update['id'] = $data['id'];
-        $update['user_id'] = $data['user_id'];
+        $update['user_id'] = $_SESSION['user_id'];
         $update['update_date'] = $this->giveDate();
-        var_dump($update);
-        $query = $this->DBManager->findOneSecure("UPDATE commentary SET `content` = :commentaryEditing,update_date = :update_date WHERE  `id` = :id", $update);
+        $query = $this->DBManager->findOneSecure("UPDATE commentary SET `content` = :commentaryEditing,update_date = :update_date WHERE  `id` = :id AND `user_id` = :user_id", $update);
         $write = $this->write_log('access.log', ' => function : articleEdition || User ' . $_SESSION['username'] . ' just updated his article '."\n");
         echo json_encode(array('success'=>true));
         exit(0);
