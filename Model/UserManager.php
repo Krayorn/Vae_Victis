@@ -268,7 +268,6 @@ class UserManager
         $this->addCommentaryArticle($article['id']);
         echo json_encode(array('success'=>true));
         exit(0);
-
     }
 
     public function myArticles()

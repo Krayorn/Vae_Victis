@@ -275,23 +275,24 @@
     }
 
     .box{
-        background-color: #264647;
         margin : 0px 20px;
         ul{
             padding: 0px;
             display: flex;
+            margin: 0px;
             li{
-                border : 1px solid white;
                 padding: 10px;
+                background-color: #264647;
                 .img_tab{
                     width: 30px;
                 }
             }
             .active{
-                border : none;
+                border-top-left-radius: 10px;
             }
         }
         .allContent{
+            background-color: #264647;
             padding : 20px;
             #user_info{
                 text-align: center;
