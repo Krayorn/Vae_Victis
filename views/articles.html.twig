@@ -55,52 +55,53 @@
     </div>
     <div id="fullContentCommentary">
 
-      <div id="commentary">
-            {% for key in commentary %}
-                {% set username = allUsernames[key['user_id']] %}
-                {% set commentary = allUserCommentary[key['user_id']] %}
-                {% set faction = allFaction[key['user_id']] %}
-                <div class="commentary">
+    <div id="commentary">
+        {% for key in commentary %}
+            {% set username = allUsernames[key['user_id']] %}
+            {% set commentary = allUserCommentary[key['user_id']] %}
+            {% set faction = allFaction[key['user_id']] %}
+            <div class="commentary">
 
-                    <div class="commentary_user_info">
-                        <div class="primary_user_info">
-                            <a href="?action=profile&amp;username={{username}}">{{username}}</a>
-                            <p>{{ faction }}</p>
-                        </div>
-                        <div class="secondary_user_info">
-                            <p>Le {{key.date}}</p>
-                            <p class="not_useful">Nbr de commentaires : {{commentary}}<p>
-                        </div>
+                <div class="commentary_user_info">
+                    <div class="primary_user_info">
+                        <a href="?action=profile&amp;username={{username}}">{{username}}</a>
+                        <p>{{ faction }}</p>
                     </div>
-                    <div class="commentary_content">{{ key.content | raw }}</div>
+                    <div class="secondary_user_info">
+                        <p>Le {{key.date}}</p>
+                        <p class="not_useful">Nbr de commentaires : {{commentary}}<p>
+                    </div>
+                </div>
+                <div class="idCommentary"> {{ key.id}}</div>
+                <div class="commentary_content">{{ key.content | raw }}</div>
+                {% if key.user_id == isConnected.id %}
+                    <button class="commentaryEdition">Editez votre commentaire</button>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+                        <div id="myModal" class="modal">
+
+                            <!-- Modal content -->
+                            <div class="modal-content">
+                                <h1> Postez un commentaire</h1>
+                                <span class="close">&times;</span>
+                                <div id="formCommentaryEdition">
+                                    <span class="errorCommentaryEdition errorBlock" ></span>
+
+                                    <form action="?action=articles&amp;id={{article.id}}" method="POST" id="commentaryFormEdition">
+                                        <label for="contentCommentaryEdition">Contenu:</label>
+                                        <input type="text" id="idHidden" name="idHidden">
+                                        <textarea name="contentCommentaryEdition" id="contentCommentaryEdition"></textarea><br>  <span id="errorContent" class="errorBlock"></span>
+                                        <input type="submit" name="commentary">
+                                    </form>
+                                </div>
+                            </div>
+
                         {% if key.user_id == isConnected.id %}
                             <button class="commentaryEdition">Editez votre commentaire</button>
                         {% endif %}
                 </div>
-            {% endfor %}
-        </div>
-    </div>
-    <div id="myModal" class="modal">
-
-    <!-- Modal content -->
-        <div class="modal-content">
-        <h1> Postez un commentaire</h1>
-        <span class="close">&times;</span>
-            <div id="formCommentaryEdition">
-                <span class="errorCommentaryEdition errorBlock" ></span>
-
-                <form action="?action=articles&amp;id={{article.id  }}" method="POST" id="commentaryFormEdition">
-                <label for="contentCommentaryEdition">Contenu:</label>
-                <textarea name="contentCommentaryEdition" id="contentCommentaryEdition"></textarea><br>  <span id="errorContent" class="errorBlock"></span>
-                <input type="submit" name="commentary">
-                </form>
-            </div>
-        </div>
-    </div>
-
-
-
-
 
     {% if isConnected is defined %}
     <div id="form">
