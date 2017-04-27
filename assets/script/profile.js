@@ -62,9 +62,9 @@ $(function () {
                   console.log('ok');
             }
              if(data.success === true){
-             $titleInput.val('');
-            $descriptionInput.val('');
-              $contentInput.val('');
+                $titleInput.val('');
+                $descriptionInput.val('');
+                window.location.href="?action=home";
             }
          },
              error: function(response,statut,error){

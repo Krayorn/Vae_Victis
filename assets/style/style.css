@@ -328,24 +328,25 @@
 
 @media screen {
   .box {
-    background-color: #264647;
     margin: 0px 20px;
   }
   .box ul {
     padding: 0px;
     display: flex;
+    margin: 0px;
   }
   .box ul li {
-    border: 1px solid white;
     padding: 10px;
+    background-color: #264647;
   }
   .box ul li .img_tab {
     width: 30px;
   }
   .box ul .active {
-    border: none;
+    border-top-left-radius: 10px;
   }
   .box .allContent {
+    background-color: #264647;
     padding: 20px;
   }
   .box .allContent #user_info {
