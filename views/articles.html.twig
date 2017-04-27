@@ -77,6 +77,7 @@
                         </div>
                     </div>
                     <div class="commentary_content">{{ key.content | raw }}</div>
+                    <div class="idCommentary"> {{ key.id}}</div>
                     <button class="commentaryEdition">Editez votre commentaire</button>
                     <!-- The Modal -->
                 </div>
@@ -93,6 +94,7 @@
 
                                     <form action="?action=articles&amp;id={{article.id  }}" method="POST" id="commentaryFormEdition">
                                         <label for="contentCommentaryEdition">Contenu:</label>
+                                        <input type="text" id="idHidden" name="idHidden">
                                         <textarea name="contentCommentaryEdition" id="contentCommentaryEdition"></textarea><br>  <span id="errorContent" class="errorBlock"></span>
                                         <input type="submit" name="commentary">
                                     </form>
