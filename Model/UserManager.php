@@ -345,6 +345,16 @@ class UserManager
         echo json_encode(array('success'=>true));
         exit(0);
     }
+    public function commentarySupp($data)
+    {
+
+        $update['id'] = $data['idDeleteCommentary'];
+        $update['user_id'] = $_SESSION['user_id'];
+        $query = $this->DBManager->findOneSecure("DELETE  FROM commentary WHERE  `id` = :id AND `user_id` = :user_id", $update);
+        $write = $this->write_log('access.log', ' => function : articleEdition || User ' . $_SESSION['username'] . ' just updated his article '."\n");
+        echo json_encode(array('success'=>true));
+        exit(0);
+    }
 
      public function firstnameEdition($data)
     {
