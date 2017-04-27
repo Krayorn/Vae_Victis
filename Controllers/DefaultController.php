@@ -13,27 +13,25 @@ class DefaultController extends BaseController
         $key = array();
         $allUsernames = array();
         $allNbrCommentary = array();
-        foreach($articles as $key ){
+        foreach ($articles as $key) {
             $infoUser = $manager->getUserById($key['user_id']);
             $allUsernames[$key['user_id']] = $infoUser['username'];
             $allNbrCommentary[$key['user_id']] = $key['nbr_commentary'];
         }
 
-        if (!empty($_SESSION['user_id']))
-        {
+        if (!empty($_SESSION['user_id'])) {
             $user = $manager->getUserById($_SESSION['user_id']);
             echo $this->renderView('home.html.twig',
-                ['user' => $user, 'isConnected' => $user['id'],'articles'=> $articles,'allUsernames'=>$allUsernames,'allNbrCommentary'=>$allNbrCommentary]);
-        }
-        else{
-            echo $this->renderView('home.html.twig', ['articles'=> $articles,'allUsernames'=>$allUsernames,'allNbrCommentary'=>$allNbrCommentary]);
+                ['user' => $user, 'isConnected' => $user['id'], 'articles' => $articles, 'allUsernames' => $allUsernames, 'allNbrCommentary' => $allNbrCommentary]);
+        } else {
+            echo $this->renderView('home.html.twig', ['articles' => $articles, 'allUsernames' => $allUsernames, 'allNbrCommentary' => $allNbrCommentary]);
         }
     }
 
-        public function profileAction()
+    public function profileAction()
     {
-        if(isset($_GET['username'])){
-                $error = '';
+        if (isset($_GET['username'])) {
+            $error = '';
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $manager = UserManager::getInstance();
                 if ($manager->userCheckArticles($_POST)) {
@@ -46,35 +44,32 @@ class DefaultController extends BaseController
             }
             $manager = UserManager::getInstance();
             $user = $manager->getUserByUsername($_GET['username']);
-            if($user == false){
+            if ($user == false) {
                 $this->redirect('home');
-            }
-            else{
-                if(isset($_SESSION['user_id'])){
-                    $isConnected = true;
-                    if($_SESSION['user_id'] == $user['id']){
+            } else {
+                if (isset($_SESSION['user_id'])) {
+                    $isConnected = $user;
+                    if ($_SESSION['user_id'] == $user['id']) {
                         echo $this->renderView('profile.html.twig', ['error' => $error,
-                        'user' => $user, 'isConnected' => $isConnected]);
-                    }
-                    else{
+                            'user' => $user, 'isConnected' => $isConnected]);
+                    } else {
                         $visitor = $manager->getUserById($_SESSION['user_id']);
                         echo $this->renderView('profile.html.twig', ['error' => $error,
                             'user' => $user, 'isConnected' => $isConnected, 'visitor' => $visitor]);
                     }
-                }
-                else{
+                } else {
                     echo $this->renderView('profile.html.twig', ['error' => $error,
                         'user' => $user]);
                 }
             }
-        }
-        else{
+        } else {
             $this->redirect('home');
         }
     }
 
-    public function articlesAction(){
-        if(isset($_GET['id'])) {
+    public function articlesAction()
+    {
+        if (isset($_GET['id'])) {
             $error = '';
             $manager = UserManager::getInstance();
             $article = $manager->getArticlesById($_GET['id']);
@@ -86,14 +81,14 @@ class DefaultController extends BaseController
             $allFaction = array();
             $allUsernames = array();
             $commentary = $manager->getCommentaryByArticleId($article['id']);
-            foreach($commentary as $key ){
+            foreach ($commentary as $key) {
 
                 $infoUserCommentary = $manager->getUserById($key['user_id']);
                 $allUsernames[$key['user_id']] = $infoUserCommentary['username'];
                 $allUserCommentary[$key['user_id']] = $infoUserCommentary['nbr_commentary'];
                 $allFaction[$key['user_id']] = $infoUserCommentary['faction'];
             }
-            if($article){
+            if ($article) {
                 $userInfo['username'] = $infoUser['username'];
                 $userInfo['faction'] = $infoUser['faction'];
                 $userInfo['nbr_commentary'] = $infoUser['nbr_commentary'];
@@ -102,29 +97,26 @@ class DefaultController extends BaseController
             }
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-                if(isset($_POST['contentCommentary'])){
+                if (isset($_POST['content'])) {
                     $manager->insertCommentary($_POST, $article);
                 }
-                if(isset($_POST['articleContentEdition']))   {
+                if (isset($_POST['articleContentEdition'])) {
                     $manager->articleEdition($_POST, $article);
                 }
-
-                    $manager->commentaryEdition($_POST);
-
-
-
-
-           }
-            if(isset($_SESSION['user_id'])){
-            $user = $manager->getUserById($_SESSION['user_id']);
-            echo $this->renderView('articles.html.twig', ['article' =>$article,'commentary'=>$commentary, 'isConnected' => $user,'userInfo'=>$userInfo,'allUserCommentary'=>$allUserCommentary,'allFaction'=> $allFaction,'allUsernames'=>$allUsernames]);
-        }
-        else{
-                echo $this->renderView('articles.html.twig', ['article' =>$article,'commentary'=>$commentary,'userInfo'=>$userInfo,'allUserCommentary'=>$allUserCommentary,'allFaction'=> $allFaction,'allUsernames'=>$allUsernames]);
+                $manager->commentaryEdition($_POST);
+                if (isset($_POST['contentEditing'])) {
+                    $manager->userCheckArticleEdition($_POST);
+                    $manager->articleEdition($_POST, $article);
+                }
             }
-        }
-        else{
+
+            if (isset($_SESSION['user_id'])) {
+                $user = $manager->getUserById($_SESSION['user_id']);
+                echo $this->renderView('articles.html.twig', ['article' => $article, 'commentary' => $commentary, 'isConnected' => $user, 'userInfo' => $userInfo, 'allUserCommentary' => $allUserCommentary, 'allFaction' => $allFaction, 'allUsernames' => $allUsernames]);
+            } else {
+                echo $this->renderView('articles.html.twig', ['article' => $article, 'commentary' => $commentary, 'userInfo' => $userInfo, 'allUserCommentary' => $allUserCommentary, 'allFaction' => $allFaction, 'allUsernames' => $allUsernames]);
+            }
+        } else {
             $this->redirect('home');
         }
     }

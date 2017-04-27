@@ -1,10 +1,6 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-
-
-
-
 <ul class="topnav">
     <li id="active"><a href="#">{{article.title}}</a><div class="down arrow"></div><div class="up none arrow"></div></li>
     {% if isConnected is defined %}
@@ -77,6 +73,7 @@
                         </div>
                     </div>
                     <div class="commentary_content">{{ key.content | raw }}</div>
+
                     <div class="idCommentary"> {{ key.id}}</div>
                     <button class="commentaryEdition">Editez votre commentaire</button>
                     <!-- The Modal -->
@@ -101,9 +98,13 @@
                                 </div>
                             </div>
 
-                    </div>
+                        {% if key.user_id == isConnected.id %}
+                            <button class="commentaryEdition">Editez votre commentaire</button>
+                        {% endif %}
 
+                </div>
 
+            {% endfor %}
 
 
 
@@ -114,14 +115,11 @@
         <form action="?action=articles&amp;id={{article.id}}" method="POST" id="commentaryForm">
            <label for="contentCommentary">Contenu:</label>
             <textarea name="contentCommentary" id="contentCommentary"></textarea><br>  <span id="errorContent" class="errorBlock"></span>
-            <input type="submit" name="commentary">
+            <input type="submit">
         </form>
-    </div>
     </div>
     {% endif %}
     <script>
-        // Replace the <textarea id="editor1"> with a CKEditor
-        // instance, using default configuration.
         CKEDITOR.replace('contentCommentary');
         CKEDITOR.replace('articleContentEdition');
         CKEDITOR.replace('contentCommentaryEdition');

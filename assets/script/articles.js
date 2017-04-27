@@ -55,9 +55,11 @@ $(function () {
     });
 
 // When the user clicks on <span> (x), close the modal
+if(span){
     span.onclick = function() {
         modal.css('display','none');
     };
+}
 
 // When the user clicks anywhere outside of the modal, close it
     window.onclick = function(event) {
@@ -145,8 +147,8 @@ $(function () {
     commentaryForm.submit(function(){
         CKupdateCommentary();
         var formValid = true;
-       var  $this = $(this);
-       var divCommentary = $('#commentary');
+        var  $this = $(this);
+        var divCommentary = $('#commentary');
        // var $contentCommentary = $('#contentCommentary').val();
        // var $contentCommentaryInput = $('#contentCommentary');
     /*    if($contentCommentary === ''){

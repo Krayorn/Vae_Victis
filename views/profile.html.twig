@@ -21,43 +21,55 @@
     {% endif %}
 </ul>
 
-<div id="recap_profil">
-    <div class="recapInfo">Username : {{user.username}}</div>
-    <div class="recapInfo">Email : {{user.email}}</div>
-    <div class="recapInfo">Faction : {{user.faction}}</div>
-    <div class="recapInfo">Firstname : {{user.firstname}}</div>
-    <div class="recapInfo">Lastname : {{user.lastname}}</div>
-    <div class="recapInfo">Nmber of commentary : {{user.nbr_commentary}}</div>
-    <div class="recapInfo">Number of articles : {{user.nbr_articles}}</div>
+<div class="box">
+    <ul>
+        <li id="profile_user_info" class=" tabs active" href="#">User info</li>
+        <li id="profile_user_article" class=" tabs" href="#">Articles et Commentaires</li>
+        {% if isConnected.role >= 2 and visitor is not defined %}
+        <li id="profile_new_article" class=" tabs" href="#">Créer un nouvel article</li>
+        {% endif %}
+    </ul>
 
-{% if isConnected is defined and visitor is not defined %}
-    <a class="custom-btn" id="button_editing" href="?action=profileEditing">Editez les informations</a>
-{% endif %}
+    <div id="user_info" class="content">
+        <div class="recapInfo">Username : {{user.username}}</div>
+        <div class="recapInfo">Email : {{user.email}}</div>
+        <div class="recapInfo">Faction : {{user.faction}}</div>
+        <div class="recapInfo">Firstname : {{user.firstname}}</div>
+        <div class="recapInfo">Lastname : {{user.lastname}}</div>
+        <div class="recapInfo">Nmber of commentary : {{user.nbr_commentary}}</div>
+        <div class="recapInfo">Number of articles : {{user.nbr_articles}}</div>
 
+        {% if isConnected is defined and visitor is not defined %}
+            <a class="custom-btn" id="button_editing" href="?action=profileEditing">Editez les informations</a>
+        {% endif %}
+    </div>
+    <div id="user_article" class="content none">Articles et Commentaires</div>
+    {% if isConnected.role >= 2 and visitor is not defined %}
+    <div id="new_article" class="content none">
+        <div class="insert_article">
+            <div id="errorArticle">
+
+            </div>
+            <div id="errorFields" class="errorBlock"></div>
+            <div id="form">
+
+                <form action="?action=profile&amp;username={{username}}" method="POST" id="articlesForm">
+                    Title : <input type="text" name="title" id="title"><br>  <span id="errorTitle" class="errorBlock"></span>
+                    Description: <textarea name="description" id="description"></textarea><br>  <span id="errorDescription" class="errorBlock"></span>
+                    Contenu:     <textarea name="content" id="article_content"></textarea><br>  <span id="errorContent" class="errorBlock"></span>
+
+                    <input type="submit" name="articles">
+                </form>
+            </div>
+        </div>
+
+            <script>
+                // Replace the <textarea id="editor1"> with a CKEditor
+                // instance, using default configuration.
+                CKEDITOR.replace( 'article_content' );
+            </script>
+    </div>
+    {% endif %}
 </div>
-
-{% if isConnected is defined and visitor is not defined %}
-
-    <div id="errorArticle">
-
-    </div>
-    <div id="errorFields" class="errorBlock"></div>
-    <div id="form">
-
-        <form action="?action=profile&amp;username={{username}}" method="POST" id="articlesForm">
-            Title : <input type="text" name="title" id="title"><br>  <span id="errorTitle" class="errorBlock"></span>
-            Description: <textarea name="description" id="description"></textarea><br>  <span id="errorDescription" class="errorBlock"></span>
-            Contenu:     <textarea name="content" id="article_content"></textarea><br>  <span id="errorContent" class="errorBlock"></span>
-
-            <input type="submit" name="articles">
-        </form>
-    </div>
-
-        <script>
-    // Replace the <textarea id="editor1"> with a CKEditor
-    // instance, using default configuration.
-        CKEDITOR.replace( 'article_content' );
-    </script>
-{% endif %}
 
 {% endblock %}
