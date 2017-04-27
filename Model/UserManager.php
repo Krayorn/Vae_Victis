@@ -64,6 +64,18 @@ class UserManager
                 ['article_id' => $article_id]);
             return $data;
         }
+    public function getCommentaryByGetUserId($user_id)
+    {
+        $data = $this->DBManager->findAllSecure("SELECT * FROM commentary WHERE user_id = :user_id",
+            ['user_id' => $user_id]);
+        return $data;
+    }
+    public function getArticlesByGetUserId($user_id)
+    {
+        $data = $this->DBManager->findAllSecure("SELECT * FROM articles WHERE user_id = :user_id",
+            ['user_id' => $user_id]);
+        return $data;
+    }
     public function getUserArticles()
     {
         $data = $this->DBManager->findAllSecure("SELECT * FROM articles");

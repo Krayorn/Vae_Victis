@@ -43,7 +43,40 @@
                 <a class="custom-btn" id="button_editing" href="?action=profileEditing">Editez les informations</a>
             {% endif %}
         </div>
-        <div id="user_article" class="content none">Articles et Commentaires</div>
+        <div id="user_article" class="content none">
+
+            <div id="commentaryList">
+            {% for key in allCommentary %}
+
+                {% set commentary = listCommentary[key['id']] %}
+                {% set dateCommentary = listDateCommentary[key['id']] %}
+
+                <div class="listCommentary"> {{ commentary | raw}}</div>
+                <div class="listDateCommentary"> {{ dateCommentary | raw}}</div>
+            {% endfor %}
+            </div>
+
+
+            <div id="articlesList">
+                {% for key in allArticles %}
+
+                {% set articleContent = articlesContent[key['id']] %}
+                {% set articleDescription = articlesDescription[key['id']] %}
+                {% set articleTitle = articlesTitle[key['id']] %}
+                {% set dateArticles = listDateArticles[key['id']] %}
+
+
+
+
+                <div class="articlesDescription"> {{ articleTitle | raw}}</div>
+                    <div class="articlesTitle"> {{ articleDescription | raw}}</div>
+                    <div class="articlesContent"> {{ articleContent | raw}}</div>
+                <div class="listDateCommentary"> {{ dateArticles | raw}}</div>
+                {% endfor %}
+            </div>
+
+
+        </div>
         {% if isConnected.role >= 2 and visitor is not defined %}
         <div id="new_article" class="content none">
             <div class="insert_article">
