@@ -330,16 +330,31 @@
   .box {
     background-color: #264647;
     margin: 0px 20px;
-    padding: 20px;
   }
   .box ul {
     padding: 0px;
     display: flex;
   }
-  .box #user_info .recapInfo {
+  .box ul li {
+    border: 1px solid white;
+    padding: 10px;
+  }
+  .box ul li .img_tab {
+    width: 30px;
+  }
+  .box ul .active {
+    border: none;
+  }
+  .box .allContent {
+    padding: 20px;
+  }
+  .box .allContent #user_info {
+    text-align: center;
+  }
+  .box .allContent #user_info .recapInfo {
     color: white;
   }
-  .box #user_info #button_editing {
+  .box .allContent #user_info #button_editing {
     width: 160px;
   }
 

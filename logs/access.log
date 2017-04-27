@@ -1,31 +1,5 @@
-<<<<<<< HEAD
-2017-04-26 14:15 => function : articleEdition || User Berserker just updated his article 
-2017-04-26 16:36 => function : articleEdition || User Berserker just updated his article 
-2017-04-26 16:37 => function : articleEdition || User Berserker just updated his article 
-2017-04-26 16:37 => function : articleEdition || User Berserker just updated his article 
-=======
-2017-04-26 21:28 => function : userLogin || User Warden just connected.
-2017-04-26 21:43 => function : userLogin || User Hersir just connected.
-2017-04-26 22:54 => function : userLogin || User Warden just connected.
->>>>>>> 2d53c69b5dd866e138018ec074637a5bdd9cb462
-2017-04-27 07:58 => function : userLogin || User Appolyon just connected.
-2017-04-27 13:21 => function : articleEdition || User Appolyon just updated his article 
-2017-04-27 13:22 => function : articleEdition || User Appolyon just updated his article 
-2017-04-27 13:22 => function : articleEdition || User Appolyon just updated his article 
-2017-04-27 13:23 => function : articleEdition || User Appolyon just updated his article 
-2017-04-27 13:23 => function : articleEdition || User Appolyon just updated his article 
-2017-04-27 13:24 => function : articleEdition || User Appolyon just updated his article 
-2017-04-27 13:25 => function : articleEdition || User Appolyon just updated his article 
-2017-04-27 13:26 => function : articleEdition || User Appolyon just updated his article 
-2017-04-27 13:27 => function : articleEdition || User Appolyon just updated his article 
-2017-04-27 13:27 => function : articleEdition || User Appolyon just updated his article 
-2017-04-27 13:29 => function : articleEdition || User Appolyon just updated his article 
-2017-04-27 13:30 => function : articleEdition || User Appolyon just updated his article 
-2017-04-27 13:31 => function : articleEdition || User Appolyon just updated his article 
-2017-04-27 13:32 => function : articleEdition || User Appolyon just updated his article 
-2017-04-27 13:32 => function : articleEdition || User Appolyon just updated his article 
-2017-04-27 13:35 => function : articleEdition || User Appolyon just updated his article 
-2017-04-27 13:36 => function : articleEdition || User Appolyon just updated his article 
-2017-04-27 13:37 => function : articleEdition || User Appolyon just updated his article 
-2017-04-27 13:37 => function : articleEdition || User Appolyon just updated his article 
-2017-04-27 13:38 => function : articleEdition || User Appolyon just updated his article 
+2017-04-27 13:43 => function : addCommentary || User Hersir just added a commentary .
+2017-04-27 13:43 => function : articleEdition || User Hersir just updated his article 
+2017-04-27 13:45 => function : addCommentary || User Hersir just added a commentary .
+2017-04-27 13:45 => function : addCommentary || User Hersir just added a commentary .
+2017-04-27 13:47 => function : articleEdition || User Hersir just updated his article 

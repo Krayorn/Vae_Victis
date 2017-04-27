@@ -103,7 +103,7 @@ class DefaultController extends BaseController
                 if (isset($_POST['content'])) {
                     $manager->insertCommentary($_POST, $article);
                 }
-                if (isset($_POST['articleContentEdition'])) {
+                if (isset($_POST['contentEditing'])) {
                    if($manager->userCheckArticleEdition($_POST)){
                        $manager->articleEdition($_POST, $article);
                    }

@@ -277,17 +277,30 @@
     .box{
         background-color: #264647;
         margin : 0px 20px;
-        padding : 20px;
         ul{
             padding: 0px;
             display: flex;
-        }
-        #user_info{
-            .recapInfo{
-                color:white;
+            li{
+                border : 1px solid white;
+                padding: 10px;
+                .img_tab{
+                    width: 30px;
+                }
             }
-            #button_editing{
-                width: 160px;
+            .active{
+                border : none;
+            }
+        }
+        .allContent{
+            padding : 20px;
+            #user_info{
+                text-align: center;
+                .recapInfo{
+                    color:white;
+                }
+                #button_editing{
+                    width: 160px;
+                }
             }
         }
     }
