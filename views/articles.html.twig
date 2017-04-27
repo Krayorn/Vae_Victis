@@ -76,6 +76,11 @@
                 <div class="commentary_content">{{ key.content | raw }}</div>
                 {% if key.user_id == isConnected.id %}
                     <button class="commentaryEdition">Editez votre commentaire</button>
+                    <form action=?action=articles&amp;id={{id}}' method="POST" id="formDeleteCommentary">
+                       <!-- <input class="none"  type='text' name='idDeleteCommentary' id='idDeleteCommentary'>-->
+                        <input  type="submit" name="commentaryDelete" value='deleteCommentary'>
+                    </form>
+
                 {% endif %}
             </div>
         {% endfor %}
@@ -100,6 +105,7 @@
 
                         {% if key.user_id == isConnected.id %}
                             <button class="commentaryEdition">Editez votre commentaire</button>
+
                         {% endif %}
                 </div>
 
