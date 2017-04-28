@@ -20,7 +20,6 @@
     background-size: cover;
     margin: 0px;
     background-attachment: fixed;
-    padding-top: 80px;
   }
 }
 @media screen and (min-width: 1025px) {
@@ -33,6 +32,7 @@
 @media screen {
   main {
     min-height: 80vh;
+    margin-top: 60px;
   }
 
   .img_params {
@@ -149,7 +149,7 @@
 @media screen {
   .form-container {
     background-color: black;
-    opacity: 0.7;
+    opacity: 0.8;
     margin: 10% 10% 0% 10%;
     padding: 10% 0%;
     text-align: center;
@@ -187,33 +187,74 @@
     width: 50px;
   }
 
+  .allArticles {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    min-height: 100vh;
+    margin-top: 60px;
+    background-color: #d3d3cd;
+    padding-bottom: 50px;
+  }
+}
+@media screen and (min-width: 641px) {
+  .allArticles {
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0% 10%;
+  }
+}
+@media screen {
+  .allArticles .tablet_center {
+    display: none;
+  }
+}
+@media screen and (min-width: 641px) {
+  .allArticles .tablet_center {
+    display: block;
+    position: fixed;
+    top: 20%;
+    left: 40%;
+    width: 20%;
+  }
+}
+@media screen {
+  .allArticles .article {
+    background-color: #c0c0c0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0px;
+    padding: 20px;
+    width: 100%;
+  }
+}
+@media screen and (min-width: 641px) {
+  .allArticles .article {
+    width: 40%;
+  }
+}
+@media screen {
+  .allArticles .article a {
+    color: #c02424;
+  }
+  .allArticles .article .article_title {
+    font-size: 20px;
+    font-family: "article";
+    color: #c02424;
+  }
+  .allArticles .article .img_article {
+    width: 70%;
+    position: relative;
+  }
+
   .border {
     border: 1px solid white;
     border-radius: 5px;
   }
 
-  footer {
-    margin-top: 30px;
-    width: 100%;
-    height: 100px;
-    background-color: #333;
-    font-size: 20px;
-    font-family: "nordic";
-    font-size: 18px;
-    color: white;
-  }
-}
-@media screen and (min-width: 1025px) {
-  footer {
-    position: absolute;
-    left: 0;
-    z-index: 2;
-    padding: 0% 18%;
-    width: 64%;
-  }
-}
-
-@media screen {
   #commentary {
     background-color: #264647;
     margin: 0px 20px;
@@ -264,7 +305,6 @@
 }
 
 @media screen {
-  /* The Modal (background) */
   .modal {
     display: none;
     /* Hidden by default */
@@ -442,6 +482,9 @@
 @media screen and (min-width: 1025px) {
   .box .allContent #user_article {
     display: block;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
   }
 }
 @media screen and (min-width: 1025px) {
@@ -450,9 +493,6 @@
     padding-top: 50px;
     border-top: white solid 1px;
     width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
   }
 }
 
@@ -488,6 +528,25 @@
   .custom-btn:hover:after {
     top: 0;
     height: 100%;
+  }
+
+  footer {
+    width: 100%;
+    height: 100px;
+    background-color: #333;
+    font-size: 20px;
+    font-family: "nordic";
+    font-size: 18px;
+    color: white;
+  }
+}
+@media screen and (min-width: 1025px) {
+  footer {
+    position: absolute;
+    left: 0;
+    z-index: 2;
+    padding: 0% 18%;
+    width: 64%;
   }
 }
 

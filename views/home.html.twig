@@ -13,18 +13,22 @@
     {% endif %}
 </ul>
 
+<div class="allArticles">
+    <img class="tablet_center" src="https://store.ubi.com/on/demandware.static/-/Library-Sites-shared-library-allsites/default/dw3ba6f7ba/images/landings/brand_pages/FH/images/design/media_deco_img.png"/>
     {% for key in articles %}
-        {% set username = allUsernames[key['user_id']] %}
-        {% set commentary = allNbrCommentary[key['user_id']] %}
+        {% set username = allUsernames[key['id']] %}
+        {% set commentary = allNbrCommentary[key['id']] %}
         {% set title =key['title'] %}
         {% set description =key['description'] %}
-        <div id="infoArticleUser">
-          Utilisateur :  {{ username }}
-            Nombre de commentaire de l'article : {{ commentary }}
-
-        </div><br>
-        <div> Titre :{{ title }}</div><br>
-        <div><img src="{{ description }}"/></div><br>
-        <a href="?action=articles&amp;id={{key.id}}"> Voir l'article complet</a><br>
+        <div class="article">
+            <div class="article_title">{{ title }}</div>
+            <img class="img_article" src="{{ description }}"/>
+            <div id="infoArticleUser">
+                <a href="?action=profile&amp;username={{username}}" class="author">Auteur : {{ username }}</a>
+                <p class="nbr_commentary">{{commentary}} commentaires</p>
+            </div>
+            <a href="?action=articles&amp;id={{key.id}}"> Voir l'article complet</a>
+        </div>
     {% endfor %}
+</div>
 {% endblock %}

@@ -15,8 +15,8 @@ class DefaultController extends BaseController
         $allNbrCommentary = array();
         foreach ($articles as $key) {
             $infoUser = $manager->getUserById($key['user_id']);
-            $allUsernames[$key['user_id']] = $infoUser['username'];
-            $allNbrCommentary[$key['user_id']] = $key['nbr_commentary'];
+            $allUsernames[$key['id']] = $infoUser['username'];
+            $allNbrCommentary[$key['id']] = $key['nbr_commentary'];
         }
 
         if (!empty($_SESSION['user_id'])) {

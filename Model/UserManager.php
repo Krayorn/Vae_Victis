@@ -374,7 +374,6 @@ class UserManager
 
     public function commentaryDelete($data,$article)
     {
-        var_dump($article);
         $update['id'] = $data['idDeleteCommentary'];
         $update['user_id'] = $_SESSION['user_id'];
         $query = $this->DBManager->findOneSecure("DELETE  FROM commentary WHERE  `id` = :id AND `user_id` = :user_id", $update);
@@ -389,7 +388,6 @@ class UserManager
     {
         $update['id'] = $article_id['id'];
         $user_id = $_SESSION['user_id'];
-        var_dump($user_id);
         $query = $this->DBManager->findOneSecure("DELETE  FROM articles WHERE  `id` = :id", $update);
         $write = $this->write_log('access.log', ' => function : articleEdition || User ' . $_SESSION['username'] . ' just updated his article '."\n");
         $this->commentaryDeleteArticleId($update['id']);
