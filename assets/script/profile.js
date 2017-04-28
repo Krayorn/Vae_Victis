@@ -67,6 +67,7 @@ function CKupdateCommentary(){
             if(data.success === false) {
                 errorArticle.html(data.errors['article']);
                  errorFields.html(data.errors['title']);
+                 errorFields.html(data.errors['file']);
             }
              if(data.success === true){
                 $titleInput.val('');
