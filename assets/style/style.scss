@@ -16,9 +16,9 @@
         justify-content: $content;
     }
 
-    @mixin background_opacity(){
-        background-color: black;
-        opacity: 0.7;
+    @mixin background_opacity($color){
+        background-color: $color;
+        opacity: 0.8;
     }
 
     @mixin title($font){
@@ -39,15 +39,17 @@
         background-size: cover;
         margin : 0px;
         background-attachment: fixed;
-        padding-top: 80px;
         @media (min-width: 1025px){
             padding :0% 18%;
-            padding-top: 25px;  
         }
     }
 
     main{
         min-height: 80vh;
+        margin-top: 60px;
+        @media(min-width:1025px){
+            margin: 0px;
+        }
     }
 
     .img_params{
@@ -137,13 +139,30 @@
         position: fixed;
         top: 0;
         right: 0;
+        z-index: 1;
+        align-items: center;
         @media(min-width : 1025px){
             display: flex;
+        }
+        .static_footer{
+            position: fixed;
+            bottom: 0;
+            width:200px;
+        }
+        .logo{
+            position: fixed;
+            top:0;
+            width: 18%;
+        }
+        iframe{
+            width :100%;
+            margin: auto;
+            height: 150px;
         }
     }
 
     .form-container{
-        @include background_opacity();
+        @include background_opacity(black);
         margin : 10% 10% 0% 10%;
         padding : 10% 0%;
         text-align: center;
@@ -173,26 +192,59 @@
         }
     }
 
+    .allArticles{
+        @include flex_trinity(column, flex-start);
+        min-height: 100vh;
+        margin-top: 60px;
+        background-color: #d3d3cd;
+        padding-bottom: 50px;
+        @media(min-width:641px){
+            flex-wrap: wrap;
+            flex-direction: row;
+            justify-content: space-between;
+            padding : 0% 10%;
+        }
+        @media(min-width:1025px){
+            margin :0px;
+            padding : 0%;
+        }
+        .tablet_center{
+            display: none;
+            @media(min-width:641px){
+                display: block;
+                position: fixed;
+                top:20%;
+                left : 40%;
+                width: 20%;
+            }
+        }
+        .article{
+            background-color: #c0c0c0;
+            @include flex_trinity(column, space-between);
+            align-items: center;
+            margin :20px 0px;
+            padding :20px;
+            width : 100%;
+            @media(min-width : 641px){
+                width:40%;
+            }
+            a{
+                color:#c02424;
+            }
+            .article_title{
+                @include title('article');
+                color:#c02424;
+            }
+            .img_article{
+                width: 70%;
+                position: relative;
+            }
+        }
+    }
+
     .border{
         border : 1px solid white;
         border-radius: 5px;
-    }
-
-    footer{
-        margin-top: 30px;
-        width: 100%;
-        height: 100px;
-        background-color: #333;
-        @include title('nordic');
-        font-size: 18px;
-        color: white;
-        @media (min-width: 1025px){
-            position: absolute;
-            left: 0;
-            z-index: 2;
-            padding : 0% 18%;
-            width: 64%;
-        }    
     }
 
     #commentary{
@@ -228,7 +280,7 @@
             }
         }
     }
-    /* The Modal (background) */
+
     .modal {
         display: none; /* Hidden by default */
         position: fixed; /* Stay in place */
@@ -289,6 +341,10 @@
 
     .box{
         margin : 0px 20px;
+        margin-top: 150px;
+        @media(min-width:1025px){
+            margin-top: 0px;
+        }
         ul{
             padding: 0px;
             display: flex;
@@ -353,13 +409,13 @@
                 display: none;
                 @media(min-width:1025px){
                     display: block;
+                    @include flex_trinity(row, space-around);
                 }
                 @media(min-width:1025px){
                     margin-top:50px;
                     padding-top: 50px;
                     border-top: white solid 1px;
                     width: 100%;
-                    @include flex_trinity(row, space-around);
                 }
             }
         }
@@ -396,5 +452,21 @@
             }
         }
     }
+
+    footer{
+        width: 100%;
+        height: 100px;
+        background-color: #333;
+        @include title('nordic');
+        font-size: 18px;
+        color: white;
+        @media (min-width: 1025px){
+            position: absolute;
+            left: 0;
+            padding : 0% 18%;
+            width: 64%;
+        }    
+    }
+
 }
 

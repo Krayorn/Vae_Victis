@@ -86,7 +86,7 @@ class DefaultController extends BaseController
                     }
                 } else {
                     echo $this->renderView('profile.html.twig', ['error' => $error,
-                        'user' => $user]);
+                        'user' => $user,  'allArticles'=> $allArticles,'allCommentary'=> $allCommentary,'listCommentary' => $listCommentary,'listDateCommentary' => $listDateCommentary,'listArticles'=>$listArticles,'listDateArticles'=>$listDateArticles,'articlesTitle'=> $articlesTitle,'articlesDescription'=>$articlesDescription,'articlesContent'=> $articlesContent]);
                 }
             }
         }
