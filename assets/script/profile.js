@@ -8,8 +8,8 @@ $(function () {
     var errorArticle = $('#errorArticle');  
 
     function switch_tab($tabs, $content){
-        $('.content').addClass('none');
-        $content.removeClass('none');
+        $('.content').css('display', 'none');
+        $content.css('display', 'block');
         $('.tabs').removeClass('active');
         $tabs.addClass('active');
     }

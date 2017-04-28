@@ -85,12 +85,10 @@ $(function () {
     var articleContentEdition = $('#articleContentEdition');
     var titleEdition = $('#titleEdition');
     var descriptionEdition = $('#descriptionEdition');
-
-
-    formEdition.css('display', 'none');
-    imgEditionArticle.click('slideToggle', function () {
-        fullContentCommentary.css('display', 'none');
-        formEdition.css('display', 'block');
+    formEdition.css('display','none');
+    imgEditionArticle.click('slideToggle',function(){
+        fullContentCommentary.css('display','none');
+        formEdition.css('display','block');
         titleEdition.val(titleContent.html());
 
         console.log(titleContent.html());
