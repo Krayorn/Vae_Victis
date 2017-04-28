@@ -281,14 +281,14 @@ class UserManager
 
         return $query;
     }
-    public function addArticleUser()
-    {
-        $update['user_id'] = $_SESSION['user_id'];
-        $query = $this->DBManager->findOneSecure("UPDATE users SET `nbr_articles`=  nbr_articles + 1 WHERE `id` = :user_id", $update);
-        $write = $this->write_log('access.log', ' => function : addCommentary || User ' . $_SESSION['username'] . ' just added a commentary .' . "\n");
+        public function addArticleUser()
+        {
+            $update['user_id'] = $_SESSION['user_id'];
+            $query = $this->DBManager->findOneSecure("UPDATE users SET `nbr_articles`=  nbr_articles + 1 WHERE `id` = :user_id", $update);
+            $write = $this->write_log('access.log', ' => function : addCommentary || User ' . $_SESSION['username'] . ' just added a commentary .' . "\n");
 
-        return $query;
-    }
+            return $query;
+        }
     public function addCommentaryArticle($article_id)
     {
         $update['article_id'] = $article_id;
