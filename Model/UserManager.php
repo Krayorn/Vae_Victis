@@ -13,20 +13,16 @@ class UserManager
             self::$instance = new UserManager();
         return self::$instance;
     }
-    
     private function __construct()
     {
         $this->DBManager = DBManager::getInstance();
     }
-
     public function getUserById($id)
     {
         $id = (int)$id;
         $data = $this->DBManager->findOne("SELECT * FROM users WHERE id = ".$id);
         return $data;
     }
-
-    
     public function getUserByUsername($username)
     {
         $data = $this->DBManager->findOneSecure("SELECT * FROM users WHERE username = :username",
@@ -87,7 +83,6 @@ class UserManager
         $data = $this->DBManager->findAllSecure("SELECT * FROM articles");
         return $data;
     }
-
     public function getUserByArticleId($article_id)
     {
 
@@ -95,7 +90,6 @@ class UserManager
             ['article_id' => $article_id]);
         return $data;
     }
-
     public function userCheckRegister($data)
     {
         $valid = true;
@@ -136,13 +130,11 @@ class UserManager
             return true;
         }
     }
-    
     private function userHash($pass)
     {
         $hash = password_hash($pass, PASSWORD_BCRYPT);
         return $hash;
     }
-
     public function giveDate()
     {
         $date = date("Y-m-d");
@@ -180,14 +172,12 @@ class UserManager
             $valid = false;
             $errors['username'] = 'User not found ';
         }
-            
         if (password_verify($data['password'], $user['password']) == false)
         {
             $valid = false;
             $errors['password'] = 'Password does not match with username';
 
         }
-
         if($valid == false){
             echo json_encode(array('success'=>false, 'errors'=>$errors));
             exit(0);
@@ -195,7 +185,6 @@ class UserManager
             return true;
         }
     }
-
     public function userLogin($username)
     {
         $data = $this->getUserByUsername($username);
@@ -242,6 +231,7 @@ class UserManager
         $this->DBManager->insert('articles', $user);
         $write = $this->write_log('access.log', ' => function : insertArticles || User ' . $_SESSION['username'] . ' just created a new Article named ' . $user['title'] . '.' . "\n");
         move_uploaded_file($img['description']['tmp_name'], $filepath);
+        $this->addArticleUser();
         echo json_encode(array('success'=>true));
         exit(0);
     }
@@ -302,11 +292,37 @@ class UserManager
         return $query;
     }
 
+    public function addArticleUser()
+    {
+        $update['user_id'] = $_SESSION['user_id'];
+        $query = $this->DBManager->findOneSecure("UPDATE users SET nbr_articles=  nbr_articles + 1 WHERE id = :user_id", $update);
+        $write = $this->write_log('access.log', ' => function : addCommentary || User ' . $_SESSION['username'] . ' just added a commentary .' . "\n");
+
+        return $query;
+    }
+
     public function addCommentaryArticle($article_id)
     {
-
         $update['article_id'] = $article_id;
-        $query = $this->DBManager->findOneSecure("UPDATE articles SET `nbr_commentary`=  nbr_commentary + 1 WHERE `id` = :article_id", $update);
+        $query = $this->DBManager->findOneSecure("UPDATE articles SET nbr_commentary=  nbr_commentary + 1 WHERE id = :article_id", $update);
+        return $query;
+    }
+
+    public function deleteCommentaryArticle($article_id)
+    {
+        $update['article_id'] = $article_id;
+        $query = $this->DBManager->findOneSecure("UPDATE articles SET `nbr_commentary` =  nbr_commentary - 1 WHERE `id` = :article_id", $update);
+        return $query;
+    }
+    public function deleteArticleUser($user_id)
+    {
+        $update['user_id'] = $user_id;
+        $query = $this->DBManager->findOneSecure("UPDATE users SET `nbr_articles` =  nbr_articles - 1 WHERE `id` = :user_id", $update);
+        return $query;
+    }
+    public function deleteCommentaryUser($user_id)
+    {
+        $query = $this->DBManager->findOneSecure("UPDATE users SET `nbr_commentary`=  nbr_commentary - 1 WHERE `id` = :user_id",['user_id'=>$user_id]);
         return $query;
     }
 
@@ -329,7 +345,6 @@ class UserManager
         else{
             return true;
         }
-
     }
     
     public function articleEdition($data,$article)
@@ -357,16 +372,40 @@ class UserManager
         exit(0);
     }
 
-    public function commentarySupp($data)
+    public function commentaryDelete($data,$article)
     {
-
+        var_dump($article);
         $update['id'] = $data['idDeleteCommentary'];
         $update['user_id'] = $_SESSION['user_id'];
         $query = $this->DBManager->findOneSecure("DELETE  FROM commentary WHERE  `id` = :id AND `user_id` = :user_id", $update);
         $write = $this->write_log('access.log', ' => function : articleEdition || User ' . $_SESSION['username'] . ' just updated his article '."\n");
+        $this->deleteCommentaryArticle($article['id']);
+        $this->deleteCommentaryUser($update['user_id']);
+
         echo json_encode(array('success'=>true));
         exit(0);
     }
+    public function articlesDelete($article_id)
+    {
+        $update['id'] = $article_id['id'];
+       $user_id = $_SESSION['user_id'];
+       var_dump($user_id);
+        $query = $this->DBManager->findOneSecure("DELETE  FROM articles WHERE  `id` = :id", $update);
+        $write = $this->write_log('access.log', ' => function : articleEdition || User ' . $_SESSION['username'] . ' just updated his article '."\n");
+        $this->commentaryDeleteArticleId($update['id']);
+        $this->deleteArticleUser($user_id);
+        echo json_encode(array('success'=>true));
+        exit(0);
+    }
+    public function commentaryDeleteArticleId($data)
+    {
+        $update['id'] = $data;
+        $query = $this->DBManager->findOneSecure("DELETE  FROM commentary WHERE  `article_id` = :id", $update);
+        $write = $this->write_log('access.log', ' => function : articleEdition || User ' . $_SESSION['username'] . ' just updated his article '."\n");
+        echo json_encode(array('success'=>true));
+        exit(0);
+    }
+
 
      public function firstnameEdition($data)
     {

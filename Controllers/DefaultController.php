@@ -97,8 +97,7 @@ class DefaultController extends BaseController
     public function articlesAction()
     {
         if (isset($_GET['id'])) {
-        echo 'ohoho';
-        var_dump($_POST);
+
         $error = '';
             $manager = UserManager::getInstance();
             $article = $manager->getArticlesById($_GET['id']);
@@ -127,7 +126,9 @@ class DefaultController extends BaseController
 
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            echo 'hoho';
+                if (isset($_POST['idDeleteCommentary'])) {
+                    $manager->commentaryDelete($_POST, $article);
+                }
                 if (isset($_POST['content'])) {
                     $manager->insertCommentary($_POST, $article);
                 }
@@ -137,14 +138,13 @@ class DefaultController extends BaseController
                    }
 
                 }
-                if (isset($_POST['idDeleteCommentary'])) {
-                    echo 'hihi';
-                    $manager->commentarySupp($_POST);
-                }
 
                 if (isset($_POST['commentaryEditing'])) {
                     $manager->commentaryEdition($_POST);
                 }
+
+                    $manager->articlesDelete($article);
+
             }
 
             if (isset($_SESSION['user_id'])) {
