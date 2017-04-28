@@ -41,13 +41,15 @@
         background-attachment: fixed;
         @media (min-width: 1025px){
             padding :0% 18%;
-            padding-top: 25px;  
         }
     }
 
     main{
         min-height: 80vh;
         margin-top: 60px;
+        @media(min-width:1025px){
+            margin: 0px;
+        }
     }
 
     .img_params{
@@ -137,8 +139,25 @@
         position: fixed;
         top: 0;
         right: 0;
+        z-index: 1;
+        align-items: center;
         @media(min-width : 1025px){
             display: flex;
+        }
+        .static_footer{
+            position: fixed;
+            bottom: 0;
+            width:200px;
+        }
+        .logo{
+            position: fixed;
+            top:0;
+            width: 18%;
+        }
+        iframe{
+            width :100%;
+            margin: auto;
+            height: 150px;
         }
     }
 
@@ -184,6 +203,10 @@
             flex-direction: row;
             justify-content: space-between;
             padding : 0% 10%;
+        }
+        @media(min-width:1025px){
+            margin :0px;
+            padding : 0%;
         }
         .tablet_center{
             display: none;
@@ -318,6 +341,10 @@
 
     .box{
         margin : 0px 20px;
+        margin-top: 150px;
+        @media(min-width:1025px){
+            margin-top: 0px;
+        }
         ul{
             padding: 0px;
             display: flex;
@@ -436,7 +463,6 @@
         @media (min-width: 1025px){
             position: absolute;
             left: 0;
-            z-index: 2;
             padding : 0% 18%;
             width: 64%;
         }    

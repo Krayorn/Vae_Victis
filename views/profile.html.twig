@@ -23,10 +23,10 @@
 
 <div class="box">
     <ul>
-        <li id="profile_user_info" class=" tabs active" href="#"><img class="img_tab" src="assets/images/business-card-of-a-man-with-contact-info.png"></li>
-        <li id="profile_user_article" class=" tabs" href="#"><img class="img_tab" src="assets/images/chat.png"></li>
+        <li id="profile_user_info" class=" tabs active"><img class="img_tab" alt="img_user_info" src="assets/images/business-card-of-a-man-with-contact-info.png"></li>
+        <li id="profile_user_article" class=" tabs"><img class="img_tab" alt="img_user_article" src="assets/images/chat.png"></li>
         {% if isConnected.role >= 2 and visitor is not defined %}
-        <li id="profile_new_article" class=" tabs" href="#"><img class="img_tab" src="assets/images/insert.png"></li>
+        <li id="profile_new_article" class=" tabs"><img class="img_tab" alt="img_new_article" src="assets/images/insert.png"></li>
         {% endif %}
     </ul>
     <div class="allContent">
@@ -55,7 +55,7 @@
 
                     <form action="?action=profile&amp;username={{username}}" method="POST" enctype="multipart/form-data" id="articlesForm">
                         Title : <input type="text" name="title" id="title"><br>  <span id="errorTitle" class="errorBlock"></span>
-                        Description: <input type="file" name="description" id="description"></textarea><br>  <span id="errorDescription" class="errorBlock"></span>
+                        Description: <input type="file" name="description" id="description"><br>  <span id="errorDescription" class="errorBlock"></span>
                         Contenu:     <textarea name="content" id="article_content"></textarea><br>  <span id="errorContent" class="errorBlock"></span>
 
                         <input type="submit">
@@ -104,8 +104,10 @@
     </div>
 </div>
 
-<div class="aside_bar">
-    
-</div>
+<aside class="aside_bar">
+    <img class="logo" alt="logo_honor" src="https://asset.msi.com/event/mb/2016/for_honor/images/logo.png"/>
+    <iframe src="https://www.youtube.com/embed/hduexi1GD5c" allowfullscreen></iframe>
+    <img class="static_footer" alt="side_bar_img" src="https://s-media-cache-ak0.pinimg.com/originals/39/b3/ab/39b3abe89624767f861602cbf9fb5517.png"/>
+</aside>
 
 {% endblock %}

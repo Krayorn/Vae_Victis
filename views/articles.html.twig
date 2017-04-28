@@ -89,7 +89,7 @@
             </div>
         {% endfor %}
     </div>
-                        <div id="myModal" class="modal">
+                <div id="myModal" class="modal">
 
                             <!-- Modal content -->
                             <div class="modal-content">
@@ -112,7 +112,7 @@
 
                         {% endif %}
                 </div>
-
+    </div>
     {% if isConnected is defined %}
     <div id="form">
         <span id="errorCommentary" class="errorBlock"></span>
@@ -129,5 +129,11 @@
         CKEDITOR.replace('articleContentEdition');
         CKEDITOR.replace('contentCommentaryEdition');
     </script>
+
+<aside class="aside_bar">
+    <img class="logo" alt="logo_honor" src="https://asset.msi.com/event/mb/2016/for_honor/images/logo.png"/>
+    <iframe src="https://www.youtube.com/embed/hduexi1GD5c" allowfullscreen></iframe>
+    <img class="static_footer" alt="side_bar_img" src="https://s-media-cache-ak0.pinimg.com/originals/39/b3/ab/39b3abe89624767f861602cbf9fb5517.png"/>
+</aside>
 
 {% endblock %}

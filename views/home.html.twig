@@ -22,8 +22,8 @@
         {% set description =key['description'] %}
         <div class="article">
             <div class="article_title">{{ title }}</div>
-            <img class="img_article" src="{{ description }}"/>
-            <div id="infoArticleUser">
+            <img class="img_article" alt="article_img" src="{{ description }}"/>
+            <div class="infoArticleUser">
                 <a href="?action=profile&amp;username={{username}}" class="author">Auteur : {{ username }}</a>
                 <p class="nbr_commentary">{{commentary}} commentaires</p>
             </div>
@@ -31,4 +31,10 @@
         </div>
     {% endfor %}
 </div>
+
+<aside class="aside_bar">
+    <img class="logo" alt="logo_honor" src="https://asset.msi.com/event/mb/2016/for_honor/images/logo.png"/>
+    <img class="static_footer" alt="side_bar_img" src="http://vignette3.wikia.nocookie.net/for-honor/images/b/b2/Fh_hero-character-warden_ncsa.png/revision/latest?cb=20160721210752"/>
+    <iframe src="https://www.youtube.com/embed/hduexi1GD5c" allowfullscreen></iframe>
+</aside>
 {% endblock %}
