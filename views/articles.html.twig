@@ -38,8 +38,9 @@
             </div>
         </div>
     </article>
-
-    </div>
+    <form action="?action=articles&amp;id={{ article.id }}" method="POST" id="formDeleteArticle">
+        <input  type="submit" name="deleteArticles" value="deleteArticles">
+    </form>
     <div id="formEdition">
         <div id="resultEdition"></div>
         <form action="?action=articles&amp;id={{ article.id }}" method="POST" id="articlesFormEdition">
@@ -76,9 +77,8 @@
                 <div class="commentary_content">{{ key.content | raw }}</div>
                 {% if key.user_id == isConnected.id %}
                     <button class="commentaryEdition">Editez votre commentaire</button>
-                    <form action=?action=articles&amp;id={{id}}' method="POST" id="formDeleteCommentary">
-                       <!-- <input class="none"  type='text' name='idDeleteCommentary' id='idDeleteCommentary'>-->
-                        <input  type="submit" name="commentaryDelete" value='deleteCommentary'>
+                    <form action="?action=articles&amp;id={{ article.id }}" method="POST" id="formDeleteCommentary">
+                        <input  type="submit" name="commentaryDelete" value="commentaryDelete">
                     </form>
 
                 {% endif %}

@@ -65,7 +65,7 @@ $(function () {
              if(data.success === true){
                 $titleInput.val('');
                 $descriptionInput.val('');
-                window.location.href="?action=home";
+              //  window.location.href="?action=home";
             }
          },
              error: function(response,statut,error){

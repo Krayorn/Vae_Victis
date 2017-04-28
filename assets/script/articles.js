@@ -188,15 +188,9 @@ $(function () {
 
     formDeleteCommentary.submit(function () {
         var $idCommentary = commentaryEdition.parent().children('.idCommentary').html();
-
-
-
-
-
         var formValid = true;
         var $this = $(this);
         if (formValid) {
-
             $.ajax({
                 url: $this.attr('action'), // Le nom du fichier indiqué dans le formulaire
                 type: $this.attr('method'), // La méthode indiquée dans le formulaire (get ou post)
@@ -205,8 +199,31 @@ $(function () {
 
                 success: function (data) {
                     if (data.success === true) {
-
                         noneCommentary.css('display','none');
+                    }
+                }
+            });
+        }
+        return false;
+    });
+
+    var formDeleteArticle = $('#formDeleteArticle');
+    formDeleteArticle.submit(function () {
+
+
+        var formValid = true;
+        var $this = $(this);
+        if (formValid) {
+
+            $.ajax({
+                url: $this.attr('action'), // Le nom du fichier indiqué dans le formulaire
+                type: $this.attr('method'), // La méthode indiquée dans le formulaire (get ou post),
+                data:$this.serialize(),
+                dataType: 'json', // JSON,
+
+                success: function (data) {
+                    if (data.success === true) {
+                       console.log('ok');
                     }
                 }
             });
