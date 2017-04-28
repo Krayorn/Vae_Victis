@@ -7,3 +7,5 @@
 !/cache/twig/.gitkeep
 /node_modules
 /logs
+/articles_img
+!/articles_img.gitkeep

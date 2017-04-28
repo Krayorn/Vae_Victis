@@ -39,18 +39,21 @@ class UserManager
             ['title' => $title]);
         return $data;
     }
+
     public function getArticlesById($article_id)
     {
         $data = $this->DBManager->findOneSecure("SELECT * FROM articles WHERE id = :article_id",
             ['article_id' => $article_id]);
         return $data;
     }
+
     public function getUserByEmail($email)
     {
         $data = $this->DBManager->findOneSecure("SELECT * FROM users WHERE email = :email",
         ['email' => $email]);
         return $data;
     }
+
     public function getEmailByUserId($user_id)
     {
         $data = $this->DBManager->findOneSecure("SELECT email FROM users WHERE id = :user_id",
@@ -58,24 +61,27 @@ class UserManager
         return $data;
     }
 
-        public function getCommentaryByArticleId($article_id)
-        {
-            $data = $this->DBManager->findAllSecure("SELECT * FROM commentary WHERE article_id = :article_id",
-                ['article_id' => $article_id]);
-            return $data;
-        }
+    public function getCommentaryByArticleId($article_id)
+    {
+        $data = $this->DBManager->findAllSecure("SELECT * FROM commentary WHERE article_id = :article_id",
+            ['article_id' => $article_id]);
+        return $data;
+    }
+        
     public function getCommentaryByGetUserId($user_id)
     {
         $data = $this->DBManager->findAllSecure("SELECT * FROM commentary WHERE user_id = :user_id",
             ['user_id' => $user_id]);
         return $data;
     }
+
     public function getArticlesByGetUserId($user_id)
     {
         $data = $this->DBManager->findAllSecure("SELECT * FROM articles WHERE user_id = :user_id",
             ['user_id' => $user_id]);
         return $data;
     }
+
     public function getUserArticles()
     {
         $data = $this->DBManager->findAllSecure("SELECT * FROM articles");
@@ -202,15 +208,15 @@ class UserManager
         exit(0);
     }
 
-    public function userCheckArticles($data)
+    public function userCheckArticles($data, $img)
     {
         $valid = true;
         $errors = array();
-        if (empty($data['title']) OR empty($data['description']) OR empty($data['content'])){
+        if (empty($data['title']) OR empty($img['description']) OR empty($data['content'])){
             $valid = false;
             $errors['article'] = 'Missing fields';
         }
-       $testTitle = $this->getArticlesByTitle($data['title']);
+        $testTitle = $this->getArticlesByTitle($data['title']);
         if ($testTitle){
             $valid = false;
             $errors['title'] = 'Title already used';
@@ -223,17 +229,19 @@ class UserManager
         }
     }
 
-    public function insertArticles($data)
+    public function insertArticles($data, $img)
     {
+        $filepath = "uploads/articles_img/" . $data['title'] . strrchr(basename($img['description']['name']), '.');
         $user['user_id'] = $_SESSION['user_id'];
         $user['date'] = $this ->giveDate();
         $user['title'] = $data['title'];
-        $user['description'] = $data['description'];
+        $user['description'] = $filepath;
         $user['content'] = $data['content'];
         $user['nbr_commentary'] =  '0';
         $user['update_date'] = $this->giveDate();
         $this->DBManager->insert('articles', $user);
         $write = $this->write_log('access.log', ' => function : insertArticles || User ' . $_SESSION['username'] . ' just created a new Article named ' . $user['title'] . '.' . "\n");
+        move_uploaded_file($img['description']['tmp_name'], $filepath);
         echo json_encode(array('success'=>true));
         exit(0);
     }
@@ -283,6 +291,7 @@ class UserManager
         $data = $this->DBManager->findAllSecure("SELECT * FROM articles");
         return $data;  
     }
+
     public function addCommentaryUser()
     {
 
@@ -292,6 +301,7 @@ class UserManager
 
         return $query;
     }
+
     public function addCommentaryArticle($article_id)
     {
 
@@ -299,6 +309,7 @@ class UserManager
         $query = $this->DBManager->findOneSecure("UPDATE articles SET `nbr_commentary`=  nbr_commentary + 1 WHERE `id` = :article_id", $update);
         return $query;
     }
+
     public function userCheckArticleEdition($data)
     {
         $valid = true;
@@ -320,6 +331,7 @@ class UserManager
         }
 
     }
+    
     public function articleEdition($data,$article)
     {
         $update['titleEditing'] = $data['titleEditing'];
@@ -344,6 +356,7 @@ class UserManager
         echo json_encode(array('success'=>true));
         exit(0);
     }
+
     public function commentarySupp($data)
     {
 
@@ -488,6 +501,7 @@ class UserManager
             return true;
         }        
     }
+
     public function userCheckFaction($data){
         $valid = true;
         $errors = array();
@@ -502,7 +516,6 @@ class UserManager
             return true;
         }
     }
-
 
     public function write_log($file, $text){
         $date = $this->giveDate();

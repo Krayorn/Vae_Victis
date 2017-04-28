@@ -34,11 +34,10 @@ class DefaultController extends BaseController
             $error = '';
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $manager = UserManager::getInstance();
-                if ($manager->userCheckArticles($_POST)) {
-                    $manager->insertArticles($_POST);
-                    //$this->redirect('profile');
-
-                } else {
+                if ($manager->userCheckArticles($_POST, $_FILES)) {
+                    $manager->insertArticles($_POST, $_FILES);
+                }
+                else {
                     $error = 'invalid data';
                 }
             }
@@ -89,7 +88,8 @@ class DefaultController extends BaseController
                         'user' => $user]);
                 }
             }
-        } else {
+        }
+        else {
             $this->redirect('home');
         }
     }

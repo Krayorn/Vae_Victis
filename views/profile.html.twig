@@ -53,12 +53,12 @@
                 <div id="errorFields" class="errorBlock"></div>
                 <div id="form">
 
-                    <form action="?action=profile&amp;username={{username}}" method="POST" id="articlesForm">
+                    <form action="?action=profile&amp;username={{username}}" method="POST" enctype="multipart/form-data" id="articlesForm">
                         Title : <input type="text" name="title" id="title"><br>  <span id="errorTitle" class="errorBlock"></span>
-                        Description: <textarea name="description" id="description"></textarea><br>  <span id="errorDescription" class="errorBlock"></span>
+                        Description: <input type="file" name="description" id="description"></textarea><br>  <span id="errorDescription" class="errorBlock"></span>
                         Contenu:     <textarea name="content" id="article_content"></textarea><br>  <span id="errorContent" class="errorBlock"></span>
 
-                        <input type="submit" name="articles">
+                        <input type="submit">
                     </form>
                 </div>
             </div>
@@ -102,6 +102,10 @@
 
         </div>
     </div>
+</div>
+
+<div class="aside_bar">
+    
 </div>
 
 {% endblock %}
