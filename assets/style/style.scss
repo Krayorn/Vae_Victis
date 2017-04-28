@@ -223,7 +223,7 @@
             @include flex_trinity(column, space-between);
             align-items: center;
             margin :20px 0px;
-            padding :20px;
+            padding :20px 0px;
             width : 100%;
             @media(min-width : 641px){
                 width:40%;
