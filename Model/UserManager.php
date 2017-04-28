@@ -5,7 +5,7 @@ namespace Model;
 class UserManager
 {
     private $DBManager;
-    
+
     private static $instance = null;
     public static function getInstance()
     {
@@ -26,7 +26,7 @@ class UserManager
     public function getUserByUsername($username)
     {
         $data = $this->DBManager->findOneSecure("SELECT * FROM users WHERE username = :username",
-        ['username' => $username]);
+            ['username' => $username]);
         return $data;
     }
     public function getArticlesByTitle($title)
@@ -46,7 +46,7 @@ class UserManager
     public function getUserByEmail($email)
     {
         $data = $this->DBManager->findOneSecure("SELECT * FROM users WHERE email = :email",
-        ['email' => $email]);
+            ['email' => $email]);
         return $data;
     }
 
@@ -63,7 +63,7 @@ class UserManager
             ['article_id' => $article_id]);
         return $data;
     }
-        
+
     public function getCommentaryByGetUserId($user_id)
     {
         $data = $this->DBManager->findAllSecure("SELECT * FROM commentary WHERE user_id = :user_id",
@@ -94,7 +94,7 @@ class UserManager
     {
         $valid = true;
         $errors = array();
-        
+
         if (empty($data['username']) || empty($data['email']) || empty($data['password']) || empty($data['confirm_password'])){
             $valid = false;
             $errors['username'] = 'Missing fields';
@@ -104,7 +104,7 @@ class UserManager
             $valid = false;
             $errors['username'] = 'Username too short';
         }
-        
+
         $testUsername = $this->getUserByUsername($data['username']);
         if ($testUsername !== false){
             $valid = false;
@@ -163,7 +163,7 @@ class UserManager
     {
         $valid = true;
         $errors = array();
-       if (empty($data['username']) OR empty($data['password'])){
+        if (empty($data['username']) OR empty($data['password'])){
             $valid = false;
             $errors['field'] = 'Fields missing';
         }
@@ -211,7 +211,7 @@ class UserManager
             $errors['title'] = 'Title already used';
         }
         if(!$valid){
-           echo json_encode(array('success'=>false, 'errors'=>$errors));
+            echo json_encode(array('success'=>false, 'errors'=>$errors));
             exit(0);
         }else{
             return true;
@@ -279,7 +279,7 @@ class UserManager
 
     public function allArticles(){
         $data = $this->DBManager->findAllSecure("SELECT * FROM articles");
-        return $data;  
+        return $data;
     }
 
     public function addCommentaryUser()
@@ -346,7 +346,7 @@ class UserManager
             return true;
         }
     }
-    
+
     public function articleEdition($data,$article)
     {
         $update['titleEditing'] = $data['titleEditing'];
@@ -388,8 +388,8 @@ class UserManager
     public function articlesDelete($article_id)
     {
         $update['id'] = $article_id['id'];
-       $user_id = $_SESSION['user_id'];
-       var_dump($user_id);
+        $user_id = $_SESSION['user_id'];
+        var_dump($user_id);
         $query = $this->DBManager->findOneSecure("DELETE  FROM articles WHERE  `id` = :id", $update);
         $write = $this->write_log('access.log', ' => function : articleEdition || User ' . $_SESSION['username'] . ' just updated his article '."\n");
         $this->commentaryDeleteArticleId($update['id']);
@@ -407,14 +407,14 @@ class UserManager
     }
 
 
-     public function firstnameEdition($data)
+    public function firstnameEdition($data)
     {
         $update['firstnameEditing'] = $data['firstnameEditing'];
         $update['user_id'] = $_SESSION['user_id'];
         $query = $this->DBManager->findOneSecure("UPDATE users SET `firstname`= :firstnameEditing WHERE `id` = :user_id", $update);
-        $write = $this->write_log('access.log', ' => function : firstnameEdition || User ' . $_SESSION['username'] . ' just updated his name to ' . $update['firstnameEditing'] . '.' . "\n");        
+        $write = $this->write_log('access.log', ' => function : firstnameEdition || User ' . $_SESSION['username'] . ' just updated his name to ' . $update['firstnameEditing'] . '.' . "\n");
         echo json_encode(array('success'=>true));
-        exit(0);        
+        exit(0);
     }
 
     public function lastnameEdition($data)
@@ -424,7 +424,7 @@ class UserManager
         $query = $this->DBManager->findOneSecure("UPDATE users SET `lastname`= :lastnameEditing WHERE `id` = :user_id", $update);
         $write = $this->write_log('access.log', ' => function : lastnameEdition || User ' . $_SESSION['username'] . ' just updated his lastname to ' . $update['lastnameEditing'] . '.' . "\n");
         echo json_encode(array('success'=>true));
-        exit(0);      
+        exit(0);
     }
 
     public function usernameEdition($data)
@@ -444,7 +444,7 @@ class UserManager
         $query = $this->DBManager->findOneSecure("UPDATE users SET `faction`= :factionEditing WHERE `id` = :user_id", $update);
         $write = $this->write_log('access.log', ' => function : factionEdition || User ' . $_SESSION['username'] . ' just updated his faction to ' . $update['factionEditing'] . '.' . "\n");
         echo json_encode(array('success'=>true));
-        exit(0);  
+        exit(0);
     }
 
     public function emailEdition($data)
@@ -538,7 +538,7 @@ class UserManager
             exit(0);
         }else{
             return true;
-        }        
+        }
     }
 
     public function userCheckFaction($data){
@@ -561,7 +561,7 @@ class UserManager
         $file_log = fopen('logs/' . $file, 'a');
         $log_info = $date . $text;
         fwrite($file_log, $log_info);
-        fclose($file_log); 
+        fclose($file_log);
         return true;
     }
 }
