@@ -26,7 +26,12 @@ $(function () {
         switch_tab($('#profile_new_article'), $('#new_article'))
     });
 
+function CKupdateCommentary(){
+     for ( instance in CKEDITOR.instances ) CKEDITOR.instances['article_content'].updateElement(); 
+    }
+
     articlesForm.submit(function(){
+        CKupdateCommentary()
         var formValid =true;
         var $this = $(this);
         var $title = $('#title').val();
@@ -37,7 +42,7 @@ $(function () {
         var $content = CKEDITOR.instances['article_content'].getData();
 
 
-
+        var formData = new FormData(this);
 
 
         // if( $title == '' || $description == '' || $content == ''){
@@ -48,10 +53,12 @@ $(function () {
 
         if(formValid){
          $.ajax({
-         url: $this.attr('action'), // Le nom du fichier indiqué dans le formulaire
-         type: $this.attr('method'), // La méthode indiquée dans le formulaire (get ou post)
-         data: {title : $title, description : $description,content:$content},
-         dataType: 'json', // JSON,
+            url: $this.attr('action'), // Le nom du fichier indiqué dans le formulaire
+            type: $this.attr('method'), // La méthode indiquée dans le formulaire (get ou post)
+            contentType: false, // obligatoire pour de l'upload
+            processData: false, // obligatoire pour de l'upload
+            data: formData,
+            dataType: 'json', // JSON,
 
          success: function(data)
          {
@@ -60,7 +67,6 @@ $(function () {
             if(data.success === false) {
                 errorArticle.html(data.errors['article']);
                  errorFields.html(data.errors['title']);
-                  console.log('ok');
             }
              if(data.success === true){
                 $titleInput.val('');

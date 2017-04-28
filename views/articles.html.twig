@@ -24,7 +24,7 @@
             {{ userInfo['nbr_commentary'] }}
             {{ userInfo['nbr_articles'] }}
         </div>
-        <div class="not_useful" id="descriptionContent">{{ article.description }}</div>
+        <div id="descriptionContent"><img src="{{ description }}"/></div>
         <div id="articleContent">{{ article.content | raw }}</div>
         <div><img class="img_params" id="imgEditionArticle" src="assets/images/parametre.png"></div>
         <div class="article_user_info">

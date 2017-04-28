@@ -23,8 +23,8 @@
             Nombre de commentaire de l'article : {{ commentary }}
 
         </div><br>
-        <div> Titre :{{ title }}</div><br><br>
-        <div> Description :{{ description }}</div><br><br>
+        <div> Titre :{{ title }}</div><br>
+        <div><img src="{{ description }}"/></div><br>
         <a href="?action=articles&amp;id={{key.id}}"> Voir l'article complet</a><br>
     {% endfor %}
 {% endblock %}
