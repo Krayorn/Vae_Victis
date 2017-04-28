@@ -15,8 +15,9 @@ class DefaultController extends BaseController
         $allNbrCommentary = array();
         foreach ($articles as $key) {
             $infoUser = $manager->getUserById($key['user_id']);
-            $allUsernames[$key['user_id']] = $infoUser['username'];
-            $allNbrCommentary[$key['user_id']] = $key['nbr_commentary'];
+            $allUsernames[$key['id']] = $infoUser['username'];
+            $allNbrCommentary[$key['id']] = $key['nbr_commentary'];
+
         }
 
         if (!empty($_SESSION['user_id'])) {
@@ -102,6 +103,9 @@ class DefaultController extends BaseController
             $manager = UserManager::getInstance();
             $article = $manager->getArticlesById($_GET['id']);
             $infoUser = $manager->getUserById($article['user_id']);
+
+            $user = $manager->getUserById($_SESSION['user_id']);
+            $userRole =$user['role'];
             $userInfo = array();
             $key = '';
             $allNbrCommentary = array();
@@ -124,9 +128,10 @@ class DefaultController extends BaseController
                 $allNbrCommentary = $article['nbr_commentary'];
             }
 
-
+            echo 'ohoh';
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if (isset($_POST['idDeleteCommentary'])) {
+                    echo 'hihi';
                     $manager->commentaryDelete($_POST, $article);
                 }
                 if (isset($_POST['content'])) {
@@ -142,16 +147,16 @@ class DefaultController extends BaseController
                 if (isset($_POST['commentaryEditing'])) {
                     $manager->commentaryEdition($_POST);
                 }
-
+                        echo 'ahah';
                     $manager->articlesDelete($article);
 
             }
 
             if (isset($_SESSION['user_id'])) {
                 $user = $manager->getUserById($_SESSION['user_id']);
-                echo $this->renderView('articles.html.twig', ['article' => $article, 'commentary' => $commentary, 'isConnected' => $user, 'userInfo' => $userInfo, 'allUserCommentary' => $allUserCommentary, 'allFaction' => $allFaction, 'allUsernames' => $allUsernames]);
+                echo $this->renderView('articles.html.twig', ['article' => $article, 'commentary' => $commentary, 'isConnected' => $user, 'userInfo' => $userInfo, 'allUserCommentary' => $allUserCommentary, 'allFaction' => $allFaction, 'allUsernames' => $allUsernames,'userRole' => $userRole]);
             } else {
-                echo $this->renderView('articles.html.twig', ['article' => $article, 'commentary' => $commentary, 'userInfo' => $userInfo, 'allUserCommentary' => $allUserCommentary, 'allFaction' => $allFaction, 'allUsernames' => $allUsernames]);
+                echo $this->renderView('articles.html.twig', ['article' => $article, 'commentary' => $commentary, 'userInfo' => $userInfo, 'allUserCommentary' => $allUserCommentary, 'allFaction' => $allFaction, 'allUsernames' => $allUsernames,'userRole' => $userRole]);
             }
         } else {
             $this->redirect('home');

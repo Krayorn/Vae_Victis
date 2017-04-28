@@ -14,8 +14,8 @@
 </ul>
 
     {% for key in articles %}
-        {% set username = allUsernames[key['user_id']] %}
-        {% set commentary = allNbrCommentary[key['user_id']] %}
+        {% set username = allUsernames[key['id']] %}
+        {% set commentary = allNbrCommentary[key['id']] %}
         {% set title =key['title'] %}
         {% set description =key['description'] %}
         <div id="infoArticleUser">

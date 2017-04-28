@@ -39,7 +39,7 @@
         </div>
     </article>
 
-    {% if article.user_id == isConnected.id %}
+    {% if (article.user_id == isConnected.id)  or (userRole == 3)%}
 
     <form action="?action=articles&amp;id={{ article.id }}" method="POST" id="formDeleteArticle">
         <input  type="submit" name="deleteArticles" value="deleteArticles">
@@ -79,7 +79,7 @@
                 </div>
                 <div class="idCommentary"> {{ key.id}}</div>
                 <div class="commentary_content">{{ key.content | raw }}</div>
-                {% if key.user_id == isConnected.id %}
+                {% if (key.user_id == isConnected.id) or (userRole == 3) %}
                     <button class="commentaryEdition">Editez votre commentaire</button>
                     <form action="?action=articles&amp;id={{ article.id }}" method="POST" id="formDeleteCommentary">
                         <input  type="submit" name="commentaryDelete" value="commentaryDelete">
@@ -107,10 +107,6 @@
                                 </div>
                             </div>
 
-                        {% if key.user_id == isConnected.id %}
-                            <button class="commentaryEdition">Editez votre commentaire</button>
-
-                        {% endif %}
                 </div>
 
     {% if isConnected is defined %}

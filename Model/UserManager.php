@@ -35,6 +35,10 @@ class UserManager
             ['title' => $title]);
         return $data;
     }
+    public function getAllUsers(){
+        $data = $this->DBManager->findAllSecure("SELECT * FROM users ");
+        return $data;
+    }
 
     public function getArticlesById($article_id)
     {
@@ -110,7 +114,6 @@ class UserManager
             $valid = false;
             $errors['username'] = 'Username already used';
         }
-
         $testEmail = $this->getUserByEmail($data['email']);
         if ($testEmail !== false){
             $valid = false;
@@ -201,9 +204,16 @@ class UserManager
     {
         $valid = true;
         $errors = array();
-        if (empty($data['title']) OR empty($img['description']) OR empty($data['content'])){
+        $extension= array();
+        $extension = ['.jpeg','.png','.jpg'];
+        $extFile = strrchr(basename($img['description']['name']), '.');
+        if (empty($data['title']) OR empty($img['description']['name']) OR empty($data['content'])){
             $valid = false;
             $errors['article'] = 'Missing fields';
+        }
+        if(!in_array($extFile,$extension)){
+            $valid = false;
+            $errors['file'] = 'Mauvais type';
         }
         $testTitle = $this->getArticlesByTitle($data['title']);
         if ($testTitle){
@@ -288,14 +298,13 @@ class UserManager
         $update['user_id'] = $_SESSION['user_id'];
         $query = $this->DBManager->findOneSecure("UPDATE users SET `nbr_commentary`=  nbr_commentary + 1 WHERE `id` = :user_id", $update);
         $write = $this->write_log('access.log', ' => function : addCommentary || User ' . $_SESSION['username'] . ' just added a commentary .' . "\n");
-
         return $query;
     }
 
     public function addArticleUser()
     {
         $update['user_id'] = $_SESSION['user_id'];
-        $query = $this->DBManager->findOneSecure("UPDATE users SET nbr_articles=  nbr_articles + 1 WHERE id = :user_id", $update);
+        $query = $this->DBManager->findOneSecure("UPDATE users SET   `nbr_articles `=  nbr_articles + 1 WHERE id = :user_id", $update);
         $write = $this->write_log('access.log', ' => function : addCommentary || User ' . $_SESSION['username'] . ' just added a commentary .' . "\n");
 
         return $query;
@@ -374,22 +383,21 @@ class UserManager
 
     public function commentaryDelete($data,$article)
     {
-        var_dump($article);
+
         $update['id'] = $data['idDeleteCommentary'];
-        $update['user_id'] = $_SESSION['user_id'];
-        $query = $this->DBManager->findOneSecure("DELETE  FROM commentary WHERE  `id` = :id AND `user_id` = :user_id", $update);
+        $user_id = $_SESSION['user_id'];
+        $query = $this->DBManager->findOneSecure("DELETE  FROM commentary WHERE  `id` = :id", $update);
         $write = $this->write_log('access.log', ' => function : articleEdition || User ' . $_SESSION['username'] . ' just updated his article '."\n");
         $this->deleteCommentaryArticle($article['id']);
-        $this->deleteCommentaryUser($update['user_id']);
-
+        $this->deleteCommentaryUser($user_id);
         echo json_encode(array('success'=>true));
         exit(0);
     }
     public function articlesDelete($article_id)
     {
+
         $update['id'] = $article_id['id'];
         $user_id = $_SESSION['user_id'];
-        var_dump($user_id);
         $query = $this->DBManager->findOneSecure("DELETE  FROM articles WHERE  `id` = :id", $update);
         $write = $this->write_log('access.log', ' => function : articleEdition || User ' . $_SESSION['username'] . ' just updated his article '."\n");
         $this->commentaryDeleteArticleId($update['id']);
