@@ -38,9 +38,13 @@
             </div>
         </div>
     </article>
+
+    {% if article.user_id == isConnected.id %}
+
     <form action="?action=articles&amp;id={{ article.id }}" method="POST" id="formDeleteArticle">
         <input  type="submit" name="deleteArticles" value="deleteArticles">
     </form>
+    {% endif %}
     <div id="formEdition">
         <div id="resultEdition"></div>
         <form action="?action=articles&amp;id={{ article.id }}" method="POST" id="articlesFormEdition">

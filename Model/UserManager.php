@@ -283,7 +283,6 @@ class UserManager
     }
     public function addArticleUser()
     {
-
         $update['user_id'] = $_SESSION['user_id'];
         $query = $this->DBManager->findOneSecure("UPDATE users SET `nbr_articles`=  nbr_articles + 1 WHERE `id` = :user_id", $update);
         $write = $this->write_log('access.log', ' => function : addCommentary || User ' . $_SESSION['username'] . ' just added a commentary .' . "\n");
@@ -373,11 +372,12 @@ class UserManager
     public function articlesDelete($article_id)
     {
         $update['id'] = $article_id['id'];
-        $update['user_id'] = $_SESSION['user_id'];
-        $query = $this->DBManager->findOneSecure("DELETE  FROM articles WHERE  `id` = :id AND `user_id` = :user_id", $update);
+       $user_id = $_SESSION['user_id'];
+       var_dump($user_id);
+        $query = $this->DBManager->findOneSecure("DELETE  FROM articles WHERE  `id` = :id", $update);
         $write = $this->write_log('access.log', ' => function : articleEdition || User ' . $_SESSION['username'] . ' just updated his article '."\n");
         $this->commentaryDeleteArticleId($update['id']);
-        $this->deleteArticleUser($update['user_id']);
+        $this->deleteArticleUser($user_id);
         echo json_encode(array('success'=>true));
         exit(0);
     }
