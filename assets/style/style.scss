@@ -227,6 +227,7 @@
             width : 100%;
             @media(min-width : 641px){
                 width:40%;
+                height: 200px;
             }
             a{
                 color:#c02424;
@@ -245,40 +246,6 @@
     .border{
         border : 1px solid white;
         border-radius: 5px;
-    }
-
-    #commentary{
-        background-color: #264647;
-        margin: 0px 20px;
-        .commentary{
-            margin : 20px 0px;
-            @include flex_trinity(column, space-between);
-            color : white;
-            border-bottom: solid 1px white;
-            padding: 20px 10px 10px 10px;
-            @media(min-width: 641px){
-                flex-direction: row;
-                justify-content: flex-start;
-            }
-            .commentary_user_info{
-                @include flex_trinity(row, space-between);
-                padding-bottom: 25px;
-                @media(min-width: 641px){
-                    flex-direction: column;
-                    justify-content: flex-start;
-                }
-                a{
-                    color : orange;
-                }
-            }
-            .commentary_content{
-                padding-left: 25px;
-                font-family: 'Slabo 27px';
-                @media(min-width: 641px){
-                    width: 60%;
-                }
-            }
-        }
     }
 
     .modal {
@@ -320,24 +287,71 @@
         }                    
     }
 
-    .solo_view{
-        background-color: #264647;
-        margin: 0px 20px;
-        color : white;
-        padding: 20px 10px 10px 10px;
-        header{
-            text-align: center;
-            @include title('article');
-            font-weight: bold;
+    .articleView{
+        background-color: #d3d3cd;
+        a{
+            color : orange;
         }
-        .article_user_info{
-            @include flex_trinity(row, space-between);
-            padding-bottom: 25px;
-            @media(min-width: 641px){
-                flex-direction: column;
+        article{
+            background-color: #c0c0c0;
+            margin: 0px 20px;
+            color : white;
+            padding: 20px 10px 10px 10px;
+            header{
+                color : #c02424;
+                text-align: center;
+                @include title('article');
+                font-weight: bold;
+            }
+            .descriptionImg{
+                width: 100%;
+            }
+            #articleContent{
+                margin-bottom : 20px;
+            }
+            .article_user_info{
+                @include flex_trinity(column, space-around);
+                padding-bottom: 25px;
+                @media(min-width: 641px){
+                    flex-direction: column;
+                }
             }
         }
+        #commentary{
+            margin: 0px 20px;
+            .commentary{
+                background-color: #c0c0c0;
+                margin : 20px 0px;
+                @include flex_trinity(column, space-between);
+                color : white;
+                padding: 20px 10px 10px 10px;
+                @media(min-width: 641px){
+                    flex-direction: row;
+                    justify-content: flex-start;
+                }
+                .commentary_user_info{
+                    @include flex_trinity(row, space-between);
+                    padding-bottom: 25px;
+                    @media(min-width: 641px){
+                        flex-direction: column;
+                        justify-content: flex-start;
+                    }
+                }
+                .commentary_content{
+                    padding-left: 25px;
+                    font-family: 'Slabo 27px';
+                    @media(min-width: 641px){
+                        width: 60%;
+                    }
+                }
+            }
+        }
+        .manager{
+            @include flex_trinity(row, space-around);
+            color : #c02424;
+        }
     }
+
 
     .box{
         margin : 0px 20px;
@@ -366,6 +380,7 @@
                 border-top-left-radius: 10px;
             }
         }
+
         .allContent{
             background-color: #264647;
             padding : 20px;
@@ -416,6 +431,12 @@
                     padding-top: 50px;
                     border-top: white solid 1px;
                     width: 100%;
+                }
+                #articlesList{
+                    border-top: 1px solid white;
+                    @media(min-width:1025px){
+                        border-top: 0px;
+                    }
                 }
             }
         }

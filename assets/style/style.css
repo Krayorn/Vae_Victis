@@ -263,6 +263,7 @@
 @media screen and (min-width: 641px) {
   .allArticles .article {
     width: 40%;
+    height: 200px;
   }
 }
 @media screen {
@@ -284,56 +285,6 @@
     border-radius: 5px;
   }
 
-  #commentary {
-    background-color: #264647;
-    margin: 0px 20px;
-  }
-  #commentary .commentary {
-    margin: 20px 0px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    color: white;
-    border-bottom: solid 1px white;
-    padding: 20px 10px 10px 10px;
-  }
-}
-@media screen and (min-width: 641px) {
-  #commentary .commentary {
-    flex-direction: row;
-    justify-content: flex-start;
-  }
-}
-@media screen {
-  #commentary .commentary .commentary_user_info {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    padding-bottom: 25px;
-  }
-}
-@media screen and (min-width: 641px) {
-  #commentary .commentary .commentary_user_info {
-    flex-direction: column;
-    justify-content: flex-start;
-  }
-}
-@media screen {
-  #commentary .commentary .commentary_user_info a {
-    color: orange;
-  }
-  #commentary .commentary .commentary_content {
-    padding-left: 25px;
-    font-family: 'Slabo 27px';
-  }
-}
-@media screen and (min-width: 641px) {
-  #commentary .commentary .commentary_content {
-    width: 60%;
-  }
-}
-
-@media screen {
   .modal {
     display: none;
     /* Hidden by default */
@@ -387,19 +338,65 @@
 }
 
 @media screen {
-  .solo_view {
-    background-color: #264647;
+  .articleView {
+    background-color: #d3d3cd;
+  }
+  .articleView a {
+    color: orange;
+  }
+  .articleView article {
+    background-color: #c0c0c0;
     margin: 0px 20px;
     color: white;
     padding: 20px 10px 10px 10px;
   }
-  .solo_view header {
+  .articleView article header {
+    color: #c02424;
     text-align: center;
     font-size: 20px;
     font-family: "article";
     font-weight: bold;
   }
-  .solo_view .article_user_info {
+  .articleView article .descriptionImg {
+    width: 100%;
+  }
+  .articleView article #articleContent {
+    margin-bottom: 20px;
+  }
+  .articleView article .article_user_info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-bottom: 25px;
+  }
+}
+@media screen and (min-width: 641px) {
+  .articleView article .article_user_info {
+    flex-direction: column;
+  }
+}
+@media screen {
+  .articleView #commentary {
+    margin: 0px 20px;
+  }
+  .articleView #commentary .commentary {
+    background-color: #c0c0c0;
+    margin: 20px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    color: white;
+    padding: 20px 10px 10px 10px;
+  }
+}
+@media screen and (min-width: 641px) {
+  .articleView #commentary .commentary {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+}
+@media screen {
+  .articleView #commentary .commentary .commentary_user_info {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -407,12 +404,30 @@
   }
 }
 @media screen and (min-width: 641px) {
-  .solo_view .article_user_info {
+  .articleView #commentary .commentary .commentary_user_info {
     flex-direction: column;
+    justify-content: flex-start;
   }
 }
-
 @media screen {
+  .articleView #commentary .commentary .commentary_content {
+    padding-left: 25px;
+    font-family: 'Slabo 27px';
+  }
+}
+@media screen and (min-width: 641px) {
+  .articleView #commentary .commentary .commentary_content {
+    width: 60%;
+  }
+}
+@media screen {
+  .articleView .manager {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    color: #c02424;
+  }
+
   .box {
     margin: 0px 20px;
     margin-top: 150px;
@@ -530,6 +545,16 @@
     padding-top: 50px;
     border-top: white solid 1px;
     width: 100%;
+  }
+}
+@media screen {
+  .box .allContent #user_article #articlesList {
+    border-top: 1px solid white;
+  }
+}
+@media screen and (min-width: 1025px) {
+  .box .allContent #user_article #articlesList {
+    border-top: 0px;
   }
 }
 

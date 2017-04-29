@@ -75,7 +75,7 @@ $(function () {
     var articlesFormEdition = $('#articlesFormEdition');
     var commentaryForm = $('#commentaryForm');
     var errorCommentary = $('#errorCommentary');
-    var imgEditionArticle = $('#imgEditionArticle');
+    var editArticle = $('#editArticle');
     var fullContentCommentary = $('#fullContentCommentary');
     var formEdition = $('#formEdition');
     var resultEdition = $('#resultEdition');
@@ -86,14 +86,10 @@ $(function () {
     var titleEdition = $('#titleEdition');
     var descriptionEdition = $('#descriptionEdition');
     formEdition.css('display','none');
-    imgEditionArticle.click('slideToggle',function(){
+    editArticle.click('slideToggle',function(){
         fullContentCommentary.css('display','none');
         formEdition.css('display','block');
         titleEdition.val(titleContent.html());
-
-        console.log(titleContent.html());
-        console.log(descriptionContent.html());
-
         descriptionEdition.val(descriptionContent.html());
         CKEDITOR.instances['articleContentEdition'].setData(articleContent.html());
     });
@@ -120,14 +116,13 @@ $(function () {
                 dataType: 'json', // JSON,
 
                 success: function (data) {
-                    console.log('yo');
 
                     if (data.success === true) {
                         resultEdition.html('L\'article à bien été modifié');
-                        // titleContent.html($titleEdition);
-                        // descriptionContent.html($descriptionEdition);
-                        // articleContent.html($articleContentEdition);
-
+                        titleContent.html($titleEdition);
+                        articleContent.html($articleContentEdition);
+                        formEdition.css('display','none');
+                        fullContentCommentary.css('display','block');
 
                     } else {
                         resultEdition.html(data.errors['field']);

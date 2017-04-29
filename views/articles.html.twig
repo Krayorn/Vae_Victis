@@ -14,44 +14,38 @@
     {% endif %}
 </ul>
 
-    <article class="solo_view">
-        <header id="titleContent">
-            {{ article.title }}
+<div class="articleView">
+
+    <article>
+        <header>
+            <p id="titleContent">{{ article.title }}<p>
         </header>
-        <div class="infoUSer">
-            {{ userInfo['username'] }}
-            {{ userInfo['faction'] }}
-            {{ userInfo['nbr_commentary'] }}
-            {{ userInfo['nbr_articles'] }}
-        </div>
-        <div id="descriptionContent"><img src="{{ description }}"/></div>
+
+        <img class="descriptionImg" src="{{ article.description }}"/>
         <div id="articleContent">{{ article.content | raw }}</div>
-        <div><img class="img_params" id="imgEditionArticle" src="assets/images/parametre.png"></div>
         <div class="article_user_info">
-            <div class="primary_user_info">
-                <a href="?action=profile&amp;username={{username}}">{{username}}</a>
-                <p>{{ faction }}</p>
-            </div>
-            <div class="secondary_user_info">
-                <p class="not_useful">Nbr de commentaires de l'article: {{article.nbr_commentary}}<p>
+                <p>Article écrit par le {{userInfo.faction}}, <a href="?action=profile&amp;username={{userInfo.username}}">{{userInfo.username}}</a></p>
                 <p>Le {{article.date}}</p>
-            </div>
+                <p class="not_useful">Nbr de commentaires de l'article: {{article.nbr_commentary}}<p>
         </div>
+
+        {% if (article.user_id == isConnected.id)  or (userRole == 3)%}
+        <div class="manager">
+            <p id="editArticle">Editer l'Article</p>
+            <form action="?action=articles&amp;id={{ article.id }}" method="POST" id="formDeleteArticle">
+                <label for="deleteArticle">Supprimer l'article</label>
+                <input id="deleteArticle" class="none" type="submit" value="Supprimer l'article">
+            </form>
+        </div>
+        {% endif %}
+
     </article>
 
-    {% if (article.user_id == isConnected.id)  or (userRole == 3)%}
-
-    <form action="?action=articles&amp;id={{ article.id }}" method="POST" id="formDeleteArticle">
-        <input  type="submit" name="deleteArticles" value="deleteArticles">
-    </form>
-    {% endif %}
     <div id="formEdition">
         <div id="resultEdition"></div>
         <form action="?action=articles&amp;id={{ article.id }}" method="POST" id="articlesFormEdition">
             Title : <input type="text" name="titleEdition" id="titleEdition"><br> <span id="errorTitle"
                                                                                         class="errorBlock"></span>
-            Description: <textarea name="descriptionEdition" id="descriptionEdition"></textarea><br> <span
-                    id="errorDescription" class="errorBlock"></span>
             Contenu: <textarea name="contentEdition" id="articleContentEdition"></textarea><br> <span id="errorContent"
                                                                                                       class="errorBlock"></span>
 
@@ -60,54 +54,55 @@
     </div>
     <div id="fullContentCommentary">
 
-    <div id="commentary">
-        {% for key in commentary %}
-            {% set username = allUsernames[key['user_id']] %}
-            {% set commentary = allUserCommentary[key['user_id']] %}
-            {% set faction = allFaction[key['user_id']] %}
-            <div class="commentary">
-
-                <div class="commentary_user_info">
-                    <div class="primary_user_info">
-                        <a href="?action=profile&amp;username={{username}}">{{username}}</a>
-                        <p>{{ faction }}</p>
+        <div id="commentary">
+            {% for key in commentary %}
+                {% set username = allUsernames[key['user_id']] %}
+                {% set commentary = allUserCommentary[key['user_id']] %}
+                {% set faction = allFaction[key['user_id']] %}
+                <div class="commentary">
+                    <div class="commentary_user_info">
+                        <div class="primary_user_info">
+                            <a href="?action=profile&amp;username={{username}}">{{username}}</a>
+                            <p>{{ faction }}</p>
+                        </div>
+                        <div class="secondary_user_info">
+                            <p>Le {{key.date}}</p>
+                            <p class="not_useful">Nbr de commentaires : {{commentary}}<p>
+                        </div>
                     </div>
-                    <div class="secondary_user_info">
-                        <p>Le {{key.date}}</p>
-                        <p class="not_useful">Nbr de commentaires : {{commentary}}<p>
+                    <div class="none idCommentary"> {{ key.id}}</div>
+                    <div class="commentary_content">{{ key.content | raw }}</div>
+                    <div class="manager">
+                    {% if (key.user_id == isConnected.id) or (userRole == 3) %}
+                        <label class="commentaryEdition">Editez le commentaire </label>
+                    {% endif %}
+                    {% if (key.user_id == isConnected.id) or (userRole == 3) or (userInfo.id == article.id_user) %}
+                        <form action="?action=articles&amp;id={{ article.id }}" method="POST" id="formDeleteCommentary">
+                            <label for="commentaryDelete">Supprimer le commentaire </label>
+                            <input  type="submit" class="none" id="commentaryDelete" value="commentaryDelete">
+                        </form>
+                    {% endif %}
                     </div>
                 </div>
-                <div class="idCommentary"> {{ key.id}}</div>
-                <div class="commentary_content">{{ key.content | raw }}</div>
-                {% if (key.user_id == isConnected.id) or (userRole == 3) %}
-                    <button class="commentaryEdition">Editez votre commentaire</button>
-                    <form action="?action=articles&amp;id={{ article.id }}" method="POST" id="formDeleteCommentary">
-                        <input  type="submit" name="commentaryDelete" value="commentaryDelete">
+            {% endfor %}
+        </div>
+
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <h1> Postez un commentaire</h1>
+                <span class="close">&times;</span>
+                <div id="formCommentaryEdition">
+                    <span class="errorCommentaryEdition errorBlock" ></span>
+                    <form action="?action=articles&amp;id={{article.id}}" method="POST" id="commentaryFormEdition">
+                        <label for="contentCommentaryEdition">Contenu:</label>
+                        <input type="text" id="idHidden" class="none" name="idHidden"></input>
+                        <textarea name="contentCommentaryEdition" id="contentCommentaryEdition"></textarea><br>  <span id="errorContent" class="errorBlock"></span>
+                        <input type="submit" name="commentary">
                     </form>
-
-                {% endif %}
-            </div>
-        {% endfor %}
-    </div>
-                <div id="myModal" class="modal">
-
-                            <!-- Modal content -->
-                            <div class="modal-content">
-                                <h1> Postez un commentaire</h1>
-                                <span class="close">&times;</span>
-                                <div id="formCommentaryEdition">
-                                    <span class="errorCommentaryEdition errorBlock" ></span>
-
-                                    <form action="?action=articles&amp;id={{article.id}}" method="POST" id="commentaryFormEdition">
-                                        <label for="contentCommentaryEdition">Contenu:</label>
-                                        <input type="text" id="idHidden" name="idHidden">
-                                        <textarea name="contentCommentaryEdition" id="contentCommentaryEdition"></textarea><br>  <span id="errorContent" class="errorBlock"></span>
-                                        <input type="submit" name="commentary">
-                                    </form>
-                                </div>
-                            </div>
-
                 </div>
+            </div>
+        </div>
+
     </div>
     {% if isConnected is defined %}
     <div id="form">
@@ -125,6 +120,8 @@
         CKEDITOR.replace('articleContentEdition');
         CKEDITOR.replace('contentCommentaryEdition');
     </script>
+
+</div>
 
 <aside class="aside_bar">
     <img class="logo" alt="logo_honor" src="https://asset.msi.com/event/mb/2016/for_honor/images/logo.png"/>

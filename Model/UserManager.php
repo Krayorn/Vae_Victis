@@ -359,12 +359,11 @@ class UserManager
     public function articleEdition($data,$article)
     {
         $update['titleEditing'] = $data['titleEditing'];
-        $update['descriptionEditing'] = $data['descriptionEditing'];
         $update['contentEditing'] = $data['contentEditing'];
         $update['article_id'] = $article['id'];
         $update['update_date'] = $this->giveDate();
-        $query = $this->DBManager->findOneSecure("UPDATE articles SET `title`= :titleEditing,`description` = :descriptionEditing,`content` = :contentEditing,update_date = :update_date WHERE  `id` = :article_id", $update);
-        $write = $this->write_log('access.log', ' => function : articleEdition || User ' . $_SESSION['username'] . ' just updated his article '."\n");
+        $query = $this->DBManager->findOneSecure("UPDATE articles SET `title`= :titleEditing, `content` = :contentEditing,update_date = :update_date WHERE  `id` = :article_id", $update);
+        $write = $this->write_log('access.log', ' => function : articleEdition || User ' . $_SESSION['username'] . ' just updated his article '.  $update['titleEditing'] . "\n");
         echo json_encode(array('success'=>true));
         exit(0);
     }
