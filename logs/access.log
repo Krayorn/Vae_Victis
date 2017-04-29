@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 2017-04-28 23:07 => function : userLogin || User Appolyon just connected.
 2017-04-29 14:27 => function : userLogin || User Appolyon just connected.
 2017-04-29 14:28 => function : addCommentary || User Appolyon just added a commentary .
@@ -111,3 +112,11 @@
 2017-04-29 17:05 => function : addCommentary || User Appolyon just added a commentary .
 2017-04-29 17:05 => function : articleEdition || User Appolyon just updated his article 
 2017-04-29 17:05 => function : articleEdition || User Appolyon just updated his article 
+=======
+2017-04-29 15:29 => function : userLogin || User Hersir just connected.
+2017-04-29 15:30 => function : userRegister || User Admin just register.
+2017-04-29 15:30 => function : userLogin || User Admin just connected.
+2017-04-29 15:32 => function : insertArticles || User Admin just created a new Article named Admin.
+2017-04-29 15:32 => function : addCommentary || User Admin just added a commentary .
+2017-04-29 15:33 => function : userLogin || User Hersir just connected.
+>>>>>>> 4927492458abb79143067005167452a341bf03f9
