@@ -150,13 +150,7 @@ $(function () {
         CKupdateCommentary();
         var formValid = true;
         var $this = $(this);
-        var divCommentary = $('#commentary');
-        // var $contentCommentary = $('#contentCommentary').val();
-        // var $contentCommentaryInput = $('#contentCommentary');
-        /*    if($contentCommentary === ''){
-         formValid = '';
-         errorCommentary.html('Field missing');
-         }*/
+       var resultCommentary = $('#resultCommentary');
         var $content = CKEDITOR.instances['contentCommentary'].getData();
         console.log($content);
         if (formValid) {
@@ -170,9 +164,13 @@ $(function () {
                 success: function (data) {
                     console.log('yo');
 
-                    if (data.success === true) {
-
+                    if (data.success) {
+                        resultCommentary.html('Commentaire posté');
                     }
+                    if (!data.success) {
+                        resultCommentary.html(data.errors['field'])
+                    }
+
                 }
             });
         }
