@@ -104,8 +104,6 @@ class DefaultController extends BaseController
             $article = $manager->getArticlesById($_GET['id']);
             $infoUser = $manager->getUserById($article['user_id']);
 
-            $user = $manager->getUserById($_SESSION['user_id']);
-            $userRole =$user['role'];
             $userInfo = array();
             $key = '';
             $allNbrCommentary = array();
@@ -154,9 +152,9 @@ class DefaultController extends BaseController
 
             if (isset($_SESSION['user_id'])) {
                 $user = $manager->getUserById($_SESSION['user_id']);
-                echo $this->renderView('articles.html.twig', ['article' => $article, 'commentary' => $commentary, 'isConnected' => $user, 'userInfo' => $userInfo, 'allUserCommentary' => $allUserCommentary, 'allFaction' => $allFaction, 'allUsernames' => $allUsernames,'userRole' => $userRole]);
+                echo $this->renderView('articles.html.twig', ['article' => $article, 'commentary' => $commentary, 'isConnected' => $user, 'userInfo' => $userInfo, 'allUserCommentary' => $allUserCommentary, 'allFaction' => $allFaction, 'allUsernames' => $allUsernames,'userRole' => $user['role']]);
             } else {
-                echo $this->renderView('articles.html.twig', ['article' => $article, 'commentary' => $commentary, 'userInfo' => $userInfo, 'allUserCommentary' => $allUserCommentary, 'allFaction' => $allFaction, 'allUsernames' => $allUsernames,'userRole' => $userRole]);
+                echo $this->renderView('articles.html.twig', ['article' => $article, 'commentary' => $commentary, 'userInfo' => $userInfo, 'allUserCommentary' => $allUserCommentary, 'allFaction' => $allFaction, 'allUsernames' => $allUsernames]);
             }
         } else {
             $this->redirect('home');

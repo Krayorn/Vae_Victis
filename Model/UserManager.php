@@ -205,7 +205,7 @@ class UserManager
         $valid = true;
         $errors = array();
         $extension= array();
-        $extension = ['.jpeg','.png','.jpg'];
+        $extension = ['.jpeg','.png','.jpg', '.PNG'];
         $extFile = strrchr(basename($img['description']['name']), '.');
         if (empty($data['title']) OR empty($img['description']['name']) OR empty($data['content'])){
             $valid = false;
