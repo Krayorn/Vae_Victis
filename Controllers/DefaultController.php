@@ -132,7 +132,10 @@ class DefaultController extends BaseController
                 }
 
                 if (isset($_POST['content'])) {
-                    $manager->insertCommentary($_POST, $article);
+                    if ($manager->userCheckCommentary($_POST)){
+                        $manager->insertCommentary($_POST, $article);
+                    }
+
                 }
 
                 if (isset($_POST['contentEditing'])) {
@@ -145,7 +148,6 @@ class DefaultController extends BaseController
                 if (isset($_POST['commentaryEditing'])) {
                     $manager->commentaryEdition($_POST);
                 }
-                    
                 $manager->articlesDelete($article);
 
             }
