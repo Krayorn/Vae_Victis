@@ -413,3 +413,9 @@
 2017-04-30 14:07 => function : articleEdition || User Hersir just deleted his article 
 2017-04-30 14:07 => function : articleEdition || User Hersir just updated his article 
 2017-04-30 14:07 => function : articleEdition || User Hersir just updated his article 
+2017-04-30 14:11 => function : insertArticles || User Hersir just created a new Article named New Article.
+2017-04-30 14:11 => function : addCommentary || User Hersir just added a commentary .
+2017-04-30 15:45 => function : addCommentary || User Hersir just added a commentary .
+2017-04-30 15:45 => function : addCommentary || User Hersir just added a commentary .
+2017-04-30 15:58 => function : insertArticles || User Hersir just created a new Article named Huge Article.
+2017-04-30 15:58 => function : addCommentary || User Hersir just added a commentary .

@@ -485,7 +485,7 @@
 @media screen {
   .box ul li {
     padding: 10px;
-    background-color: #264647;
+    background-color: #c0c0c0;
   }
   .box ul li .img_tab {
     width: 30px;
@@ -494,7 +494,7 @@
     border-top-left-radius: 10px;
   }
   .box .allContent {
-    background-color: #264647;
+    background-color: #c0c0c0;
     padding: 20px;
   }
 }
@@ -575,6 +575,12 @@
   }
 }
 @media screen {
+  .box .allContent #user_article #commentaryList .commentary {
+    margin: 20px 0px;
+  }
+  .box .allContent #user_article #commentaryList .commentary .listCommentary {
+    padding-bottom: 10px;
+  }
   .box .allContent #user_article #articlesList {
     border-top: 1px solid white;
   }
@@ -582,10 +588,27 @@
 @media screen and (min-width: 1025px) {
   .box .allContent #user_article #articlesList {
     border-top: 0px;
+    width: 50%;
   }
 }
-
 @media screen {
+  .box .allContent #user_article #articlesList .article {
+    margin: 20px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .box .allContent #user_article #articlesList .article .articlesTitle {
+    align-self: center;
+    color: #c02424;
+  }
+  .box .allContent #user_article #articlesList .article .articlesContent {
+    padding: 10px 0px;
+  }
+  .box .allContent #user_article #articlesList .article .listDateArticle {
+    align-self: flex-end;
+  }
+
   .custom-btn {
     padding: 10px 25px;
     font-weight: 500;

@@ -76,27 +76,31 @@
         <div id="user_article" class="content">
 
             <div id="commentaryList">
+            <p>Vos commentaires :</p>
             {% for key in allCommentary %}
+                <div class="commentary">
+                    {% set commentary = listCommentary[key['id']] %}
+                    {% set dateCommentary = listDateCommentary[key['id']] %}
 
-                {% set commentary = listCommentary[key['id']] %}
-                {% set dateCommentary = listDateCommentary[key['id']] %}
-
-                <div class="listCommentary"> {{ commentary | raw}}</div>
-                <div class="listDateCommentary"> {{ dateCommentary | raw}}</div>
+                    <div class="listCommentary">{{ commentary | raw}}</div>
+                    <div class="listDateCommentary">Le {{ dateCommentary | raw}}</div>
+                </div>
             {% endfor %}
             </div>
 
 
             <div id="articlesList">
+                <p>Vos articles :</p>
                 {% for key in allArticles %}
+                <div class="article">
+                    {% set articleContent = articlesContent[key['id']] %}
+                    {% set articleTitle = articlesTitle[key['id']] %}
+                    {% set dateArticles = listDateArticles[key['id']] %}
 
-                {% set articleContent = articlesContent[key['id']] %}
-                {% set articleTitle = articlesTitle[key['id']] %}
-                {% set dateArticles = listDateArticles[key['id']] %}
-
-                <div class="articlesTitle"> {{ articleDescription | raw}}</div>
-                <div class="articlesContent"> {{ articleContent | raw}}</div>
-                <div class="listDateArticle"> {{ dateArticles | raw}}</div>
+                    <div class="articlesTitle"> {{ articleTitle | raw}}</div>
+                    <div class="articlesContent"> {{ articleContent | raw}}</div>
+                    <div class="listDateArticle"> Le {{ dateArticles | raw}}</div>
+                <div>
                 {% endfor %}
             </div>
 

@@ -388,7 +388,7 @@
             }
             li{
                 padding: 10px;
-                background-color: #264647;
+                background-color: #c0c0c0;
                 .img_tab{
                     width: 30px;
                 }
@@ -399,7 +399,7 @@
         }
 
         .allContent{
-            background-color: #264647;
+            background-color: #c0c0c0;
             padding : 20px;
             @media(min-width:641px){
                 margin: 0% 20%;
@@ -449,10 +449,33 @@
                     border-top: white solid 1px;
                     width: 100%;
                 }
+                #commentaryList{
+                    .commentary{
+                        margin:20px 0px;
+                        .listCommentary{
+                            padding-bottom: 10px;
+                        }
+                    }
+                }
                 #articlesList{
                     border-top: 1px solid white;
                     @media(min-width:1025px){
                         border-top: 0px;
+                        width: 50%;
+                    }
+                    .article{
+                        margin : 20px 0px;
+                        @include flex_trinity(column, space-between);
+                        .articlesTitle{
+                            align-self: center;
+                            color:#c02424;
+                        }
+                        .articlesContent{
+                            padding:10px 0px;
+                        }
+                        .listDateArticle{
+                            align-self: flex-end;
+                        }
                     }
                 }
             }
