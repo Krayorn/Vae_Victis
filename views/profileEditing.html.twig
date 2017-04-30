@@ -12,7 +12,7 @@
         <div class="infoUser" id="usernameRecap"> Username : {{ user.username }}</div> <img id="parameterUsername" class="img_params parameter" src="assets/images/parametre.png">
         <div id="infoUsername">
             <form action="?action=profileEditing" method="POST" name="usernameForm" class="none" id="usernameForm">
-                <input type="text" name="usernameEditing" id="usernameEditing"><br>  <span id="errorUsername" class="errorBlock"></span><br>
+                <input type="text" name="usernameEditing" id="usernameEditing"><br>  <span id="errorUsername" class="error"></span><br>
                 <input type="submit" value="valider">
             </form>
         </div>
@@ -21,7 +21,7 @@
         <div class="infoUser" id="emailRecap"> Email: {{ user.email }}</div><img id="parameterEmail" class="img_params parameter" src="assets/images/parametre.png">
         <div id="infoEmail">
             <form action="?action=profileEditing" method="POST" name="emailForm" class="none" id="emailForm">
-                <input type="text" name="emailEditing" id="emailEditing"><br><span id="errorEmail" class="errorBlock"></span><br>
+                <input type="text" name="emailEditing" id="emailEditing"><br><span id="errorEmail" class="error"></span><br>
                 <input type="submit" value="valider">
             </form>
         </div>
@@ -46,7 +46,7 @@
         <div class="infoUser" id="firstnameRecap"> Prénom: {{ user.firstname }}</div> <img id="parameterFirstname" class="img_params parameter" src="assets/images/parametre.png">
         <div id="infoFirstname">
             <form action="?action=profileEditing" method="POST" name="firstnameForm" class="none" id="firstnameForm">
-                <input type="text" name="firstnameEditing" id="firstnameEditing"><br>  <span id="errorFirstname" class="errorBlock"></span><br>
+                <input type="text" name="firstnameEditing" id="firstnameEditing"><br>  <span id="errorFirstname" class="error"></span><br>
                 <input type="submit" value="valider">
             </form>
         </div>
@@ -56,7 +56,7 @@
         <div class="infoUser" id="lastnameRecap"> Nom: {{ user.lastname }}</div><img class="img_params parameter" id="parameterLastname" src="assets/images/parametre.png">
         <div id="infoLastname">
             <form action="?action=profileEditing" method="POST" name="lastnameForm" class="none" id="lastnameForm">
-                <input type="text" name="lastnameEditing" id="lastnameEditing"><br>  <span id="errorLastname" class="errorBlock"></span><br>
+                <input type="text" name="lastnameEditing" id="lastnameEditing"><br>  <span id="errorLastname" class="error"></span><br>
                 <input type="submit" value="valider">
             </form>
         </div>

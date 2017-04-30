@@ -22,7 +22,6 @@ $(function () {
 
 
     var result = $('#result');
-    var button = $('.registerResult');
     var errorUsername = $('#errorUsername');
     var errorFaction = $('#errorFaction');
     var errorEmail = $('#errorEmail');
