@@ -275,6 +275,9 @@
   .allArticles .article a {
     color: #c02424;
   }
+  .allArticles .article a:hover {
+    text-decoration: underline;
+  }
   .allArticles .article .article_title {
     font-size: 20px;
     font-family: "article";
@@ -295,7 +298,7 @@
     /* Hidden by default */
     position: fixed;
     /* Stay in place */
-    z-index: 1;
+    z-index: 3;
     /* Sit on top */
     left: 0;
     top: 0;
@@ -319,6 +322,16 @@
     width: 80%;
     /* Could be more or less, depending on screen size */
   }
+}
+@media screen and (min-width: 1441px) {
+  .modal .modal-content {
+    margin: 25% 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 70%;
+  }
+}
+@media screen {
   .modal .close {
     color: #aaa;
     float: right;
@@ -453,6 +466,9 @@
   }
 }
 @media screen {
+  .articleView #commentary .commentary .commentary_user_info a:hover {
+    font-weight: bold;
+  }
   .articleView #commentary .commentary .commentary_content {
     padding-left: 25px;
     font-family: 'Slabo 27px';
