@@ -362,6 +362,7 @@
 2017-04-30 10:53 => function : addCommentary || User Appolyon just added a commentary .
 2017-04-30 10:53 => function : articleEdition || User Appolyon just updated his article dezs
 2017-04-30 10:55 => function : addCommentary || User Appolyon just added a commentary .
+<<<<<<< HEAD
 2017-04-30 11:14 => function : articleEdition || User Appolyon just deleted his article 
 2017-04-30 11:14 => function : articleEdition || User Appolyon just deleted his article 
 2017-04-30 11:14 => function : articleEdition || User Appolyon just deleted his article 
@@ -377,3 +378,46 @@
 2017-04-30 11:24 => function : articleEdition || User Appolyon just updated his article 
 2017-04-30 11:25 => function : articleEdition || User Appolyon just updated his article 
 2017-04-30 11:26 => function : articleEdition || User Appolyon just updated his article 
+=======
+2017-04-30 12:13 => function : articleEdition || User Hersir just updated his article 
+2017-04-30 12:13 => function : articleEdition || User Hersir just updated his article 
+2017-04-30 12:14 => function : articleEdition || User Hersir just deleted his article 
+2017-04-30 12:14 => function : addCommentary || User Hersir just added a commentary .
+2017-04-30 12:14 => function : articleEdition || User Hersir just updated his article 
+2017-04-30 12:14 => function : articleEdition || User Hersir just deleted his article 
+2017-04-30 12:15 => function : addCommentary || User Hersir just added a commentary .
+2017-04-30 12:15 => function : articleEdition || User Hersir just deleted his article 
+2017-04-30 12:15 => function : articleEdition || User Hersir just updated his article 
+2017-04-30 12:16 => function : articleEdition || User Hersir just updated his article 
+2017-04-30 12:18 => function : articleEdition || User Hersir just updated his article 
+2017-04-30 12:18 => function : articleEdition || User Hersir just updated his article 
+2017-04-30 12:20 => function : insertArticles || User Hersir just created a new Article named New Article Again.
+2017-04-30 12:20 => function : addCommentary || User Hersir just added a commentary .
+2017-04-30 12:21 => function : addCommentary || User Hersir just added a commentary .
+2017-04-30 12:21 => function : articleEdition || User Hersir just updated his article New title !
+2017-04-30 12:22 => function : articleEdition || User Hersir just updated his article New title !
+2017-04-30 12:24 => function : articleEdition || User Hersir just updated his article zaerzara
+2017-04-30 12:25 => function : articleEdition || User Hersir just updated his article zaerzara
+2017-04-30 12:27 => function : articleEdition || User Hersir just updated his article Article !!
+2017-04-30 13:08 => function : articleEdition || User Hersir just updated his article 
+2017-04-30 13:08 => function : articleEdition || User Hersir just updated his article 
+2017-04-30 13:08 => function : articleEdition || User Hersir just updated his article 
+2017-04-30 13:08 => function : articleEdition || User Hersir just updated his article 
+2017-04-30 13:08 => function : articleEdition || User Hersir just updated his article 
+2017-04-30 13:08 => function : articleEdition || User Hersir just updated his article 
+2017-04-30 13:08 => function : articleEdition || User Hersir just updated his article 
+2017-04-30 13:08 => function : articleEdition || User Hersir just updated his article 
+2017-04-30 13:08 => function : articleEdition || User Hersir just updated his article 
+2017-04-30 13:08 => function : articleEdition || User Hersir just updated his article 
+2017-04-30 13:09 => function : articleEdition || User Hersir just deleted his article 
+2017-04-30 13:09 => function : articleEdition || User Hersir just updated his article 
+2017-04-30 13:09 => function : articleEdition || User Hersir just updated his article 
+2017-04-30 13:20 => function : insertArticles || User Hersir just created a new Article named ew article.
+2017-04-30 13:20 => function : addCommentary || User Hersir just added a commentary .
+2017-04-30 13:20 => function : articleEdition || User Hersir just updated his article 
+2017-04-30 13:20 => function : articleEdition || User Hersir just updated his article 
+2017-04-30 13:20 => function : insertArticles || User Hersir just created a new Article named New.
+2017-04-30 13:20 => function : addCommentary || User Hersir just added a commentary .
+>>>>>>> 7e0f38fe45aafb312ed381425fb3f5db0f868f5d
+2017-04-30 14:06 => function : articleEdition || User Appolyon just updated his article 
+2017-04-30 14:06 => function : articleEdition || User Appolyon just deleted his article 

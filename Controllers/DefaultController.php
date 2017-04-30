@@ -46,7 +46,6 @@ class DefaultController extends BaseController
             $user = $manager->getUserByUsername($_GET['username']);
             $allCommentary = $manager->getCommentaryByGetUserId($user['id'])  ;
             $allArticles = $manager->getArticlesByGetUserId($user['id'])  ;
-            var_dump($user);
 
             $listCommentary = array();
             $listArticles = array();
@@ -144,10 +143,9 @@ class DefaultController extends BaseController
                    }
                 }
 
-                if (isset($_POST['commentaryEditing'])) {   
-                    if($manager->userCheckCommentaryEdition($_POST)) {
+
+                if (isset($_POST['commentaryEditing'])) {
                         $manager->commentaryEdition($_POST);
-                    }
 
                 }
 

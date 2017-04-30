@@ -429,7 +429,6 @@ class UserManager
     {
 
         $update['id'] = $data['idCommentaryToDelete'];
-        var_dump($update['id'] );
         $user_id = $_SESSION['user_id'];
         $query = $this->DBManager->findOneSecure("DELETE  FROM commentary WHERE  `id` = :id", $update);
         $write = $this->writeLog('access.log', ' => function : articleEdition || User ' . $_SESSION['username'] . ' just deleted his article '."\n");
