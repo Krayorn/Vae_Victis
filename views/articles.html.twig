@@ -94,7 +94,7 @@
                                 <label class="commentaryDelete">Supprimer le commentaire </label>
                                 <p class="errorDeleteCommentary error"></p>
                             {% endif %}
-                            {% if (key.user_id == isConnected.id) or (userRole == 3) or (userInfo.id == article.id_user) %}
+                            {% if (key.user_id == isConnected.id) or (userRole == 3) or (article.user_id == isConnected.id) %}
                                 <form action="?action=articles&amp;id={{ article.id }}" method="POST"
                                       class="formDeleteCommentary none">
                                     <input type="text" class="none" name="idCommentaryToDelete"
@@ -140,12 +140,13 @@
                 CKEDITOR.replace('contentCommentary');
             </script>
         {% endif %}
+    </div>
         <script>
             CKEDITOR.replace('articleContentEdition');
             CKEDITOR.replace('contentCommentaryEdition');
         </script>
 
-    </div>
+
 
     <aside class="aside_bar">
         <img class="logo" alt="logo_honor" src="assets/images/forHonor.png"/>
