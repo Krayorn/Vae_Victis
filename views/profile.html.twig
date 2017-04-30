@@ -88,11 +88,9 @@
                 {% for key in allArticles %}
 
                 {% set articleContent = articlesContent[key['id']] %}
-                {% set articleDescription = articlesDescription[key['id']] %}
                 {% set articleTitle = articlesTitle[key['id']] %}
                 {% set dateArticles = listDateArticles[key['id']] %}
 
-                <div class="articlesDescription"> {{ articleTitle | raw}}</div>
                 <div class="articlesTitle"> {{ articleDescription | raw}}</div>
                 <div class="articlesContent"> {{ articleContent | raw}}</div>
                 <div class="listDateArticle"> {{ dateArticles | raw}}</div>
@@ -105,9 +103,9 @@
 </div>
 
 <aside class="aside_bar">
-    <img class="logo" alt="logo_honor" src="https://asset.msi.com/event/mb/2016/for_honor/images/logo.png"/>
+    <img class="logo" alt="logo_honor" src="assets/images/forHonor.png"/>
+    <img class="static_footer" alt="side_bar_img" src="assets/images/asideSamurai.png"/>
     <iframe src="https://www.youtube.com/embed/hduexi1GD5c" allowfullscreen></iframe>
-    <img class="static_footer" alt="side_bar_img" src="https://s-media-cache-ak0.pinimg.com/originals/39/b3/ab/39b3abe89624767f861602cbf9fb5517.png"/>
 </aside>
 
 {% endblock %}

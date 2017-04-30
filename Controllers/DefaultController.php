@@ -51,7 +51,6 @@ class DefaultController extends BaseController
             $listArticles = array();
             $listDateArticles = array();
             $listDateCommentary = array();
-            $articlesDescription = array();
             $articlesTitle = array();
             $articlesContent = array();
             foreach($allArticles as $key) {
@@ -78,15 +77,15 @@ class DefaultController extends BaseController
                     if ($_SESSION['user_id'] == $user['id']) {
 
                         echo $this->renderView('profile.html.twig', ['error' => $error,
-                            'user' => $user, 'isConnected' => $isConnected, 'allArticles'=> $allArticles,'allCommentary'=> $allCommentary,'listCommentary' => $listCommentary,'listDateCommentary' => $listDateCommentary,'listArticles'=>$listArticles,'listDateArticles'=>$listDateArticles,'articlesTitle'=> $articlesTitle,'articlesDescription'=>$articlesDescription,'articlesContent'=> $articlesContent]);
+                            'user' => $user, 'isConnected' => $isConnected, 'allArticles'=> $allArticles,'allCommentary'=> $allCommentary,'listCommentary' => $listCommentary,'listDateCommentary' => $listDateCommentary,'listArticles'=>$listArticles,'listDateArticles'=>$listDateArticles,'articlesTitle'=> $articlesTitle, 'articlesContent'=> $articlesContent]);
                     } else {
                         $visitor = $manager->getUserById($_SESSION['user_id']);
                         echo $this->renderView('profile.html.twig', ['error' => $error,
-                            'user' => $user, 'isConnected' => $isConnected, 'visitor' => $visitor,  'allArticles'=> $allArticles,'allCommentary'=> $allCommentary,'listCommentary' => $listCommentary,'listDateCommentary' => $listDateCommentary,'listArticles'=>$listArticles,'listDateArticles'=>$listDateArticles,'articlesTitle'=> $articlesTitle,'articlesDescription'=>$articlesDescription,'articlesContent'=> $articlesContent]);
+                            'user' => $user, 'isConnected' => $isConnected, 'visitor' => $visitor,  'allArticles'=> $allArticles,'allCommentary'=> $allCommentary,'listCommentary' => $listCommentary,'listDateCommentary' => $listDateCommentary,'listArticles'=>$listArticles,'listDateArticles'=>$listDateArticles,'articlesTitle'=> $articlesTitle, 'articlesContent'=> $articlesContent]);
                     }
                 } else {
                     echo $this->renderView('profile.html.twig', ['error' => $error,
-                        'user' => $user,  'allArticles'=> $allArticles,'allCommentary'=> $allCommentary,'listCommentary' => $listCommentary,'listDateCommentary' => $listDateCommentary,'listArticles'=>$listArticles,'listDateArticles'=>$listDateArticles,'articlesTitle'=> $articlesTitle,'articlesDescription'=>$articlesDescription,'articlesContent'=> $articlesContent]);
+                        'user' => $user,  'allArticles'=> $allArticles,'allCommentary'=> $allCommentary,'listCommentary' => $listCommentary,'listDateCommentary' => $listDateCommentary,'listArticles'=>$listArticles,'listDateArticles'=>$listDateArticles, 'articlesTitle'=> $articlesTitle, 'articlesContent'=> $articlesContent]);
                 }
             }
         }
@@ -98,8 +97,7 @@ class DefaultController extends BaseController
     public function articlesAction()
     {
         if (isset($_GET['id'])) {
-
-        $error = '';
+            $error = '';
             $manager = UserManager::getInstance();
             $article = $manager->getArticlesById($_GET['id']);
             $infoUser = $manager->getUserById($article['user_id']);
@@ -126,32 +124,37 @@ class DefaultController extends BaseController
                 $allNbrCommentary = $article['nbr_commentary'];
             }
 
-            echo 'ohoh';
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                if (isset($_POST['idDeleteCommentary'])) {
-                    echo 'hihi';
+
+                if (isset($_POST['idCommentaryToDelete'])) {
                     $manager->commentaryDelete($_POST, $article);
                 }
+
                 if (isset($_POST['content'])) {
                     if ($manager->userCheckCommentary($_POST)){
                         $manager->insertCommentary($_POST, $article);
                     }
 
                 }
+
                 if (isset($_POST['contentEditing'])) {
                    if($manager->userCheckArticleEdition($_POST)){
                        $manager->articleEdition($_POST, $article);
                    }
-
                 }
 
                 if (isset($_POST['commentaryEditing'])) {
-                    if($manager->userCheckCommentaryEdition($_POST)) {
+
+
+                        var_dump($_POST);
                         $manager->commentaryEdition($_POST);
-                    }
+
                 }
 
-                  //  $manager->articlesDelete($article);
+
+                if(isset($_POST['articleDelete'])){
+                    $manager->articlesDelete($article);
+                }
 
             }
 
@@ -161,7 +164,8 @@ class DefaultController extends BaseController
             } else {
                 echo $this->renderView('articles.html.twig', ['article' => $article, 'commentary' => $commentary, 'userInfo' => $userInfo, 'allUserCommentary' => $allUserCommentary, 'allFaction' => $allFaction, 'allUsernames' => $allUsernames]);
             }
-        } else {
+        } 
+        else {
             $this->redirect('home');
         }
     }

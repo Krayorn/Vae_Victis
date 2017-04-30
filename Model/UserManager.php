@@ -242,7 +242,11 @@ class UserManager
         $user['update_date'] = $this->giveDate();
         $this->DBManager->insert('articles', $user);
         $write = $this->writeLog('access.log', ' => function : insertArticles || User ' . $_SESSION['username'] . ' just created a new Article named ' . $user['title'] . '.' . "\n");
-        move_uploaded_file($img['description']['tmp_name'], $filepath);
+        $req = $this->getArticlesByTitle($data['title']);
+        $update['description'] = "uploads/articles_img/" . $req['id'] . strrchr(basename($img['description']['name']), '.');
+        $update['id']=$req['id'];
+        $query = $this->DBManager->findOneSecure("UPDATE articles SET `description`= :description  WHERE `id` = :id", $update);
+        move_uploaded_file($img['description']['tmp_name'], $update['description']);
         $this->addArticleUser();
         echo json_encode(array('success'=>true));
         exit(0);
@@ -378,12 +382,11 @@ class UserManager
     public function articleEdition($data,$article)
     {
         $update['titleEditing'] = $data['titleEditing'];
-        $update['descriptionEditing'] = $data['descriptionEditing'];
         $update['contentEditing'] = $data['contentEditing'];
         $update['article_id'] = $article['id'];
         $update['update_date'] = $this->giveDate();
-        $query = $this->DBManager->findOneSecure("UPDATE articles SET `title`= :titleEditing,`description` = :descriptionEditing,`content` = :contentEditing,update_date = :update_date WHERE  `id` = :article_id", $update);
-        $write = $this->writeLog('access.log', ' => function : articleEdition || User ' . $_SESSION['username'] . ' just updated his article '."\n");
+        $query = $this->DBManager->findOneSecure("UPDATE articles SET `title`= :titleEditing, `content` = :contentEditing,update_date = :update_date WHERE  `id` = :article_id", $update);
+        $write = $this->writeLog('access.log', ' => function : articleEdition || User ' . $_SESSION['username'] . ' just updated his article '.  $update['titleEditing'] . "\n");
         echo json_encode(array('success'=>true));
         exit(0);
     }
@@ -420,10 +423,11 @@ class UserManager
     public function commentaryDelete($data,$article)
     {
 
-        $update['id'] = $data['idDeleteCommentary'];
+        $update['id'] = $data['idCommentaryToDelete'];
+        var_dump($update['id'] );
         $user_id = $_SESSION['user_id'];
         $query = $this->DBManager->findOneSecure("DELETE  FROM commentary WHERE  `id` = :id", $update);
-        $write = $this->writeLog('access.log', ' => function : articleEdition || User ' . $_SESSION['username'] . ' just updated his article '."\n");
+        $write = $this->writeLog('access.log', ' => function : articleEdition || User ' . $_SESSION['username'] . ' just deleted his article '."\n");
         $this->deleteCommentaryArticle($article['id']);
         $this->deleteCommentaryUser($user_id);
         echo json_encode(array('success'=>true));
@@ -435,7 +439,6 @@ class UserManager
         $update['id'] = $article_id['id'];
         $filepath = $article_id['description'];
         $user_id = $_SESSION['user_id'];
-        var_dump($filepath);
         unlink($filepath);
         $query = $this->DBManager->findOneSecure("DELETE  FROM articles WHERE  `id` = :id", $update);
         $write = $this->writeLog('access.log', ' => function : articleEdition || User ' . $_SESSION['username'] . ' just updated his article '."\n");
