@@ -127,7 +127,10 @@ class DefaultController extends BaseController
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 if (isset($_POST['idCommentaryToDelete'])) {
-                    $manager->commentaryDelete($_POST, $article);
+                    if($manager->userCheckCommentaryDelete($_POST)){
+                        $manager->commentaryDelete($_POST, $article);
+                    }
+
                 }
 
                 if (isset($_POST['content'])) {
@@ -145,13 +148,19 @@ class DefaultController extends BaseController
 
 
                 if (isset($_POST['commentaryEditing'])) {
+                    if($manager-> userCheckCommentaryEdition($_POST)){
                         $manager->commentaryEdition($_POST);
+                    }
+
 
                 }
 
 
                 if(isset($_POST['articleDelete'])){
-                    $manager->articlesDelete($article);
+                    if($manager->userCheckDeleteArticle()){
+                        $manager->articlesDelete($article);
+                    }
+
                 }
 
             }

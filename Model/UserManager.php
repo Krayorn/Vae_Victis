@@ -101,28 +101,28 @@ class UserManager
 
         if (empty($data['username']) || empty($data['email']) || empty($data['password']) || empty($data['confirm_password'])){
             $valid = false;
-            $errors['username'] = 'Missing fields';
+            $errors['username'] = 'Champ(s) manquants';
         }
 
         if(strlen($data['username']) < 4){
             $valid = false;
-            $errors['username'] = 'Username too short';
+            $errors['username'] = 'Pseudo trop court';
         }
 
         $testUsername = $this->getUserByUsername($data['username']);
         if ($testUsername !== false){
             $valid = false;
-            $errors['username'] = 'Username already used';
+            $errors['username'] = 'Pseudo déjà utilisé';
         }
         $testEmail = $this->getUserByEmail($data['email']);
         if ($testEmail !== false){
             $valid = false;
-            $errors['email'] = 'Email already used';
+            $errors['email'] = 'Email déjà utilisé';
         }
 
         if($data['password'] !== $data['confirm_password']){
             $valid = false;
-            $errors['confirm'] = 'Password does not match';
+            $errors['confirm'] = 'Les mots de passes ne correspondent pas';
         }
 
         if($valid == false){
@@ -168,17 +168,17 @@ class UserManager
         $errors = array();
         if (empty($data['username']) OR empty($data['password'])){
             $valid = false;
-            $errors['field'] = 'Fields missing';
+            $errors['field'] = 'Champ(s) manquants';
         }
         $user = $this->getUserByUsername($data['username']);
         if (!$user){
             $valid = false;
-            $errors['username'] = 'User not found ';
+            $errors['username'] = 'Utilisateur non trouvé';
         }
         if (password_verify($data['password'], $user['password']) == false)
         {
             $valid = false;
-            $errors['password'] = 'Password does not match with username';
+            $errors['password'] = 'Le mot de passe ne correspond pas à votre pseudo';
 
         }
         if($valid == false){
@@ -211,7 +211,7 @@ class UserManager
         $extFile = strrchr(basename($img['description']['name']), '.');
         if (empty($data['title']) OR empty($img['description']['name']) OR empty($data['articleContent'])){
             $valid = false;
-            $errors['article'] = 'Missing fields';
+            $errors['article'] = 'Champ(s) manquants';
         }
         if(!in_array($extFile,$extension)){
             $valid = false;
@@ -220,7 +220,7 @@ class UserManager
         $testTitle = $this->getArticlesByTitle($data['title']);
         if ($testTitle){
             $valid = false;
-            $errors['title'] = 'Title already used';
+            $errors['title'] = 'Titre déj utilisé';
         }
         if(!$valid){
             echo json_encode(array('success'=>false, 'errors'=>$errors));
@@ -258,7 +258,7 @@ class UserManager
         $errors = array();
         if (empty($data['content'])){
             $valid = false;
-            $errors['field'] = 'Missing fields';
+            $errors['field'] = 'Champ(s) manquants';
         }
 
 
@@ -364,7 +364,7 @@ class UserManager
         $errors = array();
         if (empty($data['contentEditing'])  OR empty($data['titleEditing'])){
             $valid = false;
-            $errors['fields'] = 'Fields missing';
+            $errors['fields'] = 'Champ(s) manquants';
         }
         if(strlen($data['contentEditing']) < 4){
             $valid = false;
@@ -396,7 +396,7 @@ class UserManager
         $errors = array();
         if( empty($data['commentaryEditing']) OR empty($data['id'])){
             $valid = false;
-            $errors['field'] = 'Missing fields';
+            $errors['field'] = 'Champ(s) manquants';
         }
 
         if(strlen($data['commentaryEditing']) < 2){
@@ -424,7 +424,29 @@ class UserManager
         echo json_encode(array('success'=>true));
         exit(0);
     }
+    public function userCheckCommentaryDelete($data)
+    {
+        $valid = true;
+        $errors = array();
+        if( empty($data['idCommentaryToDelete'])){
+            $valid = false;
+            $errors['field'] = 'Une erreur c\'est produite';
+        }
+        if(empty($_SESSION['user_id'])){
+            $valid = false;
+            $errors['user'] = 'Vous devez être connecté';
+        }
 
+
+
+
+        if(!$valid){
+            json_encode(array('success'=>false, 'errors'=>$errors));
+            exit(0);
+        }else{
+            return true;
+        }
+    }
     public function commentaryDelete($data,$article)
     {
 
