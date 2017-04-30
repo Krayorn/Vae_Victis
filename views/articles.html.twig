@@ -89,7 +89,7 @@
                         <div class="none idCommentary">{{ key.id }}</div>
                         <div class="commentary_content">{{ key.content | raw }}</div>
                         <div class="manager">
-                            {% if (key.user_id == isConnected.id) or (userRole == 3) %}
+                            {% if (key.user_id == isConnected.id) or (userRole == 3) or (article.user_id == isConnected.id) %}
                                 <label class="commentaryEdition">Editez le commentaire </label>
                                 <label class="commentaryDelete">Supprimer le commentaire </label>
                                 <p class="errorDeleteCommentary error"></p>
