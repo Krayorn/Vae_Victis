@@ -42,6 +42,11 @@
     @media (min-width: 1025px) {
       padding: 0% 18%;
     }
+    @media(min-width : 1441px){
+      font-size: 18px;
+      padding: 300px;
+    }
+
   }
 
   main {
@@ -91,6 +96,9 @@
       width: 18%;
       height: 100%;
       left: 0;
+    }
+    @media(min-width : 1441px){
+      width : 300px;
     }
     li {
       padding: 20px;
@@ -143,6 +151,9 @@
     align-items: center;
     @media(min-width: 1025px) {
       display: flex;
+    }
+    @media(min-width : 1441px){
+      width: 300px;
     }
     .static_footer {
       position: fixed;

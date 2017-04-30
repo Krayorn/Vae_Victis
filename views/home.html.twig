@@ -3,18 +3,18 @@
 {% block content %}
 
 <ul class="topnav">
-    <li id="active"><a href="#">Acceuil</a><div class="down arrow"></div><div class="up none arrow"></div></li>
+    <li class="navTag" id="active"><a href="#">Acceuil</a><div class="down arrow"></div><div class="up none arrow"></div></li>
     {% if isConnected is defined %}
-    <li class="none"><a href="?action=profile&amp;username={{user.username}}">Profil</a></li>
-    <li class="none"><a href="?action=logout">Déconnexion</a></li>
+    <li class="navTag none"><a href="?action=profile&amp;username={{user.username}}">Profil</a></li>
+    <li class="navTag none"><a href="?action=logout">Déconnexion</a></li>
     {% else %}
-    <li class="none"><a href="?action=login">Se connecter</a></li>
-    <li class="none"><a href="?action=register">S'inscire</a></li>
+    <li class="navTag none"><a href="?action=login">Se connecter</a></li>
+    <li class="navTag none"><a href="?action=register">S'inscire</a></li>
     {% endif %}
 </ul>
 
 <div class="allArticles">
-    <img class="tablet_center" src="assets/images/home_center.png"/>
+    <img class="tablet_center" alt="warrior viking" src="assets/images/home_center.png"/>
     {% for key in articles %}
         {% set username = allUsernames[key['id']] %}
         {% set commentary = allNbrCommentary[key['id']] %}

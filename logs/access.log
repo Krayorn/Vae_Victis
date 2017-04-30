@@ -1,3 +1,12 @@
+<<<<<<< HEAD
 2017-04-30 18:23 => function : userLogin || User Appolyon just connected.
 2017-04-30 19:02 => function : addCommentary || User Appolyon just added a commentary .
 2017-04-30 19:30 => function : userLogin || User Appolyon just connected.
+=======
+2017-04-30 18:25 => function : userLogin || User Hersir just connected.
+2017-04-30 18:46 => function : userLogin || User Hersir just connected.
+2017-04-30 18:46 => function : usernameEdition || User Hersir just updated his username to Hersir !.
+2017-04-30 18:47 => function : usernameEdition || User Hersir just updated his username to Hersir.
+2017-04-30 19:38 => function : userLogin || User Hersir just connected.
+>>>>>>> e4385fc0687e6b6d633ff83a5d480b5b82dd73ef
+2017-04-30 19:55 => function : userLogin || User Appolyon just connected.
