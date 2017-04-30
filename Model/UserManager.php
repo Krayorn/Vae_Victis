@@ -358,7 +358,7 @@ class UserManager
     {
         $valid = true;
         $errors = array();
-        if (empty($data['contentEditing'])){
+        if (empty($data['contentEditing']) OR empty($data['descriptionEditing']) OR empty($data['titleEditing'])){
             $valid = false;
             $errors['fields'] = 'Fields missing';
         }
@@ -386,6 +386,23 @@ class UserManager
         $write = $this->writeLog('access.log', ' => function : articleEdition || User ' . $_SESSION['username'] . ' just updated his article '."\n");
         echo json_encode(array('success'=>true));
         exit(0);
+    }
+    public function userCheckCommentaryEdition($data)
+    {
+        $valid = true;
+        $errors = array();
+        if( empty($data['content']) OR empty($data['id'])){
+            $valid = false;
+            $errors['field'] = 'Missing fields';
+        }
+
+
+        if(!$valid){
+            json_encode(array('success'=>false, 'errors'=>$errors));
+            exit(0);
+        }else{
+            return true;
+        }
     }
 
     public function commentaryEdition($data)
