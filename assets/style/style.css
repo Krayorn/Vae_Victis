@@ -27,12 +27,6 @@
     padding: 0% 18%;
   }
 }
-@media screen and (min-width: 1441px) {
-  body {
-    font-size: 18px;
-    padding: 300px;
-  }
-}
 
 @media screen {
   main {
@@ -100,11 +94,6 @@
     left: 0;
   }
 }
-@media screen and (min-width: 1441px) {
-  .topnav {
-    width: 300px;
-  }
-}
 @media screen {
   .topnav li {
     padding: 20px;
@@ -167,11 +156,6 @@
 @media screen and (min-width: 1025px) {
   .aside_bar {
     display: flex;
-  }
-}
-@media screen and (min-width: 1441px) {
-  .aside_bar {
-    width: 300px;
   }
 }
 @media screen {
@@ -713,7 +697,7 @@
 
   footer {
     width: 100%;
-    height: 100px;
+    height: 10%;
     background-color: #333;
     font-size: 20px;
     font-family: "nordic";
