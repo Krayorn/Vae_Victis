@@ -36,10 +36,11 @@
 
 
                     <img class="descriptionImg" src="{{ article.description }}"/>
+                    <div class="articleContent">{{ article.content | raw }}</div>
 
                 </div>
             </div>
-            <div class="articleContent">{{ article.content | raw }}</div>
+
 
             {% if (article.user_id == isConnected.id)  or (userRole == 3) %}
                 <div class="manager">
