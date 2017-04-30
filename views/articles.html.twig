@@ -1,137 +1,156 @@
 {% extends 'layout.html.twig' %}
 
 {% block content %}
-<ul class="topnav">
-    <li id="active"><a href="#">{{article.title}}</a><div class="down arrow"></div><div class="up none arrow"></div></li>
-    {% if isConnected is defined %}
-    <li class="none"><a href="?action=home">Acceuil</a></li>
-    <li class="none"><a href="?action=profile&amp;username={{isConnected.username}}">Profil</a></li>
-    <li class="none"><a href="?action=logout">Déconnexion</a></li>
-    {% else %}
-    <li class="none"><a href="?action=home">Acceuil</a></li>
-    <li class="none"><a href="?action=login">Se connecter</a></li>
-    <li class="none"><a href="?action=register">S'inscire</a></li>
-    {% endif %}
-</ul>
-
-<div class="articleView">
-
-    <article>
-        <header>
-            <p id="titleContent">{{ article.title }}<p>
-        </header>
-
-        <img class="descriptionImg" src="{{ article.description }}"/>
-        <div id="articleContent">{{ article.content | raw }}</div>
-        <div class="article_user_info">
-                <p>Article écrit par le {{userInfo.faction}}, <a href="?action=profile&amp;username={{userInfo.username}}">{{userInfo.username}}</a></p>
-                <p>Le {{article.date}}</p>
-                <p class="not_useful">Nbr de commentaires de l'article: {{article.nbr_commentary}}<p>
-        </div>
-
-        {% if (article.user_id == isConnected.id)  or (userRole == 3)%}
-        <div class="manager">
-            <p id="editArticle">Editer l'Article</p>
-            <form action="?action=articles&amp;id={{ article.id }}" method="POST" id="formDeleteArticle">
-                <label for="deleteArticle">Supprimer l'article</label>
-                <input id="deleteArticle" class="none" type="submit" value="Supprimer l'article">
-            </form>
-        </div>
+    <ul class="topnav">
+        <li id="active"><a href="#">{{ article.title }}</a>
+            <div class="down arrow"></div>
+            <div class="up none arrow"></div>
+        </li>
+        {% if isConnected is defined %}
+            <li class="none"><a href="?action=home">Acceuil</a></li>
+            <li class="none"><a href="?action=profile&amp;username={{ isConnected.username }}">Profil</a></li>
+            <li class="none"><a href="?action=logout">Déconnexion</a></li>
+        {% else %}
+            <li class="none"><a href="?action=home">Acceuil</a></li>
+            <li class="none"><a href="?action=login">Se connecter</a></li>
+            <li class="none"><a href="?action=register">S'inscire</a></li>
         {% endif %}
+    </ul>
 
-    </article>
-    <div id="errorCommentaryEdition"></div>
+    <div class="articleView">
 
-    <div id="formEdition">
-        <div id="resultEdition"></div>
-        <form action="?action=articles&amp;id={{ article.id }}" method="POST" id="articlesFormEdition">
-            Title : <input type="text" name="articleTitleEdition" id="articleTitleEdition"><br> <span id="errorTitle"
-                                                                                        class="errorBlock"></span>
-            Contenu: <textarea name="articleContentEdition" id="articleContentEdition"></textarea><br> <span id="errorContent"
-                                                                                                      class="errorBlock"></span>
+        <article>
+            <header>
+                <p id="titleContent">{{ article.title }}<p>
+            </header>
+            <div class="flexArticle">
 
-            <input type="submit" name="articleEdition">
-        </form>
-    </div>
-    <div id="fullContentCommentary">
-
-        <div id="commentary">
-            {% for key in commentary %}
-                {% set username = allUsernames[key['user_id']] %}
-                {% set commentary = allUserCommentary[key['user_id']] %}
-                {% set faction = allFaction[key['user_id']] %}
-                <div class="commentary">
-                    <div class="commentary_user_info">
-                        <div class="primary_user_info">
-                            <a href="?action=profile&amp;username={{username}}">{{username}}</a>
-                            <p>{{ faction }}</p>
-                        </div>
-                        <div class="secondary_user_info">
-                            <p>Le {{key.date}}</p>
-                            <p class="not_useful">Nbr de commentaires : {{commentary}}<p>
-                        </div>
-                    </div>
-                    <div class="none idCommentary">{{key.id}}</div>
-                    <div class="commentary_content">{{ key.content | raw }}</div>
-                    <div class="manager">
-                    {% if (key.user_id == isConnected.id) or (userRole == 3) %}
-                        <label class="commentaryEdition">Editez le commentaire </label>
-                        <label class="commentaryDelete">Supprimer le commentaire </label>
-                    {% endif %}
-                    {% if (key.user_id == isConnected.id) or (userRole == 3) or (userInfo.id == article.id_user) %}
-                        <form action="?action=articles&amp;id={{ article.id }}" method="POST" class="formDeleteCommentary none">
-                            <input type="text" class="none" name="idCommentaryToDelete" id="idCommentaryToDelete">
-                            <label class="delete" for="commentaryDelete">Confirmez</label>
-                            <input  type="submit" class="none" id="commentaryDelete" value="commentaryDelete">
-                        </form>
-                    {% endif %}
-                    </div>
+                <div class="article_user_info">
+                    <p>Article écrit par  <a
+                                href="?action=profile&amp;username={{ userInfo.username }}">{{ userInfo.username }}</a>, du clan des  {{ userInfo.faction }}
+                    </p>
+                    <p>Le {{ article.date }}</p>
+                    <p>Nbr de commentaires de l'article: {{ article.nbr_commentary }}<p>
                 </div>
-            {% endfor %}
-        </div>
+                <div class="articleData">
 
-        <div id="myModal" class="modal">
-            <div class="modal-content">
-                <h1> Postez un commentaire</h1>
-                <span class="close">&times;</span>
-                <div id="formCommentaryEdition">
-                    <span class="errorCommentaryEdition errorBlock" ></span>
-                    <form action="?action=articles&amp;id={{article.id}}" method="POST" id="commentaryFormEdition">
-                        <label for="contentCommentaryEdition">Contenu:</label>
-                        <input type="text" id="idHidden" class="none" name="idHidden">
-                        <textarea name="contentCommentaryEdition" id="contentCommentaryEdition"></textarea><br>  <span id="errorContent" class="errorBlock"></span>
-                        <input type="submit" name="commentary">
-                    </form>
+
+                    <img class="descriptionImg" src="{{ article.description }}"/>
+
                 </div>
             </div>
+            <div class="articleContent">{{ article.content | raw }}</div>
+
+            {% if (article.user_id == isConnected.id)  or (userRole == 3) %}
+                <div class="manager">
+                    <p id="editArticle">Editer l'Article</p>
+                    <form action="?action=articles&amp;id={{ article.id }}" method="POST" id="formDeleteArticle">
+                        <label for="deleteArticle">Supprimer l'article</label>
+                        <input id="deleteArticle" class="none" type="submit" value="Supprimer l'article">
+                    </form>
+                </div>
+            {% endif %}
+
+        </article>
+        <div id="errorCommentaryEdition"></div>
+
+        <div id="formEdition">
+            <div id="resultEdition"></div>
+            <form action="?action=articles&amp;id={{ article.id }}" method="POST" id="articlesFormEdition">
+                Title : <input type="text" name="articleTitleEdition" id="articleTitleEdition"><br> <span
+                        id="errorTitle"
+                        class="errorBlock"></span>
+                Contenu: <textarea name="articleContentEdition" id="articleContentEdition"></textarea><br> <span
+                        id="errorContent"
+                        class="errorBlock"></span>
+
+                <input type="submit" name="articleEdition">
+            </form>
         </div>
+        <div id="fullContentCommentary">
+
+            <div id="commentary">
+                {% for key in commentary %}
+                    {% set username = allUsernames[key['user_id']] %}
+                    {% set commentary = allUserCommentary[key['user_id']] %}
+                    {% set faction = allFaction[key['user_id']] %}
+                    <div class="commentary">
+                        <div class="commentary_user_info">
+                            <div class="primary_user_info">
+                                <a href="?action=profile&amp;username={{ username }}">{{ username }}</a>
+                                <p>{{ faction }}</p>
+                            </div>
+                            <div class="secondary_user_info">
+                                <p>Le {{ key.date }}</p>
+                                <p class="not_useful">Nbr de commentaires : {{ commentary }}<p>
+                            </div>
+                        </div>
+                        <div class="none idCommentary">{{ key.id }}</div>
+                        <div class="commentary_content">{{ key.content | raw }}</div>
+                        <div class="manager">
+                            {% if (key.user_id == isConnected.id) or (userRole == 3) %}
+                                <label class="commentaryEdition">Editez le commentaire </label>
+                                <label class="commentaryDelete">Supprimer le commentaire </label>
+                            {% endif %}
+                            {% if (key.user_id == isConnected.id) or (userRole == 3) or (userInfo.id == article.id_user) %}
+                                <form action="?action=articles&amp;id={{ article.id }}" method="POST"
+                                      class="formDeleteCommentary none">
+                                    <input type="text" class="none" name="idCommentaryToDelete"
+                                           id="idCommentaryToDelete">
+                                    <label class="delete" for="commentaryDelete">Confirmez</label>
+                                    <input type="submit" class="none" id="commentaryDelete" value="commentaryDelete">
+                                </form>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <h1> Postez un commentaire</h1>
+                    <span class="close">&times;</span>
+                    <div id="formCommentaryEdition">
+                        <span class="errorCommentaryEdition errorBlock"></span>
+                        <form action="?action=articles&amp;id={{ article.id }}" method="POST"
+                              id="commentaryFormEdition">
+                            <label for="contentCommentaryEdition">Contenu:</label>
+                            <input type="text" id="idHidden" class="none" name="idHidden">
+                            <textarea name="contentCommentaryEdition" id="contentCommentaryEdition"></textarea><br>
+                            <span id="errorContent" class="errorBlock"></span>
+                            <input type="submit" name="commentary">
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        {% if isConnected is defined %}
+            <div id="form">
+                <span id="resultCommentary" class="errorBlock"></span>
+                <h1> Postez un commentaire</h1>
+                <form action="?action=articles&amp;id={{ article.id }}" method="POST" id="commentaryForm">
+                    <label for="contentCommentary">Contenu:</label>
+                    <textarea name="contentCommentary" id="contentCommentary"></textarea><br> <span id="errorContent"
+                                                                                                    class="errorBlock"></span>
+                    <input type="submit">
+                </form>
+            </div>
+            <script>
+                CKEDITOR.replace('contentCommentary');
+            </script>
+        {% endif %}
+        <script>
+            CKEDITOR.replace('articleContentEdition');
+            CKEDITOR.replace('contentCommentaryEdition');
+        </script>
 
     </div>
-    {% if isConnected is defined %}
-    <div id="form">
-        <span id="resultCommentary" class="errorBlock"></span>
-        <h1> Postez un commentaire</h1>
-        <form action="?action=articles&amp;id={{article.id}}" method="POST" id="commentaryForm">
-           <label for="contentCommentary">Contenu:</label>
-            <textarea name="contentCommentary" id="contentCommentary"></textarea><br>  <span id="errorContent" class="errorBlock"></span>
-            <input type="submit">
-        </form>
-    </div>
-    <script>
-        CKEDITOR.replace('contentCommentary');
-    </script>
-    {% endif %}
-    <script>
-        CKEDITOR.replace('articleContentEdition');
-        CKEDITOR.replace('contentCommentaryEdition');
-    </script>
 
-</div>
-
-<aside class="aside_bar">
-    <img class="logo" alt="logo_honor" src="assets/images/forHonor.png"/>
-    <img class="static_footer" alt="side_bar_img" src="assets/images/asideJarl.png"/>
-    <iframe src="https://www.youtube.com/embed/hduexi1GD5c" allowfullscreen></iframe>
-</aside>
+    <aside class="aside_bar">
+        <img class="logo" alt="logo_honor" src="assets/images/forHonor.png"/>
+        <img class="static_footer" alt="side_bar_img" src="assets/images/asideJarl.png"/>
+        <iframe src="https://www.youtube.com/embed/hduexi1GD5c" allowfullscreen></iframe>
+    </aside>
 
 {% endblock %}
