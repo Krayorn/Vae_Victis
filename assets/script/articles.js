@@ -98,17 +98,17 @@ $(function () {
         CKupdateArticleEdition();
         var formValid = true;
         var $this = $(this);
-        var $titleEdition = $('#articleTitleEdition').val();
-        var $articleContentEdition = CKEDITOR.instances['articleContentEdition'].getData();
-        if($titleEdition == '' || $articleContentEdition == ''){
+        var titleEdition = $('#articleTitleEdition').val();
+        var articleContentEdition = CKEDITOR.instances['articleContentEdition'].getData();
+        if(titleEdition == '' || articleContentEdition == ''){
             resultEdition.html('Champs manquants');
             formValid = false;
         }
-        if($titleEdition.length <4){
+        if(titleEdition.length <4){
             resultEdition.html('Titre trop court');
             formValid = false;
         }
-        if($articleContentEdition.length <4){
+        if(articleContentEdition.length <4){
             resultEdition.html(' Contenu trop court');
             formValid = false;
         }
@@ -117,8 +117,8 @@ $(function () {
                 url: $this.attr('action'), // Le nom du fichier indiqué dans le formulaire
                 type: $this.attr('method'), // La méthode indiquée dans le formulaire (get ou post)
                 data: {
-                    titleEditing: $titleEdition,
-                    contentEditing: $articleContentEdition
+                    titleEditing: titleEdition,
+                    contentEditing: articleContentEdition
                 },
                 dataType: 'json', // JSON,
                 success: function (data) {
