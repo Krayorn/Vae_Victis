@@ -97,8 +97,7 @@ class DefaultController extends BaseController
     public function articlesAction()
     {
         if (isset($_GET['id'])) {
-
-        $error = '';
+            $error = '';
             $manager = UserManager::getInstance();
             $article = $manager->getArticlesById($_GET['id']);
             $infoUser = $manager->getUserById($article['user_id']);
@@ -126,8 +125,8 @@ class DefaultController extends BaseController
             }
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-                
-                if (isset($_POST['idDeleteCommentary'])) {
+
+                if (isset($_POST['idCommentaryToDelete'])) {
                     $manager->commentaryDelete($_POST, $article);
                 }
 
@@ -142,14 +141,15 @@ class DefaultController extends BaseController
                    if($manager->userCheckArticleEdition($_POST)){
                        $manager->articleEdition($_POST, $article);
                    }
-
                 }
 
                 if (isset($_POST['commentaryEditing'])) {
                     $manager->commentaryEdition($_POST);
                 }
-                $manager->articlesDelete($article);
 
+                if(isset($_POST['articleDelete'])){
+                    $manager->articlesDelete($article);
+                }
             }
 
             if (isset($_SESSION['user_id'])) {
@@ -158,7 +158,8 @@ class DefaultController extends BaseController
             } else {
                 echo $this->renderView('articles.html.twig', ['article' => $article, 'commentary' => $commentary, 'userInfo' => $userInfo, 'allUserCommentary' => $allUserCommentary, 'allFaction' => $allFaction, 'allUsernames' => $allUsernames]);
             }
-        } else {
+        } 
+        else {
             $this->redirect('home');
         }
     }

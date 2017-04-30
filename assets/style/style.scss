@@ -227,7 +227,7 @@
             width : 100%;
             @media(min-width : 641px){
                 width:40%;
-                height: 200px;
+                height: 250px;
             }
             a{
                 color:#c02424;
@@ -388,7 +388,7 @@
                 margin: 0% 20%;
             }
             @media(min-width:1025px){
-                margin: 0px;
+                margin: 60px;
                 @include flex_trinity(row, space-around);
                 flex-wrap: wrap;
             }

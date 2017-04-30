@@ -22,36 +22,32 @@ $(function () {
 // When the user clicks on the button, open the modal
     var idHidden = $('#idHidden');
     commentaryEdition.click(function () {
-        var contentCommentary = $(this).parent().children('.commentary_content').html();
-        var idCommentary = $(this).parent().children('.idCommentary').html();
+        var contentCommentary = $(this).parent().parent().children('.commentary_content').html();
+        var idCommentary = $(this).parent().parent().children('.idCommentary').html();
+        commentaryToEdit = $(this).parent().parent().children('.idCommentary');
         idHidden.val(idCommentary);
         modal.css('display', 'block');
         CKEDITOR.instances['contentCommentaryEdition'].setData(contentCommentary);
     });
 
     var commentaryFormEdition = $('#commentaryFormEdition');
-    var idDeleteCommentary = $('#idDeleteCommentary');
+
     commentaryFormEdition.submit(function () {
         $this = $(this);
-
-        var commentary = commentaryEdition.parent().children('.commentary_content');
-        var $idCommentary = idHidden.val();
-        var $commentaryData = CKEDITOR.instances['contentCommentaryEdition'].getData();
+        var commentary = commentaryToEdit.parent();
+        var idCommentary = idHidden.val();
+        var commentaryData = CKEDITOR.instances['contentCommentaryEdition'].getData();
         $.ajax({
-
             url: $this.attr('action'), // Le nom du fichier indiqué dans le formulaire
             type: $this.attr('method'), // La méthode indiquée dans le formulaire (get ou post)
-            data: {id: $idCommentary, commentaryEditing: $commentaryData},
+            data: {id: idCommentary, commentaryEditing: commentaryData},
             dataType: 'json', // JSON,
             success: function (data) {
 
                 if (data.success === true) {
                     modal.css('display', 'none');
-                    commentary.html($commentaryData);
+                    commentary.children('.commentary_content').html(commentaryData);
                 }
-            },
-            error: function (response, statut, error) {
-                console.log(response, statut, error);
             }
         });
         return false;
@@ -118,7 +114,6 @@ $(function () {
                 success: function (data) {
 
                     if (data.success === true) {
-                        resultEdition.html('L\'article à bien été modifié');
                         titleContent.html($titleEdition);
                         articleContent.html($articleContentEdition);
                         formEdition.css('display','none');
@@ -129,9 +124,6 @@ $(function () {
                         resultEdition.html(data.errors['content']);
                     }
 
-                },
-                error: function (response, statut, error) {
-                    console.log(response, statut, error);
                 }
             });
         }
@@ -147,7 +139,6 @@ $(function () {
         var $this = $(this);
        var resultCommentary = $('#resultCommentary');
         var $content = CKEDITOR.instances['contentCommentary'].getData();
-        console.log($content);
         if (formValid) {
 
             $.ajax({
@@ -157,10 +148,12 @@ $(function () {
                 dataType: 'json', // JSON,
 
                 success: function (data) {
-                    console.log('yo');
 
                     if (data.success) {
                         resultCommentary.html('Commentaire posté');
+                        $('#commentary').append('<div class="commentary"><div class="commentary_user_info">Votre Dernier Commentaire !</div>'+
+                        '<div class="commentary_content">' + $content +'</div></div>');
+                        CKEDITOR.instances['contentCommentary'].setData('');
                     }
                     if (!data.success) {
                         resultCommentary.html(data.errors['field'])
@@ -173,24 +166,22 @@ $(function () {
 
         return false;
     });
-    var formDeleteCommentary = $('#formDeleteCommentary');
-    var noneCommentary = commentaryEdition.parent().parent().children('.commentary');
-    console.log(noneCommentary);
+
+    var formDeleteCommentary = $('.formDeleteCommentary');
 
     formDeleteCommentary.submit(function () {
-        var $idCommentary = commentaryEdition.parent().children('.idCommentary').html();
-        var formValid = true;
         var $this = $(this);
-        if (formValid) {
+        var toHide = $this.parent().parent();
+        var formValid = true;
+       if (formValid) {
             $.ajax({
                 url: $this.attr('action'), // Le nom du fichier indiqué dans le formulaire
                 type: $this.attr('method'), // La méthode indiquée dans le formulaire (get ou post)
-                data: {idDeleteCommentary: $idCommentary},
+                data: $this.serialize(),
                 dataType: 'json', // JSON,
-
                 success: function (data) {
                     if (data.success === true) {
-                        noneCommentary.css('display','none');
+                        toHide.css('display','none');
                     }
                 }
             });
@@ -199,6 +190,7 @@ $(function () {
     });
 
     var formDeleteArticle = $('#formDeleteArticle');
+
     formDeleteArticle.submit(function () {
 
 
@@ -209,12 +201,11 @@ $(function () {
             $.ajax({
                 url: $this.attr('action'), // Le nom du fichier indiqué dans le formulaire
                 type: $this.attr('method'), // La méthode indiquée dans le formulaire (get ou post),
-                data:$this.serialize(),
+                data:{articleDelete: 't'},
                 dataType: 'json', // JSON,
 
                 success: function (data) {
                     if (data.success === true) {
-                       console.log('ok');
                     }
                 }
             });
