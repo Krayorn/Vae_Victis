@@ -18,7 +18,7 @@
   body {
     background: url("../images/bg.jpg") no-repeat center top;
     background-size: cover;
-    margin: 0px;
+    margin: 0;
     background-attachment: fixed;
   }
 }
@@ -36,7 +36,7 @@
 }
 @media screen and (min-width: 1025px) {
   main {
-    margin: 0px;
+    margin: 0;
   }
 }
 
@@ -365,30 +365,48 @@
     font-size: 20px;
     font-family: "article";
     font-weight: bold;
-  }
-  .articleView article .descriptionImg {
-    width: 100%;
+    margin-bottom: 4%;
   }
 }
 @media screen and (min-width: 641px) {
-  .articleView article .descriptionImg {
-    width: 80%;
+  .articleView article .flexArticle {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: stretch;
+    align-content: flex-start;
+  }
+}
+@media screen {
+  .articleView article .flexArticle .articleData {
+    margin-left: 5%;
+  }
+  .articleView article .flexArticle .articleData .descriptionImg {
+    width: 100%;
+    margin: 5% 0 5% 0;
+  }
+}
+@media screen and (min-width: 641px) {
+  .articleView article .flexArticle .articleData .descriptionImg {
+    width: 70%;
+    margin: 5% 10%;
     align-self: center;
   }
 }
 @media screen {
-  .articleView article #articleContent {
-    margin-bottom: 20px;
+  .articleView article .flexArticle .articleContent {
+    margin-bottom: 10%;
   }
-  .articleView article .article_user_info {
+  .articleView article .flexArticle .article_user_info {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    padding-bottom: 25px;
+    display: block;
   }
 }
 @media screen and (min-width: 641px) {
-  .articleView article .article_user_info {
+  .articleView article .flexArticle .article_user_info {
     flex-direction: column;
   }
 }
@@ -485,7 +503,7 @@
 @media screen {
   .box ul li {
     padding: 10px;
-    background-color: #c0c0c0;
+    background-color: #264647;
   }
   .box ul li .img_tab {
     width: 30px;

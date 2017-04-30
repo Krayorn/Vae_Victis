@@ -143,8 +143,10 @@ class DefaultController extends BaseController
                    }
                 }
 
+
                 if (isset($_POST['commentaryEditing'])) {
                         $manager->commentaryEdition($_POST);
+
                 }
 
 

@@ -31,7 +31,7 @@ $(function () {
     });
 
     var commentaryFormEdition = $('#commentaryFormEdition');
-
+    var errorCommentaryEdition = $('#errorCommentaryEdition');
     commentaryFormEdition.submit(function () {
         $this = $(this);
         var commentary =  commentaryEdition.parent().parent().children('.commentary_content');
@@ -44,10 +44,15 @@ $(function () {
             dataType: 'json', // JSON,
             success: function (data) {
 
-                if (data.success === true) {
+                if (data.success) {
                     modal.css('display','none');
                     commentary.html(commentaryData);
                 }
+                if(data.success === false){
+                    errorCommentaryEdition.html(data.errors['field'])
+                    errorCommentaryEdition.html(data.errors['length'])
+                }
+
             }
         });
         return false;

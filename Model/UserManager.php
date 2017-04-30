@@ -394,9 +394,14 @@ class UserManager
     {
         $valid = true;
         $errors = array();
-        if( empty($data['content']) OR empty($data['id'])){
+        if( empty($data['commentaryEditing']) OR empty($data['id'])){
             $valid = false;
             $errors['field'] = 'Missing fields';
+        }
+
+        if(strlen($data['commentaryEditing']) < 2){
+            $valid = false;
+            $errors['length'] = 'Contenu trop court';
         }
 
 
