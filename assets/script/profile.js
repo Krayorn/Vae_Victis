@@ -62,8 +62,6 @@ function CKupdateCommentary(){
 
          success: function(data)
          {
-             console.log(data);
-
             if(data.success === false) {
                 errorArticle.html(data.errors['article']);
                  errorFields.html(data.errors['title']);
@@ -71,14 +69,10 @@ function CKupdateCommentary(){
             }
              if(data.success === true){
                 $titleInput.val('');
-                 CKEDITOR.instances['articleContent'].setData('');
-              //window.location.href="?action=home";
+                CKEDITOR.instances['articleContent'].setData('');
+                window.location.href="?action=home";
             }
-         },
-             error: function(response,statut,error){
-             console.log(response,statut,error);
-             }
-
+         }
          });
          }
 

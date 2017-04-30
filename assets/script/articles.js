@@ -34,11 +34,9 @@ $(function () {
 
     commentaryFormEdition.submit(function () {
         $this = $(this);
-        var commentary =  commentaryEdition.parent().parent().children('.commentary_content').html();
-
+        var commentary =  commentaryEdition.parent().parent().children('.commentary_content');
         var idCommentary = idHidden.val();
         var commentaryData = CKEDITOR.instances['contentCommentaryEdition'].getData();
-        console.log(commentaryData);
         $.ajax({
             url: $this.attr('action'), // Le nom du fichier indiqué dans le formulaire
             type: $this.attr('method'), // La méthode indiquée dans le formulaire (get ou post)
@@ -81,13 +79,15 @@ $(function () {
     var descriptionContent = $('#descriptionContent');
     var articleContent = $('#articleContent');
     var articleContentEdition = $('#articleContentEdition');
-    var titleEdition = $('#titleEdition');
+    var titleEdition = $('#articleTitleEdition');
     var descriptionEdition = $('#descriptionEdition');
     formEdition.css('display','none');
+
     editArticle.click('slideToggle',function(){
         fullContentCommentary.css('display','none');
         formEdition.css('display','block');
         titleEdition.val(titleContent.html());
+        console.log(titleContent.html());
         descriptionEdition.val(descriptionContent.html());
         CKEDITOR.instances['articleContentEdition'].setData(articleContent.html());
     });
@@ -96,8 +96,8 @@ $(function () {
         CKupdateArticleEdition();
         var formValid = true;
         var $this = $(this);
-        var $titleEdition = $('#articleTitleEdition').val();
-        var $articleContentEdition = CKEDITOR.instances['articleContentEdition'].getData();
+        var titleEdition = $('#articleTitleEdition').val();
+        var articleContentEdition = CKEDITOR.instances['articleContentEdition'].getData();
 
         if (formValid) {
 
@@ -105,16 +105,16 @@ $(function () {
                 url: $this.attr('action'), // Le nom du fichier indiqué dans le formulaire
                 type: $this.attr('method'), // La méthode indiquée dans le formulaire (get ou post)
                 data: {
-                    titleEditing: $titleEdition,
-                    contentEditing: $articleContentEdition
+                    titleEditing: titleEdition,
+                    contentEditing: articleContentEdition
                 },
                 dataType: 'json', // JSON,
 
                 success: function (data) {
 
                     if (data.success === true) {
-                        titleContent.html($titleEdition);
-                        articleContent.html($articleContentEdition);
+                        titleContent.html(titleEdition);
+                        articleContent.html(articleContentEdition);
                         formEdition.css('display','none');
                         fullContentCommentary.css('display','block');
 
@@ -220,6 +220,7 @@ $(function () {
 
                 success: function (data) {
                     if (data.success === true) {
+                        window.location = "?action=home";
                     }
                 }
             });
