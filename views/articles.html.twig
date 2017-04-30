@@ -53,10 +53,10 @@
             {% endif %}
 
         </article>
-        <div id="errorCommentaryEdition"></div>
+
 
         <div id="formEdition">
-            <div id="resultEdition"></div>
+            <div id="resultEdition" class="error"></div>
             <form action="?action=articles&amp;id={{ article.id }}" method="POST" id="articlesFormEdition">
                 Title : <input type="text" name="articleTitleEdition" id="articleTitleEdition"><br> <span
                         id="errorTitle"
@@ -83,7 +83,7 @@
                             </div>
                             <div class="secondary_user_info">
                                 <p>Le {{ key.date }}</p>
-                                <p class="not_useful">Nbr de commentaires : {{ commentary }}<p>
+                                <p>Nbr de commentaires : {{ commentary }}<p>
                             </div>
                         </div>
                         <div class="none idCommentary">{{ key.id }}</div>
@@ -92,6 +92,7 @@
                             {% if (key.user_id == isConnected.id) or (userRole == 3) %}
                                 <label class="commentaryEdition">Editez le commentaire </label>
                                 <label class="commentaryDelete">Supprimer le commentaire </label>
+                                <p class="errorDeleteCommentary error"></p>
                             {% endif %}
                             {% if (key.user_id == isConnected.id) or (userRole == 3) or (userInfo.id == article.id_user) %}
                                 <form action="?action=articles&amp;id={{ article.id }}" method="POST"
@@ -112,7 +113,7 @@
                     <h1> Postez un commentaire</h1>
                     <span class="close">&times;</span>
                     <div id="formCommentaryEdition">
-                        <span class="errorCommentaryEdition errorBlock"></span>
+                        <span class="errorCommentaryEdition error"></span>
                         <form action="?action=articles&amp;id={{ article.id }}" method="POST"
                               id="commentaryFormEdition">
                             <label for="contentCommentaryEdition">Contenu:</label>
@@ -128,12 +129,11 @@
         </div>
         {% if isConnected is defined %}
             <div id="form">
-                <span id="resultCommentary" class="errorBlock"></span>
+                <span id="resultCommentary" class="error"></span>
                 <h1> Postez un commentaire</h1>
                 <form action="?action=articles&amp;id={{ article.id }}" method="POST" id="commentaryForm">
                     <label for="contentCommentary">Contenu:</label>
-                    <textarea name="contentCommentary" id="contentCommentary"></textarea><br> <span id="errorContent"
-                                                                                                    class="errorBlock"></span>
+                    <textarea name="contentCommentary" id="contentCommentary"></textarea><br>
                     <input type="submit">
                 </form>
             </div>

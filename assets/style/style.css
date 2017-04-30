@@ -512,7 +512,7 @@
     border-top-left-radius: 10px;
   }
   .box .allContent {
-    background-color: #c0c0c0;
+    background-color: #264647;
     padding: 20px;
   }
 }
@@ -627,30 +627,6 @@
     align-self: flex-end;
   }
 
-  .infoToEdit {
-    background-color: white;
-    opacity: 0.8;
-    margin-top: 120px;
-    height: 400px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    padding: 20px 0px;
-  }
-}
-@media screen and (min-width: 641px) {
-  .infoToEdit {
-    margin: 10% 20% 0% 20%;
-  }
-}
-@media screen {
-  .infoToEdit .align {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    height: 20px;
-  }
-
   .custom-btn {
     padding: 10px 25px;
     font-weight: 500;
@@ -682,6 +658,30 @@
   .custom-btn:hover:after {
     top: 0;
     height: 100%;
+  }
+
+  .infoToEdit {
+    background-color: white;
+    opacity: 0.8;
+    margin-top: 120px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding: 20px 0px;
+  }
+}
+@media screen and (min-width: 641px) {
+  .infoToEdit {
+    margin: 10% 20% 0% 20%;
+  }
+}
+@media screen {
+  .infoToEdit .align {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    height: 20px;
   }
 
   footer {

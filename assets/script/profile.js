@@ -1,10 +1,6 @@
 $(function () {
 
     var articlesForm = $('#articlesForm');
-    var errorFields = $('#errorFields');
-    var errorTitle = $('#errorTitle');
-    var errorDescription= $('#errorDescription');
-    var errorContent = $('#errorContent');
     var errorArticle = $('#errorArticle');  
 
     function switch_tab($tabs, $content){
@@ -31,25 +27,30 @@ function CKupdateCommentary(){
     }
 
     articlesForm.submit(function(){
-        CKupdateCommentary()
+        CKupdateCommentary();
         var formValid =true;
         var $this = $(this);
-        var $title = $('#title').val();
-        var $titleInput = $('#title');
-        var $description = $('#description').val();
-        var $descriptionInput = $('#description');
-        var $contentInput = $('#contentInput');
+
+        var titleInput = $('#title');
+        var $title = titleInput.val();
+
+        var descriptionInput = $('#description');
+        var $description = descriptionInput.val();
         var $content = CKEDITOR.instances['articleContent'].getData();
 
-
+            if($title =='' || !$description || $content == '' ){
+                errorArticle.html('Champs non rempli');
+                formValid = false;
+            }
+            if($title.length <4){
+                errorArticle.html('Titre trop court');
+                formValid = false;
+            }
+        if($content.length <12){
+            errorArticle.html('Contenu trop court');
+            formValid = false;
+        }
         var formData = new FormData(this);
-
-
-        // if( $title == '' || $description == '' || $content == ''){
-        //     formValid =  false;
-        //     errorFields.html('Fields missing');
-        //
-        // }
 
         if(formValid){
          $.ajax({
@@ -62,13 +63,13 @@ function CKupdateCommentary(){
 
          success: function(data)
          {
-            if(data.success === false) {
+            if(!data.success) {
                 errorArticle.html(data.errors['article']);
-                 errorFields.html(data.errors['title']);
-                 errorFields.html(data.errors['file']);
+                errorArticle.html(data.errors['title']);
+                errorArticle.html(data.errors['file']);
             }
-             if(data.success === true){
-                $titleInput.val('');
+             if(data.success){
+                titleInput.val('');
                 CKEDITOR.instances['articleContent'].setData('');
                 window.location.href="?action=home";
             }

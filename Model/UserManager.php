@@ -399,7 +399,7 @@ class UserManager
             $errors['field'] = 'Champ(s) manquants';
         }
 
-        if(strlen($data['commentaryEditing']) < 2){
+        if(strlen($data['commentaryEditing']) < 15){
             $valid = false;
             $errors['length'] = 'Contenu trop court';
         }

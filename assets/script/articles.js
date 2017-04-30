@@ -11,53 +11,50 @@ $(function () {
 
     var commentaryEdition = $('.commentaryEdition');
     var $this = $(this);
-///////////////////////////////////
-    // Get the modal
+
     var modal = $('#myModal');
-
-
-// Get the <span> element that closes the modal
     var span = $(".close")[0];
-
     var contentCommentaryEdit;
-// When the user clicks on the button, open the modal
+
     var idHidden = $('#idHidden');
     commentaryEdition.click(function () {
         var contentCommentary = $(this).parent().parent().children('.commentary_content').html();
          contentCommentaryEdit = $(this).parent().parent().children('.commentary_content');
         var idCommentary = $(this).parent().parent().children('.idCommentary').html();
-            var commentaryToEdit = $(this).parent().parent().children('.idCommentary');
         idHidden.val(idCommentary);
         modal.css('display', 'block');
         CKEDITOR.instances['contentCommentaryEdition'].setData(contentCommentary);
     });
 
     var commentaryFormEdition = $('#commentaryFormEdition');
-    var errorCommentaryEdition = $('#errorCommentaryEdition');
+    var errorCommentaryEdition = $('.errorCommentaryEdition');
     commentaryFormEdition.submit(function () {
         $this = $(this);
-
+        var formValid = true;
         var idCommentary = idHidden.val();
         var commentaryData = CKEDITOR.instances['contentCommentaryEdition'].getData();
+        if(idCommentary == '' || commentaryData == '' ){
+            formValid = false;
+            errorCommentaryEdition.html('Champs non remplis');
+        }
+        if(formValid){
         $.ajax({
             url: $this.attr('action'), // Le nom du fichier indiqué dans le formulaire
             type: $this.attr('method'), // La méthode indiquée dans le formulaire (get ou post)
             data: {id: idCommentary, commentaryEditing: commentaryData},
             dataType: 'json', // JSON,
             success: function (data) {
-
                 if (data.success) {
                     modal.css('display','none');
-                    console.log(contentCommentaryEdit);
                     contentCommentaryEdit.html(commentaryData);
                 }
-                if(data.success === false){
+                if(!data.success){
                     errorCommentaryEdition.html(data.errors['field'])
                     errorCommentaryEdition.html(data.errors['length'])
                 }
-
             }
         });
+        }
         return false;
     });
 
@@ -67,8 +64,6 @@ $(function () {
             modal.css('display', 'none');
         };
     }
-
-// When the user clicks anywhere outside of the modal, close it
     window.onclick = function (event) {
         if (event.target == modal) {
             modal.css('display', 'none');
@@ -85,7 +80,7 @@ $(function () {
     var resultEdition = $('#resultEdition');
     var titleContent = $('#titleContent');
     var descriptionContent = $('#descriptionContent');
-    var articleContent = $('#articleContent');
+    var articleContent = $('.articleContent');
     var articleContentEdition = $('#articleContentEdition');
     var titleEdition = $('#articleTitleEdition');
     var descriptionEdition = $('#descriptionEdition');
@@ -95,7 +90,6 @@ $(function () {
         fullContentCommentary.css('display','none');
         formEdition.css('display','block');
         titleEdition.val(titleContent.html());
-        console.log(titleContent.html());
         descriptionEdition.val(descriptionContent.html());
         CKEDITOR.instances['articleContentEdition'].setData(articleContent.html());
     });
@@ -106,9 +100,19 @@ $(function () {
         var $this = $(this);
         var titleEdition = $('#articleTitleEdition').val();
         var articleContentEdition = CKEDITOR.instances['articleContentEdition'].getData();
-
+        if(titleEdition == '' || articleContentEdition == ''){
+            resultEdition.html('Champs manquants');
+            formValid = false;
+        }
+        if(titleEdition.length <4){
+            resultEdition.html('Titre trop court');
+            formValid = false;
+        }
+        if(articleContentEdition.length <4){
+            resultEdition.html(' Contenu trop court');
+            formValid = false;
+        }
         if (formValid) {
-
             $.ajax({
                 url: $this.attr('action'), // Le nom du fichier indiqué dans le formulaire
                 type: $this.attr('method'), // La méthode indiquée dans le formulaire (get ou post)
@@ -117,10 +121,8 @@ $(function () {
                     contentEditing: articleContentEdition
                 },
                 dataType: 'json', // JSON,
-
                 success: function (data) {
-
-                    if (data.success === true) {
+                    if (data.success) {
                         titleContent.html(titleEdition);
                         articleContent.html(articleContentEdition);
                         formEdition.css('display','none');
@@ -130,12 +132,9 @@ $(function () {
                         resultEdition.html(data.errors['field']);
                         resultEdition.html(data.errors['content']);
                     }
-
                 }
             });
         }
-
-
         return false;
     });
 
@@ -146,6 +145,10 @@ $(function () {
         var $this = $(this);
        var resultCommentary = $('#resultCommentary');
         var $content = CKEDITOR.instances['contentCommentary'].getData();
+        if($content == ''){
+            resultCommentary.html('Contenu manquant');
+            formValid = false;
+        }
         if (formValid) {
 
             $.ajax({
@@ -153,9 +156,7 @@ $(function () {
                 type: $this.attr('method'), // La méthode indiquée dans le formulaire (get ou post)
                 data: {content: $content},
                 dataType: 'json', // JSON,
-
                 success: function (data) {
-
                     if (data.success) {
                         resultCommentary.html('Commentaire posté');
                         $('#commentary').append('<div class="commentary"><div class="commentary_user_info">Votre Dernier Commentaire !</div>'+
@@ -169,8 +170,6 @@ $(function () {
                 }
             });
         }
-
-
         return false;
     });
 
@@ -187,11 +186,15 @@ $(function () {
         label.css('display', 'block');
         commentaryDeleteToHide.css('display', 'none');
     });
-
+var errorDeleteCommentary = $('.errorDeleteCommentary');
     formDeleteCommentary.submit(function () {
         var $this = $(this);
         var $idCommentary = idCommentaryToDelete.val();
         var formValid = true;
+        if($idCommentary == ''){
+            errorDeleteCommentary.html('Une erreur c\'est produite');
+            formValid  = false;
+        }
        if (formValid) {
             $.ajax({
                 url: $this.attr('action'), // Le nom du fichier indiqué dans le formulaire
@@ -199,8 +202,11 @@ $(function () {
                 data: {idCommentaryToDelete:$idCommentary },
                 dataType: 'json', // JSON,
                 success: function (data) {
-                    if (data.success === true) {
+                    if (data.success) {
                         commentaryToHide.css('display','none');
+                    }
+                    if(!data.success){
+                        errorDeleteCommentary.html(data.error['field']);
                     }
                 }
             });
