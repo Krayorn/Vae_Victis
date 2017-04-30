@@ -63,6 +63,10 @@
   .none {
     display: none;
   }
+  .error{
+    color: red;
+    font-weight: bold;
+  }
 
   li {
     list-style-type: none;
@@ -330,6 +334,7 @@
           }
 
         }
+
         .articleContent {
           margin-bottom: 10%;
         }
@@ -417,7 +422,7 @@
     }
 
     .allContent{
-        background-color: #c0c0c0;
+        background-color: #264647;
         padding : 20px;
         @media(min-width:641px){
             margin: 0% 20%;
@@ -457,6 +462,7 @@
         }
         #user_article{
             display: none;
+            color: white;
             @media(min-width:1025px){
                 display: block;
                 @include flex_trinity(row, space-around);

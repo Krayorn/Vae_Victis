@@ -53,7 +53,7 @@
             {% endif %}
 
         </article>
-        <div id="errorCommentaryEdition"></div>
+
 
         <div id="formEdition">
             <div id="resultEdition"></div>
@@ -92,6 +92,7 @@
                             {% if (key.user_id == isConnected.id) or (userRole == 3) %}
                                 <label class="commentaryEdition">Editez le commentaire </label>
                                 <label class="commentaryDelete">Supprimer le commentaire </label>
+                                <p class="errorDeleteCommentary"></p>
                             {% endif %}
                             {% if (key.user_id == isConnected.id) or (userRole == 3) or (userInfo.id == article.id_user) %}
                                 <form action="?action=articles&amp;id={{ article.id }}" method="POST"
@@ -112,7 +113,7 @@
                     <h1> Postez un commentaire</h1>
                     <span class="close">&times;</span>
                     <div id="formCommentaryEdition">
-                        <span class="errorCommentaryEdition errorBlock"></span>
+                        <span class="errorCommentaryEdition"></span>
                         <form action="?action=articles&amp;id={{ article.id }}" method="POST"
                               id="commentaryFormEdition">
                             <label for="contentCommentaryEdition">Contenu:</label>
