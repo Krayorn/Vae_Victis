@@ -179,9 +179,7 @@ $(function () {
         var idCommentary = $(this).parent().parent().children('.idCommentary').html();
         var commentaryDeleteToHide = $(this).parent().children('.commentaryDelete');
         var label = $(this).parent().parent().children().children('.formDeleteCommentary');
-         commentaryToHide = $(this).parent().parent();
-
-        console.log(label);
+        commentaryToHide = $(this).parent().parent();
         idCommentaryToDelete.val(idCommentary);
         label.css('display', 'block');
         commentaryDeleteToHide.css('display', 'none');
@@ -189,7 +187,6 @@ $(function () {
 
     formDeleteCommentary.submit(function () {
         var $this = $(this);
-        console.log(commentaryToHide);
         var $idCommentary = idCommentaryToDelete.val();
         var formValid = true;
        if (formValid) {
