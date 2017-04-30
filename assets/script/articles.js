@@ -48,7 +48,6 @@ $(function () {
 
                 if (data.success) {
                     modal.css('display','none');
-                    console.log(contentCommentaryEdit);
                     contentCommentaryEdit.html(commentaryData);
                 }
                 if(data.success === false){
@@ -85,7 +84,7 @@ $(function () {
     var resultEdition = $('#resultEdition');
     var titleContent = $('#titleContent');
     var descriptionContent = $('#descriptionContent');
-    var articleContent = $('#articleContent');
+    var articleContent = $('.articleContent');
     var articleContentEdition = $('#articleContentEdition');
     var titleEdition = $('#articleTitleEdition');
     var descriptionEdition = $('#descriptionEdition');
