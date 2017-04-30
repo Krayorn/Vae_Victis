@@ -401,3 +401,15 @@
 2017-04-30 13:20 => function : articleEdition || User Hersir just updated his article 
 2017-04-30 13:20 => function : insertArticles || User Hersir just created a new Article named New.
 2017-04-30 13:20 => function : addCommentary || User Hersir just added a commentary .
+2017-04-30 13:55 => function : articleEdition || User Hersir just updated his article New
+2017-04-30 13:56 => function : addCommentary || User Hersir just added a commentary .
+2017-04-30 13:56 => function : articleEdition || User Hersir just deleted his article 
+2017-04-30 13:56 => function : addCommentary || User Hersir just added a commentary .
+2017-04-30 13:56 => function : articleEdition || User Hersir just updated his article 
+2017-04-30 13:58 => function : addCommentary || User Hersir just added a commentary .
+2017-04-30 13:59 => function : articleEdition || User Hersir just deleted his article 
+2017-04-30 14:05 => function : addCommentary || User Hersir just added a commentary .
+2017-04-30 14:07 => function : articleEdition || User Hersir just deleted his article 
+2017-04-30 14:07 => function : articleEdition || User Hersir just deleted his article 
+2017-04-30 14:07 => function : articleEdition || User Hersir just updated his article 
+2017-04-30 14:07 => function : articleEdition || User Hersir just updated his article 

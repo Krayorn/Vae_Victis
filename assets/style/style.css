@@ -350,6 +350,15 @@
     color: white;
     padding: 20px 10px 10px 10px;
   }
+}
+@media screen and (min-width: 641px) {
+  .articleView article {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+}
+@media screen {
   .articleView article header {
     color: #c02424;
     text-align: center;
@@ -360,6 +369,14 @@
   .articleView article .descriptionImg {
     width: 100%;
   }
+}
+@media screen and (min-width: 641px) {
+  .articleView article .descriptionImg {
+    width: 80%;
+    align-self: center;
+  }
+}
+@media screen {
   .articleView article #articleContent {
     margin-bottom: 20px;
   }
@@ -396,6 +413,9 @@
   }
 }
 @media screen {
+  .articleView #commentary .commentary .newComment {
+    color: orange;
+  }
   .articleView #commentary .commentary .commentary_user_info {
     display: flex;
     flex-direction: row;
@@ -425,6 +445,13 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    color: #c02424;
+  }
+  .articleView #form {
+    padding: 20px;
+  }
+  .articleView #form h1 {
+    text-align: center;
     color: #c02424;
   }
 

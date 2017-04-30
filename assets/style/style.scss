@@ -297,6 +297,9 @@
             margin: 0px 20px;
             color : white;
             padding: 20px 10px 10px 10px;
+            @media(min-width:641px){
+                @include flex_trinity(column, space-around);
+            }
             header{
                 color : #c02424;
                 text-align: center;
@@ -305,6 +308,10 @@
             }
             .descriptionImg{
                 width: 100%;
+                @media(min-width:641px){
+                    width: 80%;
+                    align-self: center;
+                }
             }
             #articleContent{
                 margin-bottom : 20px;
@@ -329,6 +336,9 @@
                     flex-direction: row;
                     justify-content: flex-start;
                 }
+                .newComment{
+                    color:orange;
+                }
                 .commentary_user_info{
                     @include flex_trinity(row, space-between);
                     padding-bottom: 25px;
@@ -349,6 +359,13 @@
         .manager{
             @include flex_trinity(row, space-around);
             color : #c02424;
+        }
+        #form{
+            padding : 20px;
+            h1{
+                text-align: center;
+                color :#c02424;
+            }
         }
     }
 
