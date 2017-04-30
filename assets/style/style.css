@@ -45,6 +45,11 @@
     margin: 0;
   }
 }
+@media screen and (min-width: 1440px) {
+  main {
+    height: 100%;
+  }
+}
 
 @media screen {
   .img_params {
@@ -428,11 +433,11 @@
 }
 @media screen {
   .articleView #commentary {
-    margin: 0px 20px;
+    margin: 0 20px;
   }
   .articleView #commentary .commentary {
     background-color: #c0c0c0;
-    margin: 20px 0px;
+    margin: 20px 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -534,7 +539,7 @@
 }
 @media screen and (min-width: 641px) {
   .box .allContent {
-    margin: 0% 20%;
+    margin: 0 20%;
   }
 }
 @media screen and (min-width: 1025px) {
@@ -690,7 +695,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    padding: 20px 0px;
+    padding: 20px 0;
   }
 }
 @media screen and (min-width: 641px) {
@@ -720,8 +725,14 @@
   footer {
     position: absolute;
     left: 0;
-    padding: 0% 18%;
+    padding: 0 18%;
     width: 64%;
+  }
+}
+@media screen and (min-width: 1440px) {
+  footer {
+    position: fixed;
+    bottom: 0;
   }
 }
 
