@@ -54,6 +54,9 @@
     @media(min-width: 1025px) {
       margin: 0;
     }
+    @media(min-width : 1440px){
+      height: 100%;
+    }
   }
 
   .img_params {
@@ -154,6 +157,9 @@
     align-items: center;
     @media(min-width: 1025px) {
       display: flex;
+    }
+    @media(min-width : 1440px){
+      width: 300px;
     }
     .static_footer {
       position: fixed;
@@ -576,6 +582,10 @@
       left: 0;
       padding: 0% 18%;
       width: 64%;
+    }
+    @media(min-width : 1440px){
+      position: fixed;
+      bottom: 0;
     }
   }
 }

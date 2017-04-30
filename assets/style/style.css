@@ -45,6 +45,11 @@
     margin: 0;
   }
 }
+@media screen and (min-width: 1440px) {
+  main {
+    height: 100%;
+  }
+}
 
 @media screen {
   .img_params {
@@ -97,7 +102,6 @@
 }
 @media screen and (min-width: 1440px) {
   .topnav {
-    font-size: 18px;
     width: 300px;
   }
 }
@@ -167,6 +171,11 @@
 @media screen and (min-width: 1025px) {
   .aside_bar {
     display: flex;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .aside_bar {
+    width: 300px;
   }
 }
 @media screen {
@@ -722,6 +731,12 @@
     left: 0;
     padding: 0% 18%;
     width: 64%;
+  }
+}
+@media screen and (min-width: 1440px) {
+  footer {
+    position: fixed;
+    bottom: 0;
   }
 }
 
