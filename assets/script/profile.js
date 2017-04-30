@@ -54,10 +54,10 @@ function CKupdateCommentary(){
 
         if(formValid){
          $.ajax({
-            url: $this.attr('action'), // Le nom du fichier indiqué dans le formulaire
-            type: $this.attr('method'), // La méthode indiquée dans le formulaire (get ou post)
-            contentType: false, // obligatoire pour de l'upload
-            processData: false, // obligatoire pour de l'upload
+            url: $this.attr('action'),
+            type: $this.attr('method'),
+            contentType: false,
+            processData: false,
             data: formData,
             dataType: 'json', // JSON,
 

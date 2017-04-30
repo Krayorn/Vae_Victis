@@ -76,7 +76,7 @@
         <div id="user_article" class="content">
 
             <div id="commentaryList">
-            <p>Vos commentaires :</p>
+            <h1>Vos commentaires </h1>
             {% for key in allCommentary %}
                 <div class="commentary">
                     {% set commentary = listCommentary[key['id']] %}
@@ -84,13 +84,14 @@
 
                     <div class="listCommentary">{{ commentary | raw}}</div>
                     <div class="listDateCommentary">Le {{ dateCommentary | raw}}</div>
+                    <hr>
                 </div>
             {% endfor %}
             </div>
 
 
             <div id="articlesList">
-                <p>Vos articles :</p>
+                <h1>Vos articles </h1>
                 {% for key in allArticles %}
                 <div class="article">
                     {% set articleContent = articlesContent[key['id']] %}
@@ -100,7 +101,9 @@
                     <div class="articlesTitle"> {{ articleTitle | raw}}</div>
                     <div class="articlesContent"> {{ articleContent | raw}}</div>
                     <div class="listDateArticle"> Le {{ dateArticles | raw}}</div>
+
                 <div>
+                    <hr>
                 {% endfor %}
             </div>
 

@@ -87,7 +87,7 @@ $(function () {
         errorPassword.html('');
         errorConfirm.html('');
         errorFaction.html('');
-        var $this = $(this); // L'objet jQuery du formulaire
+        var $this = $(this);
  
 
         var formValid = true;
@@ -144,14 +144,13 @@ $(function () {
         }
 
         if (formValid) {
-            // Envoi de la requête HTTP en mode asynchrone
-            //window.location.href = '?action=home'; Mek, la tu rediriges avant le test des errors en php, la function success plus bas s'effectue uniquement quand on a une réponse du php donc tu mets tes actions a faire ensuite la dedans
+
             $.ajax({
-                url: $this.attr('action'), // Le nom du fichier indiqué dans le formulaire
-                type: $this.attr('method'), // La méthode indiquée dans le formulaire (get ou post)
-                data: $this.serialize(), // Je sérialise les données (j'envoie toutes les valeurs présentes dans le formulaire)
-                dataType: 'json', // JSON,
-                success: function(data) { // Je récupère la réponse du fichier PHP
+                url: $this.attr('action'),
+                type: $this.attr('method'),
+                data: $this.serialize(),
+                dataType: 'json',
+                success: function(data) {
                     if(data.success === false) {
                         errorUsername.html(data.errors['username']);
                         errorEmail.html(data.errors['email']);
@@ -161,7 +160,7 @@ $(function () {
                     }
                     else{
                         document.location.href="?action=login";
-                    } // et la pop, je vérifie si le retour me renvoie une erreur, si c'est pas le cas, hop je valide et je redirige la page : bô jeu
+                    }
                 }
             });
         }

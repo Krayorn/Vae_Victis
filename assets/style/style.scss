@@ -266,6 +266,7 @@
       border: 1px solid #888;
       width: 80%; /* Could be more or less, depending on screen size */
     }
+
     .close {
       color: #aaa;
       float: right;
@@ -389,17 +390,17 @@
   }
 
   .box {
-    margin: 0px 20px;
+    margin: 0 20px;
     margin-top: 150px;
     @media(min-width: 1025px) {
-      margin-top: 0px;
+      margin-top: 0;
     }
     ul {
-      padding: 0px;
+      padding: 0;
       display: flex;
-      margin: 0px;
+      margin: 0;
       @media(min-width: 641px) {
-        margin: 0% 20%;
+        margin: 0 20%;
       }
       @media(min-width: 1025px) {
         display: none;
@@ -416,89 +417,97 @@
       }
     }
 
-    .allContent{
-        background-color: #264647;
-        padding : 20px;
-        @media(min-width:641px){
-            margin: 0% 20%;
+    .allContent {
+      background-color: #264647;
+      padding: 20px;
+      @media(min-width: 641px) {
+        margin: 0% 20%;
+      }
+      @media(min-width: 1025px) {
+        margin: 60px;
+        @include flex_trinity(row, space-around);
+        flex-wrap: wrap;
+      }
+      #user_info {
+
+        @include flex_trinity(column, space-between);
+        align-items: center;
+        .recapInfo {
+          color:#FCDC12;
         }
-        @media(min-width:1025px){
-            margin: 60px;
-            @include flex_trinity(row, space-around);
-            flex-wrap: wrap;
+        #button_editing {
+          text-align: center;
+          width: 160px;
+          color:#FCDC12;
         }
-        #user_info{
+        @media(min-width: 641px) {
+          margin: auto;
+        }
+        @media(min-width: 1025px) {
+          align-items: initial;
+          margin: 0;
+        }
+      }
+      #new_article {
+        display: none;
+        color:#FCDC12;
+        @media(min-width: 1025px) {
+          display: block;
+        }
+        p {
+          @include title('article');
+        }
+      }
+      #user_article {
+        display: none;
+        color: #FEFEFE;
+        @media(min-width: 1025px) {
+          display: block;
+          @include flex_trinity(row, space-around);
+        }
+        @media(min-width: 1025px) {
+          display: block;
+          margin-top: 50px;
+          padding-top: 50px;
+          border-top: white solid 1px;
+          width: 100%;
+        }
+        h1{
+          color: #4169E1;
+        }
+        #commentaryList {
+          .commentary {
+            margin: 20px 0;
+            .listCommentary {
+              padding-bottom: 10px;
+            }
+          }
+        }
+        #articlesList {
+          border-top: 1px solid white;
+          @media(min-width: 1025px) {
+            border-top: 0;
+
+          }
+          .article {
+            margin: 20px 0;
             @include flex_trinity(column, space-between);
-            align-items: center;
-            .recapInfo{
-                color:white;
+            .articlesTitle {
+              align-self: center;
+              color: #c02424;
+              font-size: 40px;
             }
-            #button_editing{
-                text-align: center;
-                width: 160px;
+            .articlesContent {
+              padding: 10px 0;
             }
-            @media(min-width:641px){
-                margin: auto;
+            .listDateArticle {
+              align-self: flex-end;
             }
-            @media(min-width:1025px){
-                align-items: initial;
-                margin : 0px;
-            }
+          }
         }
-        #new_article{
-            display: none;
-            color :white;
-            @media(min-width:1025px){
-                display: block;
-            } 
-            p{
-                @include title('article');
-            }
-        }
-        #user_article{
-            display: none;
-            @media(min-width:1025px){
-                display: block;
-                @include flex_trinity(row, space-around);
-            }
-            @media(min-width:1025px){
-                margin-top:50px;
-                padding-top: 50px;
-                border-top: white solid 1px;
-                width: 100%;
-            }
-            #commentaryList{
-                .commentary{
-                    margin:20px 0px;
-                    .listCommentary{
-                        padding-bottom: 10px;
-                    }
-                }
-            }
-            #articlesList{
-                border-top: 1px solid white;
-                @media(min-width:1025px){
-                    border-top: 0px;
-                    width: 50%;
-                }
-                .article{
-                    margin : 20px 0px;
-                    @include flex_trinity(column, space-between);
-                    .articlesTitle{
-                        align-self: center;
-                        color:#c02424;
-                    }
-                    .articlesContent{
-                        padding:10px 0px;
-                    }
-                    .listDateArticle{
-                        align-self: flex-end;
-                    }
-                }
-            }
-        }
+      }
     }
-}
+  }
   .custom-btn {
     padding: 10px 25px;
     font-weight: 500;
@@ -531,20 +540,20 @@
     }
   }
 
-    .infoToEdit{
-        @include background_opacity(white);
-        margin-top: 120px;
-        height: 400px;
-        @include flex_trinity(column, space-around);
-        padding: 20px 0px;
-        @media(min-width:641px){
-            margin : 10% 20% 0% 20%;
-        }
-        .align{
-            @include flex_trinity(row, flex-start);
-            height: 20px;
-        }
+  .infoToEdit {
+    @include background_opacity(white);
+    margin-top: 120px;
+    height: 400px;
+    @include flex_trinity(column, space-around);
+    padding: 20px 0px;
+    @media(min-width: 641px) {
+      margin: 10% 20% 0% 20%;
     }
+    .align {
+      @include flex_trinity(row, flex-start);
+      height: 20px;
+    }
+  }
 
   footer {
     width: 100%;

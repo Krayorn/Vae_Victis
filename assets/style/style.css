@@ -474,25 +474,25 @@
   }
 
   .box {
-    margin: 0px 20px;
+    margin: 0 20px;
     margin-top: 150px;
   }
 }
 @media screen and (min-width: 1025px) {
   .box {
-    margin-top: 0px;
+    margin-top: 0;
   }
 }
 @media screen {
   .box ul {
-    padding: 0px;
+    padding: 0;
     display: flex;
-    margin: 0px;
+    margin: 0;
   }
 }
 @media screen and (min-width: 641px) {
   .box ul {
-    margin: 0% 20%;
+    margin: 0 20%;
   }
 }
 @media screen and (min-width: 1025px) {
@@ -538,11 +538,12 @@
     align-items: center;
   }
   .box .allContent #user_info .recapInfo {
-    color: white;
+    color: #FCDC12;
   }
   .box .allContent #user_info #button_editing {
     text-align: center;
     width: 160px;
+    color: #FCDC12;
   }
 }
 @media screen and (min-width: 641px) {
@@ -553,13 +554,13 @@
 @media screen and (min-width: 1025px) {
   .box .allContent #user_info {
     align-items: initial;
-    margin: 0px;
+    margin: 0;
   }
 }
 @media screen {
   .box .allContent #new_article {
     display: none;
-    color: white;
+    color: #FCDC12;
   }
 }
 @media screen and (min-width: 1025px) {
@@ -574,6 +575,7 @@
   }
   .box .allContent #user_article {
     display: none;
+    color: #FEFEFE;
   }
 }
 @media screen and (min-width: 1025px) {
@@ -586,6 +588,7 @@
 }
 @media screen and (min-width: 1025px) {
   .box .allContent #user_article {
+    display: block;
     margin-top: 50px;
     padding-top: 50px;
     border-top: white solid 1px;
@@ -593,8 +596,11 @@
   }
 }
 @media screen {
+  .box .allContent #user_article h1 {
+    color: #4169E1;
+  }
   .box .allContent #user_article #commentaryList .commentary {
-    margin: 20px 0px;
+    margin: 20px 0;
   }
   .box .allContent #user_article #commentaryList .commentary .listCommentary {
     padding-bottom: 10px;
@@ -605,13 +611,12 @@
 }
 @media screen and (min-width: 1025px) {
   .box .allContent #user_article #articlesList {
-    border-top: 0px;
-    width: 50%;
+    border-top: 0;
   }
 }
 @media screen {
   .box .allContent #user_article #articlesList .article {
-    margin: 20px 0px;
+    margin: 20px 0;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -619,9 +624,10 @@
   .box .allContent #user_article #articlesList .article .articlesTitle {
     align-self: center;
     color: #c02424;
+    font-size: 40px;
   }
   .box .allContent #user_article #articlesList .article .articlesContent {
-    padding: 10px 0px;
+    padding: 10px 0;
   }
   .box .allContent #user_article #articlesList .article .listDateArticle {
     align-self: flex-end;
