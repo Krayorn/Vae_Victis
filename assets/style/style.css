@@ -27,6 +27,12 @@
     padding: 0% 18%;
   }
 }
+@media screen and (min-width: 1440px) {
+  body {
+    font-size: 18px;
+    padding: 300px;
+  }
+}
 
 @media screen {
   main {
@@ -87,6 +93,12 @@
     width: 18%;
     height: 100%;
     left: 0;
+  }
+}
+@media screen and (min-width: 1440px) {
+  .topnav {
+    font-size: 18px;
+    width: 300px;
   }
 }
 @media screen {
