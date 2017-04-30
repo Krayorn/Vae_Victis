@@ -94,7 +94,7 @@
                 {% set articleTitle = articlesTitle[key['id']] %}
                 {% set dateArticles = listDateArticles[key['id']] %}
 
-                <div class="articlesTitle"> {{ articleDescription | raw}}</div>
+                <div class="articlesTitle"> {{ articleTitle | raw}}</div>
                 <div class="articlesContent"> {{ articleContent | raw}}</div>
                 <div class="listDateArticle"> {{ dateArticles | raw}}</div>
                 {% endfor %}

@@ -141,7 +141,7 @@ $(function () {
         }
         if(!faction){
             formValid = false;
-            errorFaction.html('Veuillez saisir un email conforme');
+            errorFaction.html('Veuillez saisir une faction conforme');
         }
 
         if (formValid) {

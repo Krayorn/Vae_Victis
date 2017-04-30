@@ -18,13 +18,15 @@ $(function () {
 
 // Get the <span> element that closes the modal
     var span = $(".close")[0];
-    var commentaryContent = $('.commentary_content');
+
+    var contentCommentaryEdit;
 // When the user clicks on the button, open the modal
     var idHidden = $('#idHidden');
     commentaryEdition.click(function () {
         var contentCommentary = $(this).parent().parent().children('.commentary_content').html();
+         contentCommentaryEdit = $(this).parent().parent().children('.commentary_content');
         var idCommentary = $(this).parent().parent().children('.idCommentary').html();
-        var commentaryToEdit = $(this).parent().parent().children('.idCommentary');
+            var commentaryToEdit = $(this).parent().parent().children('.idCommentary');
         idHidden.val(idCommentary);
         modal.css('display', 'block');
         CKEDITOR.instances['contentCommentaryEdition'].setData(contentCommentary);
@@ -34,7 +36,7 @@ $(function () {
     var errorCommentaryEdition = $('#errorCommentaryEdition');
     commentaryFormEdition.submit(function () {
         $this = $(this);
-        var commentary =  commentaryEdition.parent().parent().children('.commentary_content');
+
         var idCommentary = idHidden.val();
         var commentaryData = CKEDITOR.instances['contentCommentaryEdition'].getData();
         $.ajax({
@@ -46,7 +48,8 @@ $(function () {
 
                 if (data.success) {
                     modal.css('display','none');
-                    commentary.html(commentaryData);
+                    console.log(contentCommentaryEdit);
+                    contentCommentaryEdit.html(commentaryData);
                 }
                 if(data.success === false){
                     errorCommentaryEdition.html(data.errors['field'])
