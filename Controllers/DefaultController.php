@@ -144,11 +144,10 @@ class DefaultController extends BaseController
                    }
                 }
 
-                if (isset($_POST['commentaryEditing'])) {
-
-
-                        var_dump($_POST);
+                if (isset($_POST['commentaryEditing'])) {   
+                    if($manager->userCheckCommentaryEdition($_POST)) {
                         $manager->commentaryEdition($_POST);
+                    }
 
                 }
 
