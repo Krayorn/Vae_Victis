@@ -209,7 +209,7 @@ class UserManager
 
 
         $extFile = strrchr(basename($img['description']['name']), '.');
-        if (empty($data['title']) OR empty($img['description']['name']) OR empty($data['content'])){
+        if (empty($data['title']) OR empty($img['description']['name']) OR empty($data['articleContent'])){
             $valid = false;
             $errors['article'] = 'Missing fields';
         }
@@ -237,7 +237,7 @@ class UserManager
         $user['date'] = $this ->giveDate();
         $user['title'] = $data['title'];
         $user['description'] = $filepath;
-        $user['content'] = $data['content'];
+        $user['content'] = $data['articleContent'];
         $user['nbr_commentary'] =  '0';
         $user['update_date'] = $this->giveDate();
         $this->DBManager->insert('articles', $user);

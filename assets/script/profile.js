@@ -27,7 +27,7 @@ $(function () {
     });
 
 function CKupdateCommentary(){
-     for ( instance in CKEDITOR.instances ) CKEDITOR.instances['article_content'].updateElement(); 
+     for ( instance in CKEDITOR.instances ) CKEDITOR.instances['articleContent'].updateElement();
     }
 
     articlesForm.submit(function(){
@@ -39,7 +39,7 @@ function CKupdateCommentary(){
         var $description = $('#description').val();
         var $descriptionInput = $('#description');
         var $contentInput = $('#contentInput');
-        var $content = CKEDITOR.instances['article_content'].getData();
+        var $content = CKEDITOR.instances['articleContent'].getData();
 
 
         var formData = new FormData(this);
@@ -71,8 +71,8 @@ function CKupdateCommentary(){
             }
              if(data.success === true){
                 $titleInput.val('');
-                $descriptionInput.val('');
-              //  window.location.href="?action=home";
+                 CKEDITOR.instances['articleContent'].setData('');
+              window.location.href="?action=home";
             }
          },
              error: function(response,statut,error){
