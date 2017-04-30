@@ -388,117 +388,133 @@
     }
   }
 
-  .box {
-    margin: 0px 20px;
-    margin-top: 150px;
-    @media(min-width: 1025px) {
-      margin-top: 0px;
-    }
-    ul {
-      padding: 0px;
-      display: flex;
-      margin: 0px;
-      @media(min-width: 641px) {
-        margin: 0% 20%;
-      }
-      @media(min-width: 1025px) {
-        display: none;
-      }
-      li {
-        padding: 10px;
-        background-color: #264647;
-        .img_tab {
-          width: 30px;
+    .box {
+        margin: 0px 20px;
+        margin-top: 150px;
+        @media(min-width: 1025px) {
+            margin-top: 0px;
         }
-      }
-      .active {
-        border-top-left-radius: 10px;
-      }
+        ul {
+            padding: 0px;
+            display: flex;
+            margin: 0px;
+            @media(min-width: 641px) {
+            margin: 0% 20%;
+            }
+            @media(min-width: 1025px) {
+            display: none;
+            }
+            li {
+            padding: 10px;
+            background-color: #264647;
+            .img_tab {
+                width: 30px;
+            }
+            }
+            .active {
+            border-top-left-radius: 10px;
+            }
+        }
+
+        .allContent{
+            background-color: #c0c0c0;
+            padding : 20px;
+            @media(min-width:641px){
+                margin: 0% 20%;
+            }
+            @media(min-width:1025px){
+                margin: 60px;
+                @include flex_trinity(row, space-around);
+                flex-wrap: wrap;
+            }
+            #user_info{
+                @include flex_trinity(column, space-between);
+                align-items: center;
+                .recapInfo{
+                    color:white;
+                }
+                #button_editing{
+                    text-align: center;
+                    width: 160px;
+                }
+                @media(min-width:641px){
+                    margin: auto;
+                }
+                @media(min-width:1025px){
+                    align-items: initial;
+                    margin : 0px;
+                }
+            }
+            #new_article{
+                display: none;
+                color :white;
+                @media(min-width:1025px){
+                    display: block;
+                } 
+                p{
+                    @include title('article');
+                }
+            }
+            #user_article{
+                display: none;
+                @media(min-width:1025px){
+                    display: block;
+                    @include flex_trinity(row, space-around);
+                }
+                @media(min-width:1025px){
+                    margin-top:50px;
+                    padding-top: 50px;
+                    border-top: white solid 1px;
+                    width: 100%;
+                }
+                #commentaryList{
+                    .commentary{
+                        margin:20px 0px;
+                        .listCommentary{
+                            padding-bottom: 10px;
+                        }
+                    }
+                }
+                #articlesList{
+                    border-top: 1px solid white;
+                    @media(min-width:1025px){
+                        border-top: 0px;
+                        width: 50%;
+                    }
+                    .article{
+                        margin : 20px 0px;
+                        @include flex_trinity(column, space-between);
+                        .articlesTitle{
+                            align-self: center;
+                            color:#c02424;
+                        }
+                        .articlesContent{
+                            padding:10px 0px;
+                        }
+                        .listDateArticle{
+                            align-self: flex-end;
+                        }
+                    }
+                }
+            }
+        }
+}
+
+    .infoToEdit{
+        @include background_opacity(white);
+        margin-top: 120px;
+        height: 400px;
+        @include flex_trinity(column, space-around);
+        padding: 20px 0px;
+        @media(min-width:641px){
+            margin : 10% 20% 0% 20%;
+        }
+        .align{
+            @include flex_trinity(row, flex-start);
+            height: 20px;
+        }
     }
 
-    .allContent{
-        background-color: #c0c0c0;
-        padding : 20px;
-        @media(min-width:641px){
-            margin: 0% 20%;
-        }
-        @media(min-width:1025px){
-            margin: 60px;
-            @include flex_trinity(row, space-around);
-            flex-wrap: wrap;
-        }
-        #user_info{
-            @include flex_trinity(column, space-between);
-            align-items: center;
-            .recapInfo{
-                color:white;
-            }
-            #button_editing{
-                text-align: center;
-                width: 160px;
-            }
-            @media(min-width:641px){
-                margin: auto;
-            }
-            @media(min-width:1025px){
-                align-items: initial;
-                margin : 0px;
-            }
-        }
-        #new_article{
-            display: none;
-            color :white;
-            @media(min-width:1025px){
-                display: block;
-            } 
-            p{
-                @include title('article');
-            }
-        }
-        #user_article{
-            display: none;
-            @media(min-width:1025px){
-                display: block;
-                @include flex_trinity(row, space-around);
-            }
-            @media(min-width:1025px){
-                margin-top:50px;
-                padding-top: 50px;
-                border-top: white solid 1px;
-                width: 100%;
-            }
-            #commentaryList{
-                .commentary{
-                    margin:20px 0px;
-                    .listCommentary{
-                        padding-bottom: 10px;
-                    }
-                }
-            }
-            #articlesList{
-                border-top: 1px solid white;
-                @media(min-width:1025px){
-                    border-top: 0px;
-                    width: 50%;
-                }
-                .article{
-                    margin : 20px 0px;
-                    @include flex_trinity(column, space-between);
-                    .articlesTitle{
-                        align-self: center;
-                        color:#c02424;
-                    }
-                    .articlesContent{
-                        padding:10px 0px;
-                    }
-                    .listDateArticle{
-                        align-self: flex-end;
-                    }
-                }
-            }
-        }
-    }
-}
   .custom-btn {
     padding: 10px 25px;
     font-weight: 500;

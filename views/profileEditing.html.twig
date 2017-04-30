@@ -8,60 +8,62 @@
     <li class="none"><a href="?action=logout">Déconnexion</a></li>
 </ul>
 
-    <div class="align">
-        <div class="infoUser" id="usernameRecap"> Username : {{ user.username }}</div> <img id="parameterUsername" class="img_params parameter" src="assets/images/parametre.png">
-        <div id="infoUsername">
-            <form action="?action=profileEditing" method="POST" name="usernameForm" class="none" id="usernameForm">
-                <input type="text" name="usernameEditing" id="usernameEditing"><br>  <span id="errorUsername" class="errorBlock"></span><br>
-                <input type="submit" value="valider">
-            </form>
+    <div class="infoToEdit">
+        <div class="align">
+            <div class="infoUser" id="usernameRecap"> Username : {{ user.username }}</div>
+            <img id="parameterUsername" class="img_params parameter" src="assets/images/parametre.png">
+            <div id="infoUsername">
+                <form action="?action=profileEditing" method="POST" name="usernameForm" class="none" id="usernameForm">
+                    <input type="text" name="usernameEditing" id="usernameEditing"><br>  <span id="errorUsername" class="errorBlock"></span><br>
+                    <input type="submit" value="valider">
+                </form>
+            </div>
         </div>
-    </div>
-    <div class="align">
-        <div class="infoUser" id="emailRecap"> Email: {{ user.email }}</div><img id="parameterEmail" class="img_params parameter" src="assets/images/parametre.png">
-        <div id="infoEmail">
-            <form action="?action=profileEditing" method="POST" name="emailForm" class="none" id="emailForm">
-                <input type="text" name="emailEditing" id="emailEditing"><br><span id="errorEmail" class="errorBlock"></span><br>
-                <input type="submit" value="valider">
-            </form>
+        <div class="align">
+            <div class="infoUser" id="emailRecap"> Email: {{ user.email }}</div><img id="parameterEmail" class="img_params parameter" src="assets/images/parametre.png">
+            <div id="infoEmail">
+                <form action="?action=profileEditing" method="POST" name="emailForm" class="none" id="emailForm">
+                    <input type="text" name="emailEditing" id="emailEditing"><br><span id="errorEmail" class="errorBlock"></span><br>
+                    <input type="submit" value="valider">
+                </form>
+            </div>
         </div>
-    </div>
 
-    <div class="align">
-        <div class="infoUser" id="factionRecap"> Faction : {{ user.faction }}</div><img class="img_params parameter" id="parameterFaction" src="assets/images/parametre.png">
-        <div id="infoFaction">
-            <form action="?action=profileEditing" method="POST" name="factionForm" class="none" id="factionForm">
-                Choix 1 : <select name="factionEditing" id="factionEditing" >
-                    <option  value="vikings">Vikings</option>
-                    <option  value="samurai">Samurai</option>
-                    <option  value="chevaliers">Chevaliers</option>
-                    <option value="neutre">Neutre</option>
-                </select>
-                <input type="submit" value="valider">
-            </form>
+        <div class="align">
+            <div class="infoUser" id="factionRecap"> Faction : {{ user.faction }}</div><img class="img_params parameter" id="parameterFaction" src="assets/images/parametre.png">
+            <div id="infoFaction">
+                <form action="?action=profileEditing" method="POST" name="factionForm" class="none" id="factionForm">
+                    Choix 1 : <select name="factionEditing" id="factionEditing" >
+                        <option  value="vikings">Vikings</option>
+                        <option  value="samurai">Samurai</option>
+                        <option  value="chevaliers">Chevaliers</option>
+                        <option value="neutre">Neutre</option>
+                    </select>
+                    <input type="submit" value="valider">
+                </form>
+            </div>
+        </div>
+
+        <div class="align">
+            <div class="infoUser" id="firstnameRecap"> Prénom: {{ user.firstname }}</div> <img id="parameterFirstname" class="img_params parameter" src="assets/images/parametre.png">
+            <div id="infoFirstname">
+                <form action="?action=profileEditing" method="POST" name="firstnameForm" class="none" id="firstnameForm">
+                    <input type="text" name="firstnameEditing" id="firstnameEditing"><br>  <span id="errorFirstname" class="errorBlock"></span><br>
+                    <input type="submit" value="valider">
+                </form>
+            </div>
+        </div>
+
+        <div class="align">
+            <div class="infoUser" id="lastnameRecap"> Nom: {{ user.lastname }}</div><img class="img_params parameter" id="parameterLastname" src="assets/images/parametre.png">
+            <div id="infoLastname">
+                <form action="?action=profileEditing" method="POST" name="lastnameForm" class="none" id="lastnameForm">
+                    <input type="text" name="lastnameEditing" id="lastnameEditing"><br>  <span id="errorLastname" class="errorBlock"></span><br>
+                    <input type="submit" value="valider">
+                </form>
+            </div>
         </div>
     </div>
-
-    <div class="align">
-        <div class="infoUser" id="firstnameRecap"> Prénom: {{ user.firstname }}</div> <img id="parameterFirstname" class="img_params parameter" src="assets/images/parametre.png">
-        <div id="infoFirstname">
-            <form action="?action=profileEditing" method="POST" name="firstnameForm" class="none" id="firstnameForm">
-                <input type="text" name="firstnameEditing" id="firstnameEditing"><br>  <span id="errorFirstname" class="errorBlock"></span><br>
-                <input type="submit" value="valider">
-            </form>
-        </div>
-    </div>
-
-    <div class="align">
-        <div class="infoUser" id="lastnameRecap"> Nom: {{ user.lastname }}</div><img class="img_params parameter" id="parameterLastname" src="assets/images/parametre.png">
-        <div id="infoLastname">
-            <form action="?action=profileEditing" method="POST" name="lastnameForm" class="none" id="lastnameForm">
-                <input type="text" name="lastnameEditing" id="lastnameEditing"><br>  <span id="errorLastname" class="errorBlock"></span><br>
-                <input type="submit" value="valider">
-            </form>
-        </div>
-    </div>
-
 <aside class="aside_bar">
     <img class="logo" alt="logo_honor" src="assets/images/forHonor.png"/>
     <img class="static_footer" alt="side_bar_img" src="assets/images/asideJarl.png"/>
