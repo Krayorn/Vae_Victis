@@ -46,6 +46,7 @@ class DefaultController extends BaseController
             $user = $manager->getUserByUsername($_GET['username']);
             $allCommentary = $manager->getCommentaryByGetUserId($user['id'])  ;
             $allArticles = $manager->getArticlesByGetUserId($user['id'])  ;
+            var_dump($user);
 
             $listCommentary = array();
             $listArticles = array();

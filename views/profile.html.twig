@@ -5,19 +5,19 @@
     {% if isConnected is defined %}
         {% if visitor is defined %}
             <li id="active"><a href="#">{{user.username}}</a><div class="down arrow"></div><div class="up none arrow"></div></li>
-            <li class="none"><a href="?action=home">Home</a></li>
-            <li class="none"><a href="?action=profile&amp;username={{visitor.username}}">My Profile</a></li>
-            <li class="none"><a href="?action=logout">Logout</a></li>
+            <li class="none"><a href="?action=home">Acceuil</a></li>
+            <li class="none"><a href="?action=profile&amp;username={{visitor.username}}">mon profil</a></li>
+            <li class="none"><a href="?action=logout">Déconnexion</a></li>
         {% else %}
             <li id="active"><a href="#">My Profile</a><div class="down arrow"></div><div class="up none arrow"></div></li>
-            <li class="none"><a href="?action=home">Home</a></li>
-            <li class="none"><a href="?action=logout">Logout</a></li>
+            <li class="none"><a href="?action=home">Acceuil</a></li>
+            <li class="none"><a href="?action=logout">Déconnexion</a></li>
         {% endif %}
     {% else %}
     <li id="active"><a href="#">{{user.username}}</a><div class="down arrow"></div><div class="up none arrow"></div></li>
-    <li class="none"><a href="?action=home">Home</a></li>
-    <li class="none"><a href="?action=login">Login</a></li>
-    <li class="none"><a href="?action=register">Register</a></li>
+    <li class="none"><a href="?action=home">Acceuil</a></li>
+    <li class="none"><a href="?action=login">Se connecter</a></li>
+    <li class="none"><a href="?action=register">S'inscire</a></li>
     {% endif %}
 </ul>
 

@@ -3,13 +3,13 @@
 {% block content %}
 
 <ul class="topnav">
-    <li id="active"><a href="#">Home</a><div class="down arrow"></div><div class="up none arrow"></div></li>
+    <li id="active"><a href="#">Acceuil</a><div class="down arrow"></div><div class="up none arrow"></div></li>
     {% if isConnected is defined %}
     <li class="none"><a href="?action=profile&amp;username={{user.username}}">Profil</a></li>
-    <li class="none"><a href="?action=logout">Logout</a></li>
+    <li class="none"><a href="?action=logout">Déconnexion</a></li>
     {% else %}
-    <li class="none"><a href="?action=login">Login</a></li>
-    <li class="none"><a href="?action=register">Register</a></li>
+    <li class="none"><a href="?action=login">Se connecter</a></li>
+    <li class="none"><a href="?action=register">S'inscire</a></li>
     {% endif %}
 </ul>
 
