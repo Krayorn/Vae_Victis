@@ -96,9 +96,7 @@ $(function () {
         CKupdateArticleEdition();
         var formValid = true;
         var $this = $(this);
-        var $titleEdition = $('#titleEdition').val();
-        var $descriptionEdition = $('#descriptionEdition').val();
-
+        var $titleEdition = $('#articleTitleEdition').val();
         var $articleContentEdition = CKEDITOR.instances['articleContentEdition'].getData();
 
         if (formValid) {
@@ -108,7 +106,6 @@ $(function () {
                 type: $this.attr('method'), // La méthode indiquée dans le formulaire (get ou post)
                 data: {
                     titleEditing: $titleEdition,
-                    descriptionEditing: $descriptionEdition,
                     contentEditing: $articleContentEdition
                 },
                 dataType: 'json', // JSON,

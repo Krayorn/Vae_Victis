@@ -362,13 +362,13 @@ class UserManager
     {
         $valid = true;
         $errors = array();
-        if (empty($data['contentEditing']) OR empty($data['descriptionEditing']) OR empty($data['titleEditing'])){
+        if (empty($data['contentEditing'])  OR empty($data['titleEditing'])){
             $valid = false;
             $errors['fields'] = 'Fields missing';
         }
         if(strlen($data['contentEditing']) < 4){
             $valid = false;
-            $errors['fields'] = 'Prénom trop court';
+            $errors['fields'] = 'Content trop court';
         }
         if($valid === false){
             echo json_encode(array('success'=>false, 'errors'=>$errors));

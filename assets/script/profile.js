@@ -72,7 +72,7 @@ function CKupdateCommentary(){
              if(data.success === true){
                 $titleInput.val('');
                  CKEDITOR.instances['articleContent'].setData('');
-              window.location.href="?action=home";
+              //window.location.href="?action=home";
             }
          },
              error: function(response,statut,error){
